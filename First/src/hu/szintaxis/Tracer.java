@@ -1,10 +1,5 @@
-package game.wireTest;
+package hu.szintaxis;
 
-import java.lang.invoke.MethodHandle;
-
-import sun.reflect.misc.MethodUtil;
-
-import com.sun.org.apache.regexp.internal.recompile;
 
 /*
  * Tracer osztály a szkeletonhoz a metódusok követésére.
