@@ -1,9 +1,13 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 import java.util.ArrayList;
 
 /**
  * bool változó tárolja, hogy a hangya mérgezett e; csökkenti az életét
+ * 
  * @author gbeatrix
  * @version 1.0
  * @created 20-márc.-2013 10:42:45
@@ -15,8 +19,10 @@ public class Ant implements Updatable, Visitor, Element {
 	private int poisonLevel;
 	private ArrayList<Field> visitedFields;
 
-	public Ant(){
-		System.out.println(getClass().getName() + " created.");
+	public Ant() {
+		Tracer.Instance().Trace(Direction.Enter);
+		// System.out.println(getClass().getName() + " created.");
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
@@ -27,7 +33,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param visiting
 	 */
-	public void accept(Visitor visiting){
+	public void accept(Visitor visiting) {
 
 	}
 
@@ -35,7 +41,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param level
 	 */
-	public void addPoisonLevel(int level){
+	public void addPoisonLevel(int level) {
 
 	}
 
@@ -43,7 +49,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param f
 	 */
-	public void blocked_direction(Field f){
+	public void blocked_direction(Field f) {
 
 	}
 
@@ -51,19 +57,19 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param a
 	 */
-	public Field decideDirection(ArrayList<Field> a){
+	public Field decideDirection(ArrayList<Field> a) {
 		return null;
 	}
 
-	public void decreaseHealtPoint(){
+	public void decreaseHealtPoint() {
 
 	}
 
-	public void kill(){
+	public void kill() {
 
 	}
 
-	public void onDraw(){
+	public void onDraw() {
 
 	}
 
@@ -71,20 +77,19 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param field
 	 */
-	public void setField(Field field){
+	public void setField(Field field) {
 
 	}
 
-	public void update(){
+	public void update() {
 
 	}
-
 
 	/**
 	 * 
 	 * @param antlion
 	 */
-	public void visit(Antlion antlion){
+	public void visit(Antlion antlion) {
 
 	}
 
@@ -92,7 +97,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param ant
 	 */
-	public void visit(Ant ant){
+	public void visit(Ant ant) {
 
 	}
 
@@ -100,7 +105,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param akadaly
 	 */
-	public void visit(Block akadaly){
+	public void visit(Block akadaly) {
 
 	}
 
@@ -108,7 +113,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param foodstore
 	 */
-	public void visit(FoodStore foodstore){
+	public void visit(FoodStore foodstore) {
 
 	}
 
@@ -116,7 +121,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param anteater
 	 */
-	public void visit(Anteater anteater){
+	public void visit(Anteater anteater) {
 
 	}
 

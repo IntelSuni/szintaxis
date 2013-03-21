@@ -2,6 +2,7 @@ package System;
 
 /**
  * ez még az elején nem kell
+ * 
  * @author Martin
  * @version 1.0
  * @created 20-márc.-2013 10:42:47
@@ -10,7 +11,7 @@ public class Game {
 
 	private GameField gamefield;
 
-	public Game(){
+	public Game() {
 
 	}
 
@@ -18,19 +19,19 @@ public class Game {
 
 	}
 
-	public void Exit(){
+	public void Exit() {
 
 	}
 
-	public void Help(){
+	public void Help() {
 
 	}
 
-	public void newGame(){
+	public void newGame() {
 
 	}
 
-	public void Pause(){
+	public void Pause() {
 
 	}
 

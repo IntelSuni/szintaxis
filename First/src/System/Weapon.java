@@ -10,17 +10,15 @@ public class Weapon {
 	private static Weapon Instance;
 	public Spray m_Spray;
 
-
-
 	public void finalize() throws Throwable {
 
 	}
 
-	private void Weapon(){
+	private void Weapon() {
 
 	}
 
-	public static Weapon InstanceOf(){
+	public static Weapon InstanceOf() {
 		return null;
 	}
 
@@ -28,7 +26,7 @@ public class Weapon {
 	 * 
 	 * @param field
 	 */
-	public void Use(Field field){
+	public void Use(Field field) {
 
 	}
 

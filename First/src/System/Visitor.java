@@ -3,6 +3,7 @@ package System;
 /**
  * a visitElement(Visitabel) metódust kivettem, hiszen a a konkrét metódusokat
  * beletettük
+ * 
  * @author Vartrass
  * @version 1.0
  * @created 20-márc.-2013 10:42:48

@@ -1,5 +1,6 @@
 package hu.szintaxis;
 
+import hu.szintaxis.Tracer.Direction;
 import System.*;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Tracer.Instance().Trace(Direction.Enter, args);
 
 		GameField gameField = new GameField();
 		Field field = new Field(gameField);
@@ -19,6 +21,7 @@ public class Main {
 		gameField.addField(field);
 		antHill.update();
 		
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

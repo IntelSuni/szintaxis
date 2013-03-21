@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * evés: növeli a megevett számlálót, ha eléri a 3-at, nem eszik többet.
  * Hangyász
+ * 
  * @author gbeatrix
  * @version 1.0
  * @created 20-márc.-2013 10:42:46
@@ -14,7 +15,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	private Field currentField;
 	private int eatenAnts;
 
-	public Anteater(){
+	public Anteater() {
 
 	}
 
@@ -26,7 +27,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param visiting
 	 */
-	public void accept(Visitor visiting){
+	public void accept(Visitor visiting) {
 
 	}
 
@@ -34,15 +35,15 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param fields
 	 */
-	public Field decideDirection(ArrayList<Field> fields){
+	public Field decideDirection(ArrayList<Field> fields) {
 		return null;
 	}
 
-	public void eat(){
+	public void eat() {
 
 	}
 
-	public void onDraw(){
+	public void onDraw() {
 
 	}
 
@@ -50,11 +51,11 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param field
 	 */
-	public void setField(Field field){
+	public void setField(Field field) {
 
 	}
 
-	public void update(){
+	public void update() {
 
 	}
 
@@ -62,7 +63,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param antlion
 	 */
-	public void visit(Antlion antlion){
+	public void visit(Antlion antlion) {
 
 	}
 
@@ -70,7 +71,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param ant
 	 */
-	public void visit(Ant ant){
+	public void visit(Ant ant) {
 
 	}
 
@@ -78,7 +79,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param akadaly
 	 */
-	public void visit(Block akadaly){
+	public void visit(Block akadaly) {
 
 	}
 
@@ -86,7 +87,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param foodstore
 	 */
-	public void visit(FoodStore foodstore){
+	public void visit(FoodStore foodstore) {
 
 	}
 
@@ -94,7 +95,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param anteater
 	 */
-	public void visit(Anteater anteater){
+	public void visit(Anteater anteater) {
 
 	}
 
