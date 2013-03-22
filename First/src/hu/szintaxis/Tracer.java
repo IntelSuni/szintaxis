@@ -5,7 +5,7 @@ package hu.szintaxis;
  * Tracer osztály a szkeletonhoz a metódusok követésére.
  */
 public class Tracer {
-
+//nyuszi
 	public enum Direction {
 		Enter,
 		Leave
