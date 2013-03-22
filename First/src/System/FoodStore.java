@@ -11,7 +11,7 @@ import hu.szintaxis.Tracer.Direction;
  * @created 20-márc.-2013 10:42:47
  */
 public class FoodStore implements Element {
-
+	private Field field; //a mezo amin rajta van kell ahoz hogy amikor kiurul meg lehessen szuntetni.
 	private int food;
 
 	public FoodStore() {
@@ -59,7 +59,7 @@ public class FoodStore implements Element {
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(Direction.Enter);
-		
+		field.removeElement(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

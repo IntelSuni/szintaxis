@@ -93,9 +93,12 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
-
+	/**
+	 * meghalaskor hivja a hangya kiszedi magát az aktuális mezõbõl
+	 */
 	public void kill() {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.field.removeElement(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -173,10 +176,12 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param foodstore
 	 * a hangya a meglátogatott foodstore ban eszik
+	 * majd miutan evett meghal a jollakottsagtol
 	 */
 	public void visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(Direction.Enter,foodstore);
 		foodstore.eat();
+		this.kill();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
