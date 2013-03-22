@@ -33,7 +33,8 @@ public class Antlion implements Element {
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -41,7 +42,8 @@ public class Antlion implements Element {
 	 * @param field
 	 */
 	public void setField(Field field) {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,field);
 	}
 
 }
