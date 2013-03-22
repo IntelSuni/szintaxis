@@ -29,7 +29,7 @@ public class GameField {
 	public Game m_Game;
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	// csak a próba miatt public, eredetileg private !
@@ -45,7 +45,8 @@ public class GameField {
 	 * @param field
 	 */
 	public void addElementToField(Element element, Field field) {
-
+		Tracer.Instance().Trace(Direction.Enter,element,field);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -67,15 +68,22 @@ public class GameField {
 	 * @param points
 	 */
 	public Field getField(Point points) {
+		Tracer.Instance().Trace(Direction.Enter,points);
+		Tracer.Instance().Trace(Direction.Leave);
 		return null;
 	}
 
 	public void Initialize() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public static GameField instanceOf() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		if(instance==null) new GameField();
+		
+		Tracer.Instance().Trace(Direction.Leave,instance);
+		return instance;
 	}
 
 	/**
@@ -94,7 +102,8 @@ public class GameField {
 	}
 
 	public void updateUpdatables() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

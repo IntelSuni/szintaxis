@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * @author Dóczi Róbert
  * @version 1.0
@@ -11,15 +14,21 @@ public class Weapon {
 	public Spray m_Spray;
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
-	private void Weapon() {
-
+	
+	private  Weapon() {
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public static Weapon InstanceOf() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		
+		if(Instance==null)Instance=new Weapon();
+		Tracer.Instance().Trace(Direction.Leave);
+		return  Instance;
 	}
 
 	/**
@@ -27,7 +36,8 @@ public class Weapon {
 	 * @param field
 	 */
 	public void Use(Field field) {
-
+		Tracer.Instance().Trace(Direction.Enter,field);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

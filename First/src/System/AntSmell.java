@@ -23,19 +23,24 @@ public class AntSmell extends Smell {
 	}
 
 	public void activate() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void decrementIntensity() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public int getIntensity() {
-		return 0;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,intensity);
+		return intensity;
 	}
 
 	public void update() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

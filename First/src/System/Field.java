@@ -47,7 +47,7 @@ public class Field implements Element {
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	/**
@@ -55,7 +55,8 @@ public class Field implements Element {
 	 * @param visitor
 	 */
 	public void accept(Visitor visitor) {
-
+		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -77,7 +78,8 @@ public class Field implements Element {
 	 * @param neighbour
 	 */
 	public void addNeighbour(Field neighbour) {
-
+		Tracer.Instance().Trace(Direction.Enter,neighbour);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -95,19 +97,27 @@ public class Field implements Element {
 	}
 
 	public ArrayList<Element> getElements() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,element);
+		return element;
 	}
 
 	public ArrayList<Field> getNeighbours() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,neighbours);
+		return neighbours;
 	}
 
 	public Point getPoint() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,points);
+		return points;
 	}
 
 	public ArrayList<Smell> getSmells() {
-		return null;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,smells);
+		return smells;
 	}
 
 	/**
@@ -115,11 +125,14 @@ public class Field implements Element {
 	 * @param h1
 	 */
 	public boolean moveTo(Ant h1) {
+		Tracer.Instance().Trace(Direction.Enter,h1);
+		Tracer.Instance().Trace(Direction.Leave);
 		return false;
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -127,7 +140,8 @@ public class Field implements Element {
 	 * @param element
 	 */
 	public void removeElement(Element element) {
-
+		Tracer.Instance().Trace(Direction.Enter,element);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -135,7 +149,8 @@ public class Field implements Element {
 	 * @param smell
 	 */
 	public void removeSmell(Smell smell) {
-
+		Tracer.Instance().Trace(Direction.Enter,smell);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -143,7 +158,8 @@ public class Field implements Element {
 	 * @param mov_blocked
 	 */
 	public void set_move_blocked(boolean mov_blocked) {
-
+		Tracer.Instance().Trace(Direction.Enter,mov_blocked);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -152,7 +168,8 @@ public class Field implements Element {
 	 * @param x
 	 */
 	public void setPoint(int y, int x) {
-
+		Tracer.Instance().Trace(Direction.Enter,x,y);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

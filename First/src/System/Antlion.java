@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * Hangyalesõ
  * 
@@ -12,11 +15,12 @@ public class Antlion implements Element {
 	private Field currentField;
 
 	public Antlion() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	/**
@@ -24,7 +28,8 @@ public class Antlion implements Element {
 	 * @param visiting
 	 */
 	public void accept(Visitor visiting) {
-
+		Tracer.Instance().Trace(Direction.Enter,visiting);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void onDraw() {

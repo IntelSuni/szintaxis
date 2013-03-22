@@ -9,7 +9,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub torolni
 		Tracer.Instance().Trace(Direction.Enter, args);
 
 		GameField gameField = new GameField();

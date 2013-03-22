@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * Akadály
  * 
@@ -10,11 +13,12 @@ package System;
 public class Block implements Element {
 
 	public Block() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	/**
@@ -22,11 +26,13 @@ public class Block implements Element {
 	 * @param visitor
 	 */
 	public void accept(Visitor visitor) {
-
+		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

@@ -34,7 +34,7 @@ public class AntHill implements Updatable, Element {
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	/**
@@ -42,11 +42,13 @@ public class AntHill implements Updatable, Element {
 	 * @param visitor
 	 */
 	public void accept(Visitor visitor) {
-
+		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void update() {

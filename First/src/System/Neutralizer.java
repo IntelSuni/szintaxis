@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * Hangyaszag semlegesítõ
  * @author gbeatrix
@@ -9,7 +12,8 @@ package System;
 public class Neutralizer extends Spray {
 
 	public Neutralizer(){
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
@@ -17,7 +21,8 @@ public class Neutralizer extends Spray {
 	}
 
 	public void onDraw(){
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -25,7 +30,8 @@ public class Neutralizer extends Spray {
 	 * @param mezo
 	 */
 	public void use(Field mezo){
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * Hangyairtó
  * 
@@ -10,7 +13,8 @@ package System;
 public class Exterminator extends Spray {
 
 	public Exterminator() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
@@ -18,7 +22,8 @@ public class Exterminator extends Spray {
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -26,7 +31,8 @@ public class Exterminator extends Spray {
 	 * @param mezo
 	 */
 	public void use(Field mezo) {
-
+		Tracer.Instance().Trace(Direction.Enter,mezo);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

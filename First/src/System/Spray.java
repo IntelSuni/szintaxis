@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * Fegyver interfész, a spray helyett
  * 
@@ -12,15 +15,17 @@ public class Spray {
 	private int capacity;
 
 	public Spray() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
@@ -28,7 +33,8 @@ public class Spray {
 	 * @param mezo
 	 */
 	public void use(Field mezo) {
-
+		Tracer.Instance().Trace(Direction.Enter,mezo);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

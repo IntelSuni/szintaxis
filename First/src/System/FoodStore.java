@@ -1,5 +1,8 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
  * kivettem a kill() metódust, hiszen õ hívja meg a hangyán, nem pedig rajta !
  * 
@@ -12,11 +15,12 @@ public class FoodStore implements Element {
 	private int food;
 
 	public FoodStore() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void finalize() throws Throwable {
-
+		super.finalize();
 	}
 
 	/**
@@ -24,23 +28,29 @@ public class FoodStore implements Element {
 	 * @param visitor
 	 */
 	public void accept(Visitor visitor) {
-
+		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void eat() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public int getFoodLeft() {
-		return 0;
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave,food);
+		return food;
 	}
 
 	public void kill() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void onDraw() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }
