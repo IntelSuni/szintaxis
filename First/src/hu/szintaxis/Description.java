@@ -8,5 +8,13 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Description {
-	String value() default "";
+	/**
+	 * A teszteset sorszáma
+	 */
+	int orderNumber();
+	
+	/**
+	 * A teszteset leírása
+	 */
+	String description();
 }
