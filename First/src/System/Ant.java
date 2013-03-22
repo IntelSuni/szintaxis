@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @created 20-márc.-2013 10:42:45
  */
 public class Ant implements Updatable, Visitor, Element {
-
+	private String name;
 	private Field field;
 	private int HealtPoint;
 	private int poisonLevel;
@@ -62,8 +62,31 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(Direction.Enter,a);
+		ArrayList<Smell> q=null;
+		ArrayList<Element> z=null;
+		Field eredmeny=null;
+		int lastintensity=-1,actual_intensity=0;
+		for(Field l : a){
+			actual_intensity=0;
+			q=l.getSmells();
+			for (Smell s : q){
+				actual_intensity+=s.getIntensity();
+			}
+			z=l.getElements();
+			for (Element s : z){
+				//nem tudom hogy mit kell kezdeni az elementekkel amikor irányt döntök el.
+			}
+			
+			//eldonteni a szag alapjan és az alapjan hogy blokkolt e a mezo
+			//a true a blokkoltság vizsgálata valahogy:)
+			if((actual_intensity>lastintensity)&&(true)){
+				lastintensity=actual_intensity;
+				eredmeny=l;
+			}
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave,field);
-		return null;
+		return eredmeny;
 	}
 
 	public void decreaseHealtPoint() {
@@ -90,8 +113,31 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * 
+	 * az update függvény megkéri az aktuális mezõt hogy mondja meg hogy ki a szomszédja
+	 * az eredmenyen meghívja a decide directiont
+	 * majd törli a hangya magát a aktuális mezõbõl
+	 * átmozog a másik mezõre 
+	 */
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
+		//a kovetkezo mezo eldontese
+		Field next_field;
+		ArrayList<Field> neighbours=field.getNeighbours();
+		next_field=decideDirection(neighbours);
+		
+		//atmozgas a kovetkezo mezore
+		field.removeElement(this);
+		next_field.addElement(this);
+		field=next_field;
+		
+		//visitor minta alkalmazasa
+		ArrayList<Element> aktualis_mezoe=field.getElements();
+		for(Element s : aktualis_mezoe){
+			s.accept(this);
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -126,9 +172,11 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * 
 	 * @param foodstore
+	 * a hangya a meglátogatott foodstore ban eszik
 	 */
 	public void visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(Direction.Enter,foodstore);
+		foodstore.eat();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

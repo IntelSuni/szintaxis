@@ -26,14 +26,25 @@ public class FoodStore implements Element {
 	/**
 	 * 
 	 * @param visitor
+	 * a visitoron meghívja a class a saját magához tartozó függvényt
 	 */
 	public void accept(Visitor visitor) {
 		Tracer.Instance().Trace(Direction.Enter,visitor);
+		visitor.visit(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
-
+	/**
+	 * a hangya aki meglátogatta ezt a kajaraktárat megeszik belõle valamennyit
+	 * van még ellenõrzés benne arról hogy a raktár kifogyott e
+	 */
 	public void eat() {
 		Tracer.Instance().Trace(Direction.Enter);
+		
+		food--;		//nem tudom mennyit eszik meg a hangya itt 1et vettem le
+		if (food<=0){
+			this.kill();
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -42,9 +53,13 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave,food);
 		return food;
 	}
-
+	
+	/**
+	 * a foodstore eltávolítja saját magát
+	 */
 	public void kill() {
 		Tracer.Instance().Trace(Direction.Enter);
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
