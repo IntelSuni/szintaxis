@@ -25,6 +25,12 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	public Ant(Field field) {
+		Tracer.Instance().Trace(Direction.Enter, field);
+		this.field = field;
+		Tracer.Instance().Trace(Direction.Leave);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

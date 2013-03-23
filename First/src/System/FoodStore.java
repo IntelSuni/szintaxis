@@ -11,7 +11,8 @@ import hu.szintaxis.Tracer.Direction;
  * @created 20-márc.-2013 10:42:47
  */
 public class FoodStore implements Element {
-	private Field field; //a mezo amin rajta van kell ahoz hogy amikor kiurul meg lehessen szuntetni.
+	private Field field; // a mezo amin rajta van kell ahoz hogy amikor kiurul
+							// meg lehessen szuntetni.
 	private int food;
 
 	public FoodStore() {
@@ -19,7 +20,15 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
-	/* (non-Javadoc)
+	public FoodStore(Field field) {
+		Tracer.Instance().Trace(Direction.Enter, field);
+		this.field = field;
+		Tracer.Instance().Trace(Direction.Leave);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -34,34 +43,35 @@ public class FoodStore implements Element {
 	/**
 	 * 
 	 * @param visitor
-	 * a visitoron meghívja a class a saját magához tartozó függvényt
+	 *            a visitoron meghívja a class a saját magához tartozó függvényt
 	 */
 	public void accept(Visitor visitor) {
-		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Enter, visitor);
 		visitor.visit(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
+
 	/**
 	 * a hangya aki meglátogatta ezt a kajaraktárat megeszik belõle valamennyit
 	 * van még ellenõrzés benne arról hogy a raktár kifogyott e
 	 */
 	public void eat() {
 		Tracer.Instance().Trace(Direction.Enter);
-		
-		food--;		//nem tudom mennyit eszik meg a hangya itt 1et vettem le
-		if (food<=0){
+
+		food--; // nem tudom mennyit eszik meg a hangya itt 1et vettem le
+		if (food <= 0) {
 			this.kill();
 		}
-		
+
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public int getFoodLeft() {
 		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave,food);
+		Tracer.Instance().Trace(Direction.Leave, food);
 		return food;
 	}
-	
+
 	/**
 	 * a foodstore eltávolítja saját magát
 	 */

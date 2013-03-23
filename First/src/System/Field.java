@@ -41,6 +41,11 @@ public class Field implements Element {
 	public Field(GameField gameField) {
 		Tracer.Instance().Trace(Direction.Enter, gameField);
 		this.gameField = gameField;
+
+		neighbours=new ArrayList<Field>();
+		element=new ArrayList<Element>();
+		smells=new  ArrayList<Smell>();
+		// System.out.println(getClass().getName() + " created.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -71,6 +76,12 @@ public class Field implements Element {
 	 */
 	public void addElement(Element element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
+		// final StackTraceElement[] ste =
+		// Thread.currentThread().getStackTrace();
+		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
+		// 2].getMethodName() + "() method called with "
+		// + element.getClass().getName() + " parameter.");
+		this.element.add(element);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -81,6 +92,7 @@ public class Field implements Element {
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(Direction.Enter,neighbour);
 		neighbour.addElement(neighbour);
+		neighbours.add(neighbour);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -90,13 +102,20 @@ public class Field implements Element {
 	 */
 	public void addSmell(Smell smell) {
 		Tracer.Instance().Trace(Direction.Enter, smell);
+		// final StackTraceElement[] ste =
+		// Thread.currentThread().getStackTrace();
+		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
+		// 2].getMethodName() + "() method called with "
+		// + smell.getClass().getName() + " parameter.");
+		smells.add(smell);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public ArrayList<Element> getElements() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave,element);
-		return element;
+		return new ArrayList<Element>(element);
+		
 	}
 
 	public ArrayList<Field> getNeighbours() {

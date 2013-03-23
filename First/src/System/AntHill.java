@@ -68,7 +68,7 @@ public class AntHill implements Updatable, Element {
 		// Thread.currentThread().getStackTrace();
 		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
 		// 1].getMethodName() + "() method called.");
-		Ant ant = new Ant();
+		Ant ant = new Ant(field);
 		AntSmell antSmell = new AntSmell();
 
 		field.addElement(ant);
