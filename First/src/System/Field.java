@@ -42,6 +42,9 @@ public class Field implements Element {
 	public Field(GameField gameField) {
 		Tracer.Instance().Trace(Direction.Enter, gameField);
 		this.gameField = gameField;
+		neighbours=new ArrayList<Field>();
+		element=new ArrayList<Element>();
+		smells=new  ArrayList<Smell>();
 		// System.out.println(getClass().getName() + " created.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
@@ -70,6 +73,7 @@ public class Field implements Element {
 		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
 		// 2].getMethodName() + "() method called with "
 		// + element.getClass().getName() + " parameter.");
+		this.element.add(element);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -79,6 +83,7 @@ public class Field implements Element {
 	 */
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(Direction.Enter,neighbour);
+		neighbours.add(neighbour);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -93,18 +98,27 @@ public class Field implements Element {
 		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
 		// 2].getMethodName() + "() method called with "
 		// + smell.getClass().getName() + " parameter.");
+		smells.add(smell);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public ArrayList<Element> getElements() {
 		Tracer.Instance().Trace(Direction.Enter);
+		// ArrayList<Element> clone = new ArrayList<Element>(element);
+		//System.out.println(element);
+		//System.out.println(clone);
 		Tracer.Instance().Trace(Direction.Leave,element);
-		return element;
+		return new ArrayList<Element>(element);
+		//return clone;
+		//return element; ha ezt benne hagyja az ember, amikor a foodstore meghivja a removeelement(hangya) metodust a saját mezejére concurrentmodificationexceptiont dob az arraylist
+		
 	}
 
 	public ArrayList<Field> getNeighbours() {
 		Tracer.Instance().Trace(Direction.Enter);
+		
 		Tracer.Instance().Trace(Direction.Leave,neighbours);
+		//return new ArrayList<Field>(neighbours);	//valojaban egy masolatot kellene visszaadni a szomszedokrol, hiszen ha blokkolt a mozgás, akkor ebbol a másolatbó ki lehet szedni a blokkolt irányt/mezõt igy egyszerûsödik a mozgás
 		return neighbours;
 	}
 
@@ -142,6 +156,7 @@ public class Field implements Element {
 	public void removeElement(Element element) {
 		Tracer.Instance().Trace(Direction.Enter,element);
 		Tracer.Instance().Trace(Direction.Leave);
+		this.element.remove(element);
 	}
 
 	/**
@@ -151,6 +166,7 @@ public class Field implements Element {
 	public void removeSmell(Smell smell) {
 		Tracer.Instance().Trace(Direction.Enter,smell);
 		Tracer.Instance().Trace(Direction.Leave);
+		this.smells.remove(smell);
 	}
 
 	/**

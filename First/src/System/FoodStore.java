@@ -14,8 +14,9 @@ public class FoodStore implements Element {
 	private Field field; //a mezo amin rajta van kell ahoz hogy amikor kiurul meg lehessen szuntetni.
 	private int food;
 
-	public FoodStore() {
+	public FoodStore(Field field) {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.field=field;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

@@ -19,9 +19,10 @@ public class Ant implements Updatable, Visitor, Element {
 	private int poisonLevel;
 	private ArrayList<Field> visitedFields;
 
-	public Ant() {
+	public Ant(Field field) {
 		Tracer.Instance().Trace(Direction.Enter);
 		// System.out.println(getClass().getName() + " created.");
+		this.field=field;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -64,29 +65,30 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(Direction.Enter,a);
 		ArrayList<Smell> q=null;
 		ArrayList<Element> z=null;
-		Field eredmeny=null;
-		int lastintensity=-1,actual_intensity=0;
+		Field result=null;
+		int lastIntensity=-1,actualIntensity=0;
 		for(Field l : a){
-			actual_intensity=0;
+			actualIntensity=0;
 			q=l.getSmells();
 			for (Smell s : q){
-				actual_intensity+=s.getIntensity();
+				actualIntensity+=s.getIntensity();
 			}
 			z=l.getElements();
 			for (Element s : z){
 				//nem tudom hogy mit kell kezdeni az elementekkel amikor irányt döntök el.
+				
 			}
 			
 			//eldonteni a szag alapjan és az alapjan hogy blokkolt e a mezo
 			//a true a blokkoltság vizsgálata valahogy:)
-			if((actual_intensity>lastintensity)&&(true)){
-				lastintensity=actual_intensity;
-				eredmeny=l;
+			if((actualIntensity>lastIntensity)&&(true)){
+				lastIntensity=actualIntensity;
+				result=l;
 			}
 		}
 		
 		Tracer.Instance().Trace(Direction.Leave,field);
-		return eredmeny;
+		return result;
 	}
 
 	public void decreaseHealtPoint() {
@@ -126,18 +128,21 @@ public class Ant implements Updatable, Visitor, Element {
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
 		//a kovetkezo mezo eldontese
-		Field next_field;
+		Field nextField;
 		ArrayList<Field> neighbours=field.getNeighbours();
-		next_field=decideDirection(neighbours);
+		nextField=decideDirection(neighbours);
 		
 		//atmozgas a kovetkezo mezore
 		field.removeElement(this);
-		next_field.addElement(this);
-		field=next_field;
+		nextField.addElement(this);
+		field=nextField;
 		
 		//visitor minta alkalmazasa
-		ArrayList<Element> aktualis_mezoe=field.getElements();
-		for(Element s : aktualis_mezoe){
+		ArrayList<Element> actualField=field.getElements();
+		
+		
+		for(Element s : actualField){
+			
 			s.accept(this);
 		}
 		
