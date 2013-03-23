@@ -79,15 +79,15 @@ public class GameField {
 	public void Initialize() {
 		Tracer.Instance().Trace(Direction.Enter);
 		
-		Field field1 = new Field();
+		Field field1 = new Field(this);
 		field1.setPoint(1, 1);
 		
-		Field neighbour1 = new Field();
-		Field neighbour2 = new Field();
-		Field neighbour3 = new Field();
-		Field neighbour4 = new Field();
-		Field neighbour5 = new Field();
-		Field neighbour6 = new Field();
+		Field neighbour1 = new Field(this);
+		Field neighbour2 = new Field(this);
+		Field neighbour3 = new Field(this);
+		Field neighbour4 = new Field(this);
+		Field neighbour5 = new Field(this);
+		Field neighbour6 = new Field(this);
 		
 		neighbour1.setPoint(0, 1);
 		neighbour2.setPoint(0, 2);

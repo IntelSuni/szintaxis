@@ -35,6 +35,7 @@ public class Block implements Element {
 	 */
 	public void accept(Visitor visitor) {
 		Tracer.Instance().Trace(Direction.Enter,visitor);
+		visitor.visit(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

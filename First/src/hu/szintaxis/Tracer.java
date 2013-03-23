@@ -76,7 +76,9 @@ public class Tracer {
 		//Esetleges visszatérési érték kiírása
 		if (direction == Direction.Leave && arguments.length == 1) {
 			sBuilder.append(":");
-			sBuilder.append(arguments[0].toString());
+			if(arguments[0] != null) {
+				sBuilder.append(arguments[0].toString());
+			}
 		}
 		
 		//Elkészült string írása.

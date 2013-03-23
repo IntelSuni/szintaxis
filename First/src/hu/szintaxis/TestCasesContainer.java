@@ -2,6 +2,7 @@ package hu.szintaxis;
 
 import System.Ant;
 import System.AntHill;
+import System.Anteater;
 import System.Field;
 import System.Game;
 import System.FoodStore;
@@ -55,5 +56,18 @@ public class TestCasesContainer {
 		field.addNeighbour(field2);
 		h1.decideDirection(field.getNeighbours());
 
+	}
+	
+	@Description(orderNumber = 5, description = "Hangyász hangya nélküli mezõre lép")
+	public void AnteaterEmptyFieldTest() {
+		GameField gameField = new GameField();
+		Field field = new Field(gameField);
+		Field field2 = new Field(gameField);
+		field.addNeighbour(field2);
+		Anteater anteater = new Anteater();
+		field.addElement(anteater);
+		anteater.setField(field);
+		
+		anteater.update();
 	}
 }

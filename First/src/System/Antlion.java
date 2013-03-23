@@ -39,6 +39,7 @@ public class Antlion implements Element {
 	 */
 	public void accept(Visitor visiting) {
 		Tracer.Instance().Trace(Direction.Enter, visiting);
+		visiting.visit(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

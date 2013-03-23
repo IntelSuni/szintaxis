@@ -3,7 +3,11 @@ package System;
 import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.sun.xml.internal.ws.developer.MemberSubmissionEndpointReference.Elements;
 
 /**
  * evés: növeli a megevett számlálót, ha eléri a 3-at, nem eszik többet.
@@ -22,7 +26,7 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -32,7 +36,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	public String toString() {
 		return "Anteater []";
 	}
-
 
 	public void finalize() throws Throwable {
 		super.finalize();
@@ -44,6 +47,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	public void accept(Visitor visiting) {
 		Tracer.Instance().Trace(Direction.Enter, visiting);
+		visiting.visit(this);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -51,7 +55,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param fields
 	 */
-	public Field decideDirection(ArrayList<Field> fields) {
+	public Field decideDirection(List<Field> fields) {
 		Tracer.Instance().Trace(Direction.Enter, fields);
 		Field result = null;
 		Tracer.Instance().Trace(Direction.Leave, result);
@@ -74,11 +78,28 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(Direction.Enter, field);
+		currentField = field;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
+		List<Field> neighbours = currentField.getNeighbours();
+		Field target = decideDirection(neighbours);
+
+		// A teszt miatt, mivel a decideDirection még nincs implementálva.
+		target = neighbours.get(0);
+
+		target.addElement(this);
+
+		setField(target);
+
+		List<Element> elements = target.getElements();
+
+		for (Element element : elements) {
+			element.accept(this);
+		}
+
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
