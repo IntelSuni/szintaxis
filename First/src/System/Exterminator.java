@@ -17,6 +17,14 @@ public class Exterminator extends Spray {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Exterminator []";
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}

@@ -12,6 +12,9 @@ import hu.szintaxis.Tracer.Direction;
  */
 public class Game {
 
+	/**
+	 * A pálya mely tartalmazza a mezõket.
+	 */
 	private GameField gamefield;
 
 	public Game() {
@@ -35,6 +38,8 @@ public class Game {
 
 	public void newGame() {
 		Tracer.Instance().Trace(Direction.Enter);
+		gamefield = GameField.instanceOf();
+		gamefield.Initialize();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

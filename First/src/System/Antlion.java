@@ -19,6 +19,16 @@ public class Antlion implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Antlion []";
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
@@ -28,7 +38,7 @@ public class Antlion implements Element {
 	 * @param visiting
 	 */
 	public void accept(Visitor visiting) {
-		Tracer.Instance().Trace(Direction.Enter,visiting);
+		Tracer.Instance().Trace(Direction.Enter, visiting);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -43,7 +53,7 @@ public class Antlion implements Element {
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave,field);
+		Tracer.Instance().Trace(Direction.Leave, field);
 	}
 
 }

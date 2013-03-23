@@ -5,8 +5,7 @@ import hu.szintaxis.Tracer.Direction;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
-import javax.lang.model.element.ElementKind;
+import java.util.List;
 
 /**
  * Pálya
@@ -23,10 +22,10 @@ public class GameField {
 	private int foodStoreNo;
 	private static GameField instance;
 	private Point size;
-	private ArrayList<Updatable> toUpdate;
-	public Field m_Field;
-	public Updatable m_Updatable;
-	public Game m_Game;
+	private List<Updatable> toUpdate;
+	public List<Field> fields;
+	public List<Updatable> updatables;
+	public Game game;
 
 	public void finalize() throws Throwable {
 		super.finalize();
@@ -35,17 +34,25 @@ public class GameField {
 	// csak a próba miatt public, eredetileg private !
 	public GameField() {
 		Tracer.Instance().Trace(Direction.Enter);
-		// System.out.println(getClass().getName() + " created.");
+		fields = new ArrayList<Field>();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "GameField []";
+	}
+
 	/**
-	 * 
-	 * @param element
-	 * @param field
+	 * Hozzáad egy {@code element}-et egy {@code field}-hez.
+	 * @param element Hozzáadantó element.
+	 * @param field Field, amihez hozzá szeretnénk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
-		Tracer.Instance().Trace(Direction.Enter,element,field);
+		Tracer.Instance().Trace(Direction.Enter, element, field);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -55,11 +62,7 @@ public class GameField {
 	 */
 	public void addField(Field f) {
 		Tracer.Instance().Trace(Direction.Enter, f);
-		// final StackTraceElement[] ste =
-		// Thread.currentThread().getStackTrace();
-		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
-		// 1].getMethodName() + "() method called with "
-		// + f.getClass().getName() + " parameter.");
+		fields.add(f);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -68,21 +71,67 @@ public class GameField {
 	 * @param points
 	 */
 	public Field getField(Point points) {
-		Tracer.Instance().Trace(Direction.Enter,points);
+		Tracer.Instance().Trace(Direction.Enter, points);
 		Tracer.Instance().Trace(Direction.Leave);
 		return null;
 	}
 
 	public void Initialize() {
 		Tracer.Instance().Trace(Direction.Enter);
+		
+		Field field1 = new Field();
+		field1.setPoint(1, 1);
+		
+		Field neighbour1 = new Field();
+		Field neighbour2 = new Field();
+		Field neighbour3 = new Field();
+		Field neighbour4 = new Field();
+		Field neighbour5 = new Field();
+		Field neighbour6 = new Field();
+		
+		neighbour1.setPoint(0, 1);
+		neighbour2.setPoint(0, 2);
+		neighbour3.setPoint(1, 0);
+		neighbour4.setPoint(1, 2);
+		neighbour5.setPoint(2, 1);
+		neighbour6.setPoint(2, 2);
+		
+		field1.addNeighbour(neighbour1);
+		field1.addNeighbour(neighbour2);
+		field1.addNeighbour(neighbour3);
+		field1.addNeighbour(neighbour4);
+		field1.addNeighbour(neighbour5);
+		field1.addNeighbour(neighbour6);
+		
+		FoodStore foodStore = new FoodStore();
+		FoodSmell foodSmell = new FoodSmell();
+		
+		addElementToField(foodStore, field1);
+		field1.addSmell(foodSmell);
+		
+		neighbour1.addSmell(new FoodSmell());
+		neighbour2.addSmell(new FoodSmell());
+		neighbour3.addSmell(new FoodSmell());
+		neighbour4.addSmell(new FoodSmell());
+		neighbour5.addSmell(new FoodSmell());
+		neighbour6.addSmell(new FoodSmell());
+		
+		AntHill antHill = new AntHill();
+		addElementToField(antHill, neighbour1);
+		
+		Block block = new Block();
+		addElementToField(block, neighbour4);
+		
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public static GameField instanceOf() {
 		Tracer.Instance().Trace(Direction.Enter);
-		if(instance==null) new GameField();
-		
-		Tracer.Instance().Trace(Direction.Leave,instance);
+		if (instance == null)
+			instance = new GameField();
+
+		Tracer.Instance().Trace(Direction.Leave, instance);
 		return instance;
 	}
 
@@ -92,12 +141,6 @@ public class GameField {
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
-		// final StackTraceElement[] ste =
-		// Thread.currentThread().getStackTrace();
-		// System.out.println(getClass().getName() + " "
-		// + ste[ste.length - 1 - 2].getMethodName()
-		// + "() method called with " + element.getClass().getName()
-		// + " parameter.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

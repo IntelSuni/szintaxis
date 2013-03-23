@@ -35,15 +35,21 @@ public class Field implements Element {
 
 	public Field() {
 		Tracer.Instance().Trace(Direction.Enter);
-		// System.out.println(getClass().getName() + " created.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	public Field(GameField gameField) {
 		Tracer.Instance().Trace(Direction.Enter, gameField);
 		this.gameField = gameField;
-		// System.out.println(getClass().getName() + " created.");
 		Tracer.Instance().Trace(Direction.Leave);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Field [points=" + points + "]";
 	}
 
 	public void finalize() throws Throwable {
@@ -65,34 +71,25 @@ public class Field implements Element {
 	 */
 	public void addElement(Element element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
-		// final StackTraceElement[] ste =
-		// Thread.currentThread().getStackTrace();
-		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
-		// 2].getMethodName() + "() method called with "
-		// + element.getClass().getName() + " parameter.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
-	 * 
-	 * @param neighbour
+	 * Hozzáad egy szomszédot a szomszéd listához.
+	 * @param neighbour Hozzáadandó szomszéd.
 	 */
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(Direction.Enter,neighbour);
+		neighbour.addElement(neighbour);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
-	 * 
-	 * @param smell
+	 * Hozzáad egy szagot egy mezõhöz.
+	 * @param smell Hozzáadandó szag.
 	 */
 	public void addSmell(Smell smell) {
 		Tracer.Instance().Trace(Direction.Enter, smell);
-		// final StackTraceElement[] ste =
-		// Thread.currentThread().getStackTrace();
-		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
-		// 2].getMethodName() + "() method called with "
-		// + smell.getClass().getName() + " parameter.");
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -163,12 +160,13 @@ public class Field implements Element {
 	}
 
 	/**
-	 * 
-	 * @param y
-	 * @param x
+	 * Beállítja a mezõ koordinátáit
+	 * @param x X koordináta.
+	 * @param y Y koordináta.
 	 */
-	public void setPoint(int y, int x) {
+	public void setPoint(int x, int y) {
 		Tracer.Instance().Trace(Direction.Enter,x,y);
+		points = new Point(x, y);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

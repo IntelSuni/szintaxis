@@ -22,6 +22,17 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Anteater []";
+	}
+
 
 	public void finalize() throws Throwable {
 		super.finalize();
@@ -32,7 +43,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param visiting
 	 */
 	public void accept(Visitor visiting) {
-		Tracer.Instance().Trace(Direction.Enter,visiting);
+		Tracer.Instance().Trace(Direction.Enter, visiting);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -41,9 +52,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param fields
 	 */
 	public Field decideDirection(ArrayList<Field> fields) {
-		Tracer.Instance().Trace(Direction.Enter,fields);
-		Field result=null;
-		Tracer.Instance().Trace(Direction.Leave,result);
+		Tracer.Instance().Trace(Direction.Enter, fields);
+		Field result = null;
+		Tracer.Instance().Trace(Direction.Leave, result);
 		return result;
 	}
 
@@ -62,7 +73,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param field
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(Direction.Enter,field);
+		Tracer.Instance().Trace(Direction.Enter, field);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -76,7 +87,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param antlion
 	 */
 	public void visit(Antlion antlion) {
-		Tracer.Instance().Trace(Direction.Enter,antlion);
+		Tracer.Instance().Trace(Direction.Enter, antlion);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -85,7 +96,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param ant
 	 */
 	public void visit(Ant ant) {
-		Tracer.Instance().Trace(Direction.Enter,ant);
+		Tracer.Instance().Trace(Direction.Enter, ant);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -94,7 +105,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param akadaly
 	 */
 	public void visit(Block akadaly) {
-		Tracer.Instance().Trace(Direction.Enter,akadaly);
+		Tracer.Instance().Trace(Direction.Enter, akadaly);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -103,7 +114,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param foodstore
 	 */
 	public void visit(FoodStore foodstore) {
-		Tracer.Instance().Trace(Direction.Enter,foodstore);
+		Tracer.Instance().Trace(Direction.Enter, foodstore);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -112,7 +123,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param anteater
 	 */
 	public void visit(Anteater anteater) {
-		Tracer.Instance().Trace(Direction.Enter,anteater);
+		Tracer.Instance().Trace(Direction.Enter, anteater);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

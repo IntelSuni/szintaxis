@@ -19,6 +19,14 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FoodStore []";
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}

@@ -21,6 +21,16 @@ public class AntHill implements Updatable, Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "AntHill []";
+	}
+
 	/**
 	 * 
 	 * @param field
@@ -42,7 +52,7 @@ public class AntHill implements Updatable, Element {
 	 * @param visitor
 	 */
 	public void accept(Visitor visitor) {
-		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(Direction.Enter, visitor);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

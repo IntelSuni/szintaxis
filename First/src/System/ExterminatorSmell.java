@@ -17,6 +17,14 @@ public class ExterminatorSmell extends Smell {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ExterminatorSmell []";
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}

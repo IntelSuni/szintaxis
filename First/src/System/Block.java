@@ -17,6 +17,14 @@ public class Block implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Block []";
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
