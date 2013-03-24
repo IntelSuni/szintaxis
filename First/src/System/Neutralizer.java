@@ -4,10 +4,8 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * Hangyaszag semlegesítõ
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * Hangyaszag semlegesítõt megvalósító osztály.
+
  */
 public class Neutralizer extends Spray {
 
@@ -24,18 +22,27 @@ public class Neutralizer extends Spray {
 		return "Neutralizer []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
 	public void onDraw(){
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
+	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
 	 * 
-	 * @param mezo
+	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
 	 */
 	public void use(Field mezo){
 		Tracer.Instance().Trace(Direction.Enter);

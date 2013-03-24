@@ -4,15 +4,17 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * kivettem a kill() metódust, hiszen õ hívja meg a hangyán, nem pedig rajta !
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * ÉtelRaktárat megvalósító osztály.
  */
 public class FoodStore implements Element {
+	/**
+	 * Az ÉtelRaktár ezen a mezõn van.
+	 */
 	private Field field; // a mezo amin rajta van kell ahoz hogy amikor kiurul
 							// meg lehessen szuntetni.
+	/**
+	 * Az ÉtelRaktárban levõ ételmennyiség.
+	 */
 	private int food;
 
 	public FoodStore() {
@@ -20,6 +22,11 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Létrehoz egy ételraktárat a {@code field} mezõn.
+	 * 
+	 * @param field a mezõ, amelyen az ételraktár létrejön
+	 */
 	public FoodStore(Field field) {
 		Tracer.Instance().Trace(Direction.Enter, field);
 		this.field = field;
@@ -36,14 +43,20 @@ public class FoodStore implements Element {
 		return "FoodStore []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
 	/**
-	 * 
+	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 *
 	 * @param visitor
-	 *            a visitoron meghívja a class a saját magához tartozó függvényt
+	 *            a {@code visitor}-on meghívja a class a saját magához tartozó függvényt
 	 */
 	public void accept(Visitor visitor) {
 		Tracer.Instance().Trace(Direction.Enter, visitor);
@@ -52,8 +65,7 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * a hangya aki meglátogatta ezt a kajaraktárat megeszik belõle valamennyit
-	 * van még ellenõrzés benne arról hogy a raktár kifogyott e
+	 * A hangya, aki meglátogatta ezt a ételraktárat megeszik belõle valamennyit.
 	 */
 	public void eat() {
 		Tracer.Instance().Trace(Direction.Enter);
@@ -66,6 +78,11 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * {@code int} típusban megadja az ételraktárban levõ étel mennyiségét.
+	 * 
+	 * @return az ételraktárban elérhetõ ételmennyiség
+	 */
 	public int getFoodLeft() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave, food);
@@ -73,7 +90,7 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * a foodstore eltávolítja saját magát
+	 * A foodstore eltávolítja saját magát a mezõjérõl.
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(Direction.Enter);
@@ -81,6 +98,9 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);

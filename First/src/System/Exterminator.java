@@ -4,11 +4,7 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * Hangyairtó
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * Hangyairtót megvalósító osztály.
  */
 public class Exterminator extends Spray {
 
@@ -18,6 +14,7 @@ public class Exterminator extends Spray {
 	}
 
 	/* (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -25,18 +22,27 @@ public class Exterminator extends Spray {
 		return "Exterminator []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
+	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
 	 * 
-	 * @param mezo
+	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
 	 */
 	public void use(Field mezo) {
 		Tracer.Instance().Trace(Direction.Enter,mezo);

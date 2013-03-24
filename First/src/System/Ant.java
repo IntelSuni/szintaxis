@@ -56,6 +56,11 @@ public class Ant implements Updatable, Visitor, Element {
 		return "Ant [name=" + name + "]";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
@@ -93,8 +98,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * Eldönti és {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} közül a hangya hova lépjen.
 	 * 
-	 * @param a
-	 * @return Field 
+	 * @param a a mezõk listája, amelyek közül kiválasztja a következõ mezõt
+	 * @return Field a következõ mezõ, amelyre a hangya lép
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(Direction.Enter, a);

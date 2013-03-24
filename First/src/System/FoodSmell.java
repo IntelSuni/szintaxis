@@ -4,9 +4,7 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * ÉtelSzagot megvalósító osztály
  */
 public class FoodSmell extends Smell {
 
@@ -16,6 +14,7 @@ public class FoodSmell extends Smell {
 	}
 
 	/* (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -23,26 +22,44 @@ public class FoodSmell extends Smell {
 		return "FoodSmell []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+	/**
+	 * Beállítja az ételszagot.
+	 */
 	public void activate() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Csökkenti az ételszag intenzitását.
+	 */
 	public void decrementIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Az ételszag lekérdezésére szolgál.
+	 * @return az ételszag intenzitása
+	 */
 	public int getIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave,intensity);
 		return intensity;
 	}
 
+	/**
+	 * Az ételszag intenzitás frissítését végzi.
+	 */
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);

@@ -8,30 +8,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Pálya
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * Pályát megvalósító osztály.
  */
 public class GameField {
-
+	/**
+	 * Pályán levõ hangyászok száma.
+	 */
 	private int anteaterNo;
+	/**
+	 * Pályán levõ hangyabolyok száma.
+	 */
 	private int antHillNo;
+	/**
+	 * Pályán levõ akadályok száma.
+	 */
 	private int blockNo;
+	/**
+	 * Pályán levõ ételraktárak száma.
+	 */
 	private int foodStoreNo;
+	/**
+	 * Pályát tároló statikus objektum (singleton).
+	 */
 	private static GameField instance;
+	/**
+	 * Pálya méretkoordinátái.
+	 */
 	private Point size;
+	/**
+	 * Pályán levõ frissítendõ objektumok.
+	 */
 	private List<Updatable> toUpdate;
+	/**
+	 * Mezõket tároló lista.
+	 */
 	public List<Field> fields;
+	/**
+	 * Pályán levõ frissítendõ objektumok.
+	 */
 	public List<Updatable> updatables;
+	/**
+	 * 
+	 */
 	public Game game;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
-	// csak a próba miatt public, eredetileg private !
+	// csak a tesztek miatt public, eredetileg private !
 	public GameField() {
 		Tracer.Instance().Trace(Direction.Enter);
 		fields = new ArrayList<Field>();
@@ -57,8 +87,9 @@ public class GameField {
 	}
 
 	/**
+	 * Hozzáadja a {@code Field} mezõt a mezõket tároló listához.
 	 * 
-	 * @param f
+	 * @param f pályán mezõlistához hozzáadandó mezõ
 	 */
 	public void addField(Field f) {
 		Tracer.Instance().Trace(Direction.Enter, f);
@@ -67,8 +98,10 @@ public class GameField {
 	}
 
 	/**
+	 * A {@code Points} által meghatározott {@code Field}-et adja meg.
 	 * 
-	 * @param points
+	 * @param points koordináták, amely meghatározza a {@code Field}-et
+	 * @return {@code Point} által meghatározott {@code Field}
 	 */
 	public Field getField(Point points) {
 		Tracer.Instance().Trace(Direction.Enter, points);
@@ -76,6 +109,10 @@ public class GameField {
 		return null;
 	}
 
+	/**
+	 * Inicializálja a játékos mezõt:
+	 * létrehozza a pályán található elemeket és beállítja õket.
+	 */
 	public void Initialize() {
 		Tracer.Instance().Trace(Direction.Enter);
 		
@@ -126,6 +163,11 @@ public class GameField {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Magát a pályát adja meg.
+	 * 
+	 * @return {@code GameField} osztálypéldány
+	 */
 	public static GameField instanceOf() {
 		Tracer.Instance().Trace(Direction.Enter);
 		if (instance == null)
@@ -136,14 +178,18 @@ public class GameField {
 	}
 
 	/**
+	 * Beregisztrálja a pályára a {@code Updatable} frissítendõ objektumot.
 	 * 
-	 * @param element
+	 * @param element frissítendõ objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Frissíti a pálya frissítendõ objektumait.
+	 */
 	public void updateUpdatables() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);

@@ -4,14 +4,14 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * Hangyalesõ
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:46
+ * Hangyalesõt megvalósító objektum.
+ 
  */
 public class Antlion implements Element {
 
+	/**
+	 * A hangyalesõ ezen a mezõn van.
+	 */
 	private Field currentField;
 
 	public Antlion() {
@@ -29,13 +29,19 @@ public class Antlion implements Element {
 		return "Antlion []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
 	/**
+	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
 	 * 
-	 * @param visiting
+	 * @param visiting visit metódusának meghívására
 	 */
 	public void accept(Visitor visiting) {
 		Tracer.Instance().Trace(Direction.Enter, visiting);
@@ -43,14 +49,18 @@ public class Antlion implements Element {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 	/**
+	 * Beállítja a {@code Field} paramétert a saját mezõjére.
 	 * 
-	 * @param field
+	 * @param field a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(Direction.Enter);

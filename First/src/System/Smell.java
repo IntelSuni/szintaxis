@@ -4,14 +4,13 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * Szag
- * 
- * @author Martin
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * Szagot megvalósító osztály.
  */
 public abstract class Smell implements Updatable {
 
+	/**
+	 * A szag intenzitása.
+	 */
 	protected int intensity;
 
 	public Smell() {	
@@ -20,26 +19,44 @@ public abstract class Smell implements Updatable {
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+	/**
+	 * Beállítja a szagot.
+	 */
 	public void activate() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Csökkenti a szag intenzitását.
+	 */
 	public void decrementIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * A szag lekérdezésére szolgál.
+	 * @return a szag intenzitása
+	 */
 	public int getIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave,intensity);
 		return intensity;
 	}
 
+	/**
+	 * A szag intenzitás frissítését végzi.
+	 */
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);

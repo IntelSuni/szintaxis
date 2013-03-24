@@ -4,11 +4,8 @@ import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
 /**
- * IrtóSzag
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * IrtóSzagot megvalósító osztály.
+ 
  */
 public class ExterminatorSmell extends Smell {
 
@@ -18,6 +15,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/* (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -25,26 +23,44 @@ public class ExterminatorSmell extends Smell {
 		return "ExterminatorSmell []";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+	/**
+	 * Beállítja az irtószagot.
+	 */
 	public void activate() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Csökkenti az irtószag intenzitását.
+	 */
 	public void decrementIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/**
+	 * Az irtószag lekérdezésére szolgál.
+	 * @return az irtószag intenzitása
+	 */
 	public int getIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave,intensity);
 		return intensity;
 	}
 
+	/**
+	 * Az irtószag intenzitás frissítését végzi.
+	 */
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);

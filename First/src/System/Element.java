@@ -1,20 +1,20 @@
 package System;
 
 /**
- * VisitableElement
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:47
+ * Element interfész.
  */
 public interface Element {
 
 	/**
+	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
 	 * 
-	 * @param visitor
+	 * @param visitor visit metódusának meghívására
 	 */
 	public void accept(Visitor visitor);
 
+	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
 	public abstract void onDraw();
 
 }
