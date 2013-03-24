@@ -3,8 +3,6 @@ package System;
 import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
-import java.lang.annotation.Target;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
