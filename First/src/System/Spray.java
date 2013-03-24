@@ -16,6 +16,7 @@ public class Spray {
 
 	public Spray() {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.capacity = 20;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -34,6 +35,11 @@ public class Spray {
 	 */
 	public void use(Field mezo) {
 		Tracer.Instance().Trace(Direction.Enter,mezo);
+		
+		if(this.capacity > 0){
+			mezo.addSmell(new ExterminatorSmell());
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

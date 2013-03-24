@@ -1,5 +1,7 @@
 package System;
 
+import java.awt.Point;
+
 import hu.szintaxis.Tracer;
 import hu.szintaxis.Tracer.Direction;
 
@@ -37,6 +39,11 @@ public class Weapon {
 	 */
 	public void Use(Field field) {
 		Tracer.Instance().Trace(Direction.Enter,field);
+		
+		GameField.instanceOf().getField(new Point());
+		Spray current = new Spray();
+		current.use(field);
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

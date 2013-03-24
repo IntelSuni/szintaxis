@@ -16,6 +16,7 @@ public abstract class Smell implements Updatable {
 
 	public Smell() {	
 		Tracer.Instance().Trace(Direction.Enter);
+		this.intensity = 10;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

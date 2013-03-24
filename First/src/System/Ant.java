@@ -132,6 +132,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(Direction.Enter, field);
+		this.field = field;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -151,11 +152,13 @@ public class Ant implements Updatable, Visitor, Element {
 		// atmozgas a kovetkezo mezore
 		field.removeElement(this);
 		next_field.addElement(this);
-		field = next_field;
+//		field = next_field;
+		this.setField(next_field);
 
 		// visitor minta alkalmazasa
-		ArrayList<Element> aktualis_mezoe = field.getElements();
+		ArrayList<Element> aktualis_mezoe = this.field.getElements();
 		for (Element s : aktualis_mezoe) {
+			s.toString();
 			s.accept(this);
 		}
 
@@ -168,6 +171,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void visit(Antlion antlion) {
 		Tracer.Instance().Trace(Direction.Enter, antlion);
+		this.kill();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

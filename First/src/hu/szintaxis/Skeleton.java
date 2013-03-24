@@ -50,6 +50,7 @@ public class Skeleton {
 				test.method.invoke(testCases);
 				System.out.println("Teszt befejezõdött!");
 				System.out.println();
+				//1.7 jdk alatt a multi-catch nem támogatott
 			} catch (IllegalAccessException e1){
 				e1.printStackTrace();
 			}

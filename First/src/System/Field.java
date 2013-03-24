@@ -99,19 +99,22 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Hozzáad egy szagot egy mezõhöz.
+	 * Hozzáad egy szagot egy mezõhöz és a mezõ szomszádjaihoz.
 	 * 
 	 * @param smell
 	 *            Hozzáadandó szag.
 	 */
 	public void addSmell(Smell smell) {
 		Tracer.Instance().Trace(Direction.Enter, smell);
-		// final StackTraceElement[] ste =
-		// Thread.currentThread().getStackTrace();
-		// System.out.println(getClass().getName() + " " + ste[ste.length - 1 -
-		// 2].getMethodName() + "() method called with "
-		// + smell.getClass().getName() + " parameter.");
-		smells.add(smell);
+		
+		if (smell.getIntensity() > 0) {
+			smell.decrementIntensity();
+			for (Field i : this.getNeighbours()) {
+				i.addSmell(smell);
+			}
+			smells.add(smell);
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

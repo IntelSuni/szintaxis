@@ -3,10 +3,12 @@ package hu.szintaxis;
 import System.Ant;
 import System.AntHill;
 import System.Anteater;
+import System.Antlion;
 import System.Field;
 import System.Game;
 import System.FoodStore;
 import System.GameField;
+import System.Weapon;
 
 public class TestCasesContainer {
 
@@ -98,5 +100,32 @@ public class TestCasesContainer {
 		gameField.registerNewUpdatable(h2);	//hangya 2
 		current.addNeighbour(m1);	//current-nek 1db szomszédja van
 		h1.update();
+	}
+	
+	@Description(orderNumber = 8, description = "Hangya hangyalesõre lép")
+	public void AntMovesToAntlionTest(){
+		GameField p = new GameField();
+		Field current = new Field(p);
+		Field m1 = new Field(p);
+		Antlion antlion = new Antlion();
+		Ant a1 = new Ant(current);
+		
+		current.addNeighbour(m1);
+		m1.addElement(antlion);
+		antlion.setField(m1);
+		
+		a1.update();
+	}
+	
+	@Description(orderNumber = 9, description = "Spray fújás")
+	public void SprayUsageTest(){
+		
+		GameField gameField = new GameField();
+		Field m1 = new Field(gameField);
+		Field neighbour = new Field(gameField);
+		m1.addNeighbour(neighbour);
+		
+		Weapon.InstanceOf().Use(m1);
+		
 	}
 }
