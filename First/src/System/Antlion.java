@@ -54,6 +54,7 @@ public class Antlion implements Element {
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.currentField = field;
 		Tracer.Instance().Trace(Direction.Leave, field);
 	}
 
