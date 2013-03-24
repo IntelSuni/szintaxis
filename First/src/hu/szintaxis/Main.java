@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 public class Main {
 
 	/**
+	 * A Skeleton program belépési pontja. Felajánlja a lehetséges teszteseteket, amelyek végrehajthatóak.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

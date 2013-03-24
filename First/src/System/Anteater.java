@@ -7,8 +7,6 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.xml.internal.ws.developer.MemberSubmissionEndpointReference.Elements;
-
 /**
  * evés: növeli a megevett számlálót, ha eléri a 3-at, nem eszik többet.
  * Hangyász

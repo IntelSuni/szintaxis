@@ -10,6 +10,9 @@ import System.FoodStore;
 import System.GameField;
 import System.Weapon;
 
+/**
+ * Valóságos use-case-eket megvalósító függvényeket összefogó osztály.
+ */
 public class TestCasesContainer {
 
 	@Description(orderNumber = 0, description = "Kilépés")
@@ -105,27 +108,25 @@ public class TestCasesContainer {
 	@Description(orderNumber = 8, description = "Hangya hangyalesõre lép")
 	public void AntMovesToAntlionTest(){
 		GameField p = new GameField();
-		Field current = new Field(p);
-		Field m1 = new Field(p);
+		Field current = new Field(p); // aktuális Field a GameField-en
+		Field m1 = new Field(p); // másik Field a GameField-en
 		Antlion antlion = new Antlion();
-		Ant a1 = new Ant(current);
+		Ant a1 = new Ant(current); //hangya az aktuális Field-en
 		
-		current.addNeighbour(m1);
-		m1.addElement(antlion);
-		antlion.setField(m1);
+		current.addNeighbour(m1); //aktuális Field szomszédja a másik mezõ
+		m1.addElement(antlion); // a másik mezõn egy Antlion van
+		antlion.setField(m1); // az Antlion a másik mezõn van
 		
 		a1.update();
 	}
 	
 	@Description(orderNumber = 9, description = "Spray fújás")
 	public void SprayUsageTest(){
-		
 		GameField gameField = new GameField();
-		Field m1 = new Field(gameField);
-		Field neighbour = new Field(gameField);
-		m1.addNeighbour(neighbour);
+		Field m1 = new Field(gameField); // aktuális Field a GameField-ne
+		Field neighbour = new Field(gameField); // másik mezõ a GameField-en
+		m1.addNeighbour(neighbour); //az aktuális mezõ szomszédja a másik mezõ
 		
-		Weapon.InstanceOf().Use(m1);
-		
+		Weapon.InstanceOf().Use(m1); // fegyver használata a mezõn
 	}
 }
