@@ -42,7 +42,6 @@ public class Skeleton {
 		MethodDescriptor test = testCasesMap.get(testCase);
 		if (test != null) {
 			try {
-				
 				System.out.println();
 				if(testCase != 0) {
 					System.out.println("Teszt kezdete: " + test.description);
@@ -50,8 +49,11 @@ public class Skeleton {
 				test.method.invoke(testCases);
 				System.out.println("Teszt befejezõdött!");
 				System.out.println();
-			} catch (IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
 				e.printStackTrace();
 			}
 		} else {
