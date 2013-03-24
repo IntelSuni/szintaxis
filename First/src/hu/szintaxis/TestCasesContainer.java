@@ -70,4 +70,33 @@ public class TestCasesContainer {
 		
 		anteater.update();
 	}
+	
+	@Description(orderNumber = 6, description = "Hangyász hangyára lép")
+	public void AntEaterAntFieldTest() {
+		GameField gameField = new GameField();
+		Field m1 = new Field(gameField);
+		Field current = new Field(gameField);
+		Ant h1 = new Ant(m1);
+		Anteater aeater = new Anteater();
+		
+		aeater.setField(current);	//AntEater current Fielden van
+		current.addNeighbour(m1);	//current Fieldnek van 1db szomszédja (m1)
+		gameField.registerNewUpdatable(h1);	//Ant van a pályán
+		
+		aeater.update();	//AntEater lép
+	}
+	
+	@Description(orderNumber=7,description = "Hangya hangyára lép")
+	public void AnttoAntTest() {
+		GameField gameField = new GameField();
+		Field m1 = new Field(gameField);
+		Field current = new Field(gameField);
+		Ant h1 = new Ant(current);
+		Ant h2 = new Ant(m1);
+		
+		gameField.registerNewUpdatable(h1);	//hangya 1 
+		gameField.registerNewUpdatable(h2);	//hangya 2
+		current.addNeighbour(m1);	//current-nek 1db szomszédja van
+		h1.update();
+	}
 }
