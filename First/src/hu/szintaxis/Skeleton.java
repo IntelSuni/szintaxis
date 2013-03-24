@@ -50,9 +50,14 @@ public class Skeleton {
 				test.method.invoke(testCases);
 				System.out.println("Teszt befejezõdött!");
 				System.out.println();
-			} catch (IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
-				e.printStackTrace();
+			} catch (IllegalAccessException e1){
+				e1.printStackTrace();
+			}
+			catch (IllegalArgumentException e2){
+				e2.printStackTrace();
+			}
+			catch (InvocationTargetException e3) {
+				e3.printStackTrace();
 			}
 		} else {
 			System.out.println();
