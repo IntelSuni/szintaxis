@@ -22,7 +22,7 @@ public class TestCasesContainer {
 		System.exit(0);
 	}
 
-	@Description(orderNumber = 1, description = "Hangya létrehozása")
+	@Description(orderNumber = 1, description = "5.3.1. szekvencia diagram: Hangya létrehozása")
 	public void AntCreationTest() {
 		GameField gameField = new GameField();
 		Field field = new Field(gameField);
@@ -33,13 +33,13 @@ public class TestCasesContainer {
 		antHill.update();
 	}
 
-	@Description(orderNumber = 2, description = "Játék inicializálása")
+	@Description(orderNumber = 2, description = "5.3.2. szekvencia diagram: Játék inicializálása")
 	public void InitializeTest() {
 		Game game = new Game();
 		game.newGame();
 	}
 
-	@Description(orderNumber = 3, description = "Hangya eléri ételraktárat.")
+	@Description(orderNumber = 3, description = "5.3.5. szekvencia diagram: Hangya eléri ételraktárat")
 	public void AntFoodStoreTest() {
 		GameField gameField = new GameField();
 		Field field = new Field(gameField);
@@ -53,7 +53,7 @@ public class TestCasesContainer {
 		h1.update();
 	}
 
-	@Description(orderNumber = 4, description = "Decide direction mûködése")
+	@Description(orderNumber = 4, description = "5.3.3. szekvencia diagram: Decide direction mûködése")
 	public void DecideDirTest() {
 		GameField gameField = new GameField();
 		Field field = new Field(gameField);
@@ -64,7 +64,7 @@ public class TestCasesContainer {
 
 	}
 	
-	@Description(orderNumber = 5, description = "Hangyász hangya nélküli mezõre lép")
+	@Description(orderNumber = 5, description = "5.3.9. szekvencia diagram: Hangyász hangya nélküli mezõre lép")
 	public void AnteaterEmptyFieldTest() {
 		GameField gameField = new GameField();
 		Field field = new Field(gameField);
@@ -77,7 +77,7 @@ public class TestCasesContainer {
 		anteater.update();
 	}
 	
-	@Description(orderNumber = 6, description = "Hangyász hangyára lép")
+	@Description(orderNumber = 6, description = "5.3.10. szekvencia diagram: Hangyász hangyára lép")
 	public void AntEaterAntFieldTest() {
 		GameField gameField = new GameField();
 		Field m1 = new Field(gameField);
@@ -92,7 +92,7 @@ public class TestCasesContainer {
 		aeater.update();	//AntEater lép
 	}
 	
-	@Description(orderNumber=7,description = "Hangya hangyára lép")
+	@Description(orderNumber=7,description = "5.3.4. szekvencia diagram: Hangya hangyára lép")
 	public void AnttoAntTest() {
 		GameField gameField = new GameField();
 		Field m1 = new Field(gameField);
@@ -106,7 +106,7 @@ public class TestCasesContainer {
 		h1.update();
 	}
 	
-	@Description(orderNumber = 8, description = "Hangya hangyalesõre lép")
+	@Description(orderNumber = 8, description = "5.3.6. szekvencia diagram: Hangya hangyalesõre lép")
 	public void AntMovesToAntlionTest(){
 		GameField p = new GameField();
 		Field current = new Field(p); // aktuális Field a GameField-en
@@ -121,7 +121,7 @@ public class TestCasesContainer {
 		a1.update();
 	}
 	
-	@Description(orderNumber = 9, description = "Spray fújás")
+	@Description(orderNumber = 9, description = "5.3.11. szekvencia diagram: Spray fújás")
 	public void SprayUsageTest(){
 		GameField gameField = new GameField();
 		Field m1 = new Field(gameField); // aktuális Field a GameField-ne
@@ -131,7 +131,7 @@ public class TestCasesContainer {
 		Weapon.InstanceOf().Use(m1); // fegyver használata a mezõn
 	}
 
-	@Description(orderNumber = 10, description = "Hangya hangyászra lép")
+	@Description(orderNumber = 10, description = "5.3.7. szekvencia diagram: Hangya hangyászra lép")
 	public void AntMovesToAnteaterTest(){
 		GameField p = new GameField();
 		Field current = new Field(p); // aktuális Field a GameField-en
@@ -146,7 +146,7 @@ public class TestCasesContainer {
 		h1.update(); // a hangya lép
 	}
 
-	@Description(orderNumber = 11, description = "Hangya mérgezett mezõre lép")
+	@Description(orderNumber = 11, description = "5.3.8. szekvencia diagram: Hangya mérgezett mezõre lép")
 	public void AntMovesToPoisonedFieldTest(){
 		GameField p = new GameField();
 		Field currentField = new Field(p); // aktuális Field a GameField-en
