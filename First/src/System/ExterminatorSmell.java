@@ -33,10 +33,13 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Beállítja az irtószagot.
+	 * Beállítja a paraméterként kapott hangya mérgezettségi szintjét.
+	 * 
+	 * @param ant a hangya, amire hatunk
 	 */
-	public void activate() {
+	public void activate(Ant ant) {
 		Tracer.Instance().Trace(Direction.Enter);
+		ant.addPoisonLevel(intensity);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

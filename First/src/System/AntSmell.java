@@ -25,8 +25,10 @@ public class AntSmell extends Smell {
 	
 	/**
 	 * Beállítja a hangyaszagot.
+	 * 
+	 * @param ant a hangya, amire a szag hat
 	 */
-	public void activate() {
+	public void activate(Ant ant) {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}

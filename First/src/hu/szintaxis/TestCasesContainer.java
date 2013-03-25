@@ -9,6 +9,7 @@ import System.Game;
 import System.FoodStore;
 import System.GameField;
 import System.Weapon;
+import System.ExterminatorSmell;
 
 /**
  * Valóságos use-case-eket megvalósító függvényeket összefogó osztály.
@@ -128,5 +129,34 @@ public class TestCasesContainer {
 		m1.addNeighbour(neighbour); //az aktuális mezõ szomszédja a másik mezõ
 		
 		Weapon.InstanceOf().Use(m1); // fegyver használata a mezõn
+	}
+
+	@Description(orderNumber = 10, description = "Hangya hangyászra lép")
+	public void AntMovesToAnteaterTest(){
+		GameField p = new GameField();
+		Field current = new Field(p); // aktuális Field a GameField-en
+		Field m1 = new Field(p); // másik Field a GameField-en
+		Anteater anteater = new Anteater();
+		Ant h1 = new Ant(current); //hangya az aktuális Field-en
+		
+		current.addNeighbour(m1); //aktuális mezõ szomszédja a másik mezõ
+		m1.addElement(anteater); // a másik mezõn egy hangyász van
+		anteater.setField(m1); // a hangyász a másik mezõn van
+		
+		h1.update(); // a hangya lép
+	}
+
+	@Description(orderNumber = 11, description = "Hangya mérgezett mezõre lép")
+	public void AntMovesToPoisonedFieldTest(){
+		GameField p = new GameField();
+		Field currentField = new Field(p); // aktuális Field a GameField-en
+		Field f1 = new Field(p); // másik Field a GameField-en
+		ExterminatorSmell smell = new ExterminatorSmell(); // méreg
+		Ant h1 = new Ant(currentField); //hangya az aktuális Field-en
+		
+		currentField.addNeighbour(f1); //aktuális mezõ szomszédja a másik mezõ
+		f1.addSmell(smell); // a másik mezõn méreg van
+		
+		h1.update(); // a hangya lép
 	}
 }

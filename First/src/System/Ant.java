@@ -190,6 +190,14 @@ public class Ant implements Updatable, Visitor, Element {
 			s.toString();
 			s.accept(this);
 		}
+		
+		// méregszint alapján az életpontok frissítése
+		ArrayList<Smell> smells = this.field.getSmells();
+		for (Smell s : smells) {
+			s.activate(this);
+		}
+		
+		this.decreaseHealtPoint();
 
 		Tracer.Instance().Trace(Direction.Leave);
 	}
@@ -245,6 +253,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void visit(Anteater anteater) {
 		Tracer.Instance().Trace(Direction.Enter, anteater);
+		this.kill();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

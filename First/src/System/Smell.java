@@ -30,8 +30,10 @@ public abstract class Smell implements Updatable {
 
 	/**
 	 * Beállítja a szagot.
+	 * 
+	 * @param ant a hangya, amire hatunk
 	 */
-	public void activate() {
+	public void activate(Ant ant) {
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
