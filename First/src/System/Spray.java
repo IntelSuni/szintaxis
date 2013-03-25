@@ -1,34 +1,54 @@
 package System;
 
+import hu.szintaxis.Tracer;
+import hu.szintaxis.Tracer.Direction;
+
 /**
- * Fegyver interfész, a spray helyett
- * 
- * @author gbeatrix
- * @version 1.0
- * @created 20-márc.-2013 10:42:48
+ * Sprayt megvalósító õsosztály.
  */
 public class Spray {
-
+	/**
+	 * A spray kapacitása.
+	 */
 	private int capacity;
 
 	public Spray() {
-
+		Tracer.Instance().Trace(Direction.Enter);
+		this.capacity = 20;
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
-
-	}
-
-	public void onDraw() {
-
+		super.finalize();
 	}
 
 	/**
+	 * Grafikus változathoz kirajzolásához.
+	 */
+	public void onDraw() {
+		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(Direction.Leave);
+	}
+
+	/**
+	 * /**
+	 * A {@code Field} paraméterre {@code Smell} szagot rak.
 	 * 
-	 * @param mezo
+	 * @param mezo spray használata ezen a mezõn
 	 */
 	public void use(Field mezo) {
-
+		Tracer.Instance().Trace(Direction.Enter,mezo);
+		
+		if(this.capacity > 0){
+			mezo.addSmell(new ExterminatorSmell());
+		}
+		
+		Tracer.Instance().Trace(Direction.Leave);
 	}
 
 }

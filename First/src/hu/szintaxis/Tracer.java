@@ -1,7 +1,7 @@
 package hu.szintaxis;
 
 
-/*
+/**
  * Tracer osztály a szkeletonhoz a metódusok követésére.
  */
 public class Tracer {
@@ -13,12 +13,21 @@ public class Tracer {
 	private static Tracer instance;
 	private int depth = 0;
 	
+	/**
+	 * Singleton példány lekérdezõ.
+	 * @return A Tracer egy példánya.
+	 */
 	public static Tracer Instance(){
 		if(instance == null)
 			instance = new Tracer();
 		return instance;
 	}
 	
+	/**
+	 * Követi az ezt meghívó metódus futását.
+	 * @param direction Be vagy kilépési pontja a metódusnak.
+	 * @param arguments Metódus argumentumai/visszatérési értéke.
+	 */
 	public void Trace(Direction direction, Object... arguments){
 		StackTraceElement[] stack = Thread.currentThread().getStackTrace();
 		StringBuilder sBuilder = new StringBuilder();
@@ -55,8 +64,11 @@ public class Tracer {
 		//Esetleges argumentumok kiírása
 		if (direction == Direction.Enter) {
 			sBuilder.append("(");
-			for (Object object : arguments) {
-				sBuilder.append(object.toString());
+			for (int i = 0; i < arguments.length; i++) {
+				sBuilder.append(arguments[i].toString());
+				if(i != arguments.length - 1) {
+					sBuilder.append(',');
+				}
 			}
 			sBuilder.append(")");
 		}
@@ -64,7 +76,9 @@ public class Tracer {
 		//Esetleges visszatérési érték kiírása
 		if (direction == Direction.Leave && arguments.length == 1) {
 			sBuilder.append(":");
-			sBuilder.append(arguments[0].toString());
+			if(arguments[0] != null) {
+				sBuilder.append(arguments[0].toString());
+			}
 		}
 		
 		//Elkészült string írása.
