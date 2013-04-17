@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.Size2DSyntax;
+
 /**
  * Pályát megvalósító osztály.
  */
@@ -66,6 +68,11 @@ public class GameField {
 		Tracer.Instance().Trace(Direction.Enter);
 		fields = new ArrayList<Field>();
 		Tracer.Instance().Trace(Direction.Leave);
+	}
+	
+	public GameField(Point size) {
+		this();
+		this.size = size;
 	}
 
 	/* (non-Javadoc)

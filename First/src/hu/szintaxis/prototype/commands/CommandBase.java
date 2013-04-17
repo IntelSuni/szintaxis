@@ -4,7 +4,7 @@ package hu.szintaxis.prototype.commands;
  * Strategy pattern alapján ez a szülõ strategy, azaz a fõ utasítás, amin
  * keresztül kezelve lesz a többi.
  * 
- * @author Lexan
+ * @author Dóczi Róbert
  * 
  */
 public abstract class CommandBase {

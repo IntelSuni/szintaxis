@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Commandok tárolására és lekérdezésére használt singleton osztály.
  * 
- * @author Lexan
+ * @author Dóczi Róbert
  * 
  */
 public class CommandDictionary {

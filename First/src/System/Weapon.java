@@ -17,6 +17,14 @@ public class Weapon {
 	 * Használható spray.
 	 */
 	public Spray m_Spray;
+	/**
+	 * Az exterminátor spray példánya.
+	 */
+	public Exterminator extSpray;
+	/**
+	 * A szagtalanító spray példánya.
+	 */
+	public Neutralizer neutSpray;
 
 	/*
 	 * (non-Javadoc)
@@ -29,6 +37,8 @@ public class Weapon {
 
 	private  Weapon() {
 		Tracer.Instance().Trace(Direction.Enter);
+		extSpray = new Exterminator();
+		neutSpray = new Neutralizer();
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -59,5 +69,18 @@ public class Weapon {
 		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
+	
+	/**
+	 * Kiválasztja a hangyaölõ sprayt.
+	 */
+	public void SelectExterminator() {
+		m_Spray = extSpray;
+	}
 
+	/**
+	 * Kiválasztja a szagtalanító sprayt.
+	 */
+	public void SelectNeutralizer() {
+		m_Spray = neutSpray;
+	}
 }

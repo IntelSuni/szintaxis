@@ -1,5 +1,11 @@
 package hu.szintaxis.prototype.commands;
 
+/**
+ * A startWriteCommands parancs osztálya. Elkezdi kiírni a kimenetet egy fileba.
+ * 
+ * @author Dóczi Róbert
+ * 
+ */
 public class StartWriteCommandsCommand extends CommandBase {
 
 	@Override

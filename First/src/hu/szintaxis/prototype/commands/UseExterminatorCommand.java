@@ -1,5 +1,17 @@
 package hu.szintaxis.prototype.commands;
 
+import java.awt.Point;
+
+import System.Weapon;
+import hu.szintaxis.prototype.Prototype;
+import hu.szintaxis.prototype.PrototypeUtil;
+
+/**
+ * A useExterminator parancs osztálya. Adott mezõre szimulálja a spré fújását.
+ * 
+ * @author Dóczi Róbert
+ * 
+ */
 public class UseExterminatorCommand extends CommandBase {
 
 	@Override
@@ -9,7 +21,14 @@ public class UseExterminatorCommand extends CommandBase {
 					+ " Usage: useExterminator <Field> \n"
 					+ " Example: useExterminator 3,4");
 		}
-		System.out.println("useExterminator");
-	}
 
+		if (Prototype.Instance().getGameField() == null) {
+			throw new Exception("GameField not yet initialized.");
+		}
+
+		Point point = PrototypeUtil.stringToPoint(args[0]);
+		Weapon.InstanceOf().SelectExterminator();
+		Weapon.InstanceOf().Use(
+				Prototype.Instance().getGameField().getField(point));
+	}
 }

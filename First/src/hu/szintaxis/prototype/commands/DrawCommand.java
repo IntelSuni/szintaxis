@@ -4,7 +4,7 @@ package hu.szintaxis.prototype.commands;
  * Draw parancs osztálya. Kirajzolja a megadott mezõhöz képest a megadott sugarú
  * körben levõ mezõket.
  * 
- * @author Lexan
+ * @author Dóczi Róbert
  * 
  */
 public class DrawCommand extends CommandBase {

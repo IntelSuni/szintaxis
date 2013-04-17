@@ -1,5 +1,10 @@
 package hu.szintaxis.prototype.commands;
 
+/**
+ * A stopWriteCommands parancs osztálya. A kimenet kiírását abbahagyja.
+ * @author Dóczi Róbert
+ *
+ */
 public class StopWriteCommandsCommand extends CommandBase {
 
 	@Override

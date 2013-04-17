@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * List parancs osztálya. Kilistázza az utasításokat.
+ * A help parancs osztálya. Kilistázza az utasításokat.
  * 
- * @author Lexan
+ * @author Dóczi Róbert
  * 
  */
 public class HelpCommand extends CommandBase {
