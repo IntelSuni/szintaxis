@@ -12,8 +12,9 @@ public class DrawCommand extends CommandBase {
 	@Override
 	public void execute(String... args) throws Exception {
 		if (args.length != 2) {
-			throw new Exception("Not enough arguments. \n Usage:"
-					+ " Draw <Field> <Radius> \n Example: Draw 5,5 3");
+			throw new Exception("Not enough arguments. \n"
+					+ " Usage: draw <Field> <Radius> \n"
+					+ " Example: draw 5,5 3");
 		}
 		System.out.println("DRAWING! " + args[0]);
 	}

@@ -30,6 +30,15 @@ public class CommandDictionary {
 		// Itt hozzá kéne adni az összes commandot!
 		commands.put("draw", new DrawCommand());
 		commands.put("help", new HelpCommand());
+		commands.put("addElement", new AddElementCommand());
+		commands.put("createGameField", new CreateGameFieldCommand());
+		commands.put("exit", new ExitCommand());
+		commands.put("loadCommands", new LoadCommandsCommand());
+		commands.put("startWriteCommands", new StartWriteCommandsCommand());
+		commands.put("stopWriteCommands", new StopWriteCommandsCommand());
+		commands.put("time", new TimeCommand());
+		commands.put("useExterminator", new UseExterminatorCommand());
+		commands.put("useNeutralizer", new UseNeutralizerCommand());		
 	}
 
 	/**
