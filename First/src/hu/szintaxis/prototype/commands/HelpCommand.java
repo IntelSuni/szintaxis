@@ -17,12 +17,18 @@ public class HelpCommand extends CommandBase {
 
 		Iterator<String> iterator = commands.iterator();
 
+		int i = 0;
 		while (iterator.hasNext()) {
 			String command = iterator.next();
 			System.out.print(command);
 			if (iterator.hasNext()) {
 				System.out.print(", ");
+				i++;
 			} else {
+				System.out.println();
+			}
+			// 5 elemenként új sor
+			if (i % 5 == 0) {
 				System.out.println();
 			}
 		}
