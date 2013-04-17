@@ -1,4 +1,4 @@
-package hu.szintaxis;
+package hu.szintaxis.skeleton;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package hu.szintaxis;
+package hu.szintaxis.skeleton;
 
 
 /**

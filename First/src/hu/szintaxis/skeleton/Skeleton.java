@@ -1,4 +1,4 @@
-package hu.szintaxis;
+package hu.szintaxis.skeleton;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

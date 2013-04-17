@@ -1,7 +1,7 @@
 package System;
 
-import hu.szintaxis.Tracer;
-import hu.szintaxis.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer;
+import hu.szintaxis.skeleton.Tracer.Direction;
 
 /**
  * IrtóSzagot megvalósító osztály.

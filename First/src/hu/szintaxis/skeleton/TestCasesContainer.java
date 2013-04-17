@@ -1,4 +1,4 @@
-package hu.szintaxis;
+package hu.szintaxis.skeleton;
 
 import System.Ant;
 import System.AntHill;

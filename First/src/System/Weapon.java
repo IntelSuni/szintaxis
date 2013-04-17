@@ -2,8 +2,8 @@ package System;
 
 import java.awt.Point;
 
-import hu.szintaxis.Tracer;
-import hu.szintaxis.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer;
+import hu.szintaxis.skeleton.Tracer.Direction;
 
 /**
  * Fegyvert megvalósító osztály, amelyen keresztül elérhetõk a fegyvertípusok.
