@@ -92,7 +92,7 @@ public class TestCasesContainer {
 		aeater.update();	//AntEater lép
 	}
 	
-	@Description(orderNumber=7,description = "5.3.4. szekvencia diagram: Hangya hangyára lép")
+	@Description(orderNumber=7, description = "5.3.4. szekvencia diagram: Hangya hangyára lép")
 	public void AnttoAntTest() {
 		GameField gameField = new GameField();
 		Field m1 = new Field(gameField);
