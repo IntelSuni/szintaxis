@@ -9,7 +9,7 @@ import java.util.Set;
  * @author Lexan
  * 
  */
-public class ListCommand extends CommandBase {
+public class HelpCommand extends CommandBase {
 
 	@Override
 	public void execute(String... args) throws Exception {

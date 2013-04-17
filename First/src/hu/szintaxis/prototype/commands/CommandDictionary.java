@@ -29,7 +29,7 @@ public class CommandDictionary {
 		commands = new HashMap();
 		// Itt hozzá kéne adni az összes commandot!
 		commands.put("Draw", new DrawCommand());
-		commands.put("ListCommands", new ListCommand());
+		commands.put("Help", new HelpCommand());
 	}
 
 	/**

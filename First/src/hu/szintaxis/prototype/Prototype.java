@@ -20,6 +20,8 @@ public class Prototype {
 		instream = new BufferedReader(new InputStreamReader(System.in));
 		dictionary = CommandDictionary.Instance();
 
+		System.out.println("For a list of commands write \"ListCommands\"");
+		
 		while (true) {
 			try {
 				System.out.print(">");
