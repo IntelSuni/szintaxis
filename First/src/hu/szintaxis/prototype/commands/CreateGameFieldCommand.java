@@ -20,9 +20,7 @@ public class CreateGameFieldCommand extends CommandBase {
 			throw new Exception("Not enough arguments. \n"
 					+ " Usage: createGameField <Dimensions> \n"
 					+ " Example: createGameField 10,10");
-		}
-		System.out.println("createGameField");
-		
+		}		
 		Point point = PrototypeUtil.stringToPoint(args[0]);
 		
 		Prototype.Instance().setGameField(new GameField(point));

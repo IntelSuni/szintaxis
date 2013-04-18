@@ -1,6 +1,7 @@
 package hu.szintaxis.prototype;
 
 import java.awt.Point;
+import java.io.File;
 
 /**
  * Contains utility functions.
@@ -10,6 +11,8 @@ import java.awt.Point;
  */
 public class PrototypeUtil {
 
+	private static File outputFile;
+	
 	/**
 	 * Converts a string into point.
 	 * 
@@ -26,5 +29,13 @@ public class PrototypeUtil {
 		Point point = new Point(Integer.parseInt(coords[0]),
 				Integer.parseInt(coords[1]));
 		return point;
+	}
+
+	public static File getOutputFile() {
+		return outputFile;
+	}
+
+	public static void setOutputFile(File outputFile) {
+		PrototypeUtil.outputFile = outputFile;
 	}
 }

@@ -12,7 +12,6 @@ public class TimeCommand extends CommandBase {
 
 	@Override
 	public void execute(String... args) throws Exception {
-		System.out.println("time");
 		int times;
 		if (args.length == 0) {
 			times = 1;

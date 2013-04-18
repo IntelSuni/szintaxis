@@ -11,8 +11,9 @@ import System.GameField;
 
 /**
  * A prototípus kezelõfelületét adja.
+ * 
  * @author Dóczi Róbert
- *
+ * 
  */
 public class Prototype {
 
@@ -22,10 +23,15 @@ public class Prototype {
 	private static Prototype instance;
 	
 	/**
+	 * A command line promptja.
+	 */
+	private String prompt;
+
+	/**
 	 * Bemenet változója.
 	 */
 	private BufferedReader instream;
-	
+
 	/**
 	 * Parancs könyvtár.
 	 */
@@ -37,6 +43,7 @@ public class Prototype {
 
 	/**
 	 * A prototípus belépési pontja.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -49,12 +56,13 @@ public class Prototype {
 	private void run() {
 		instream = new BufferedReader(new InputStreamReader(System.in));
 		dictionary = CommandDictionary.Instance();
+		prompt = ">";
 
 		System.out.println("For a list of commands write \"help\"");
-		
+
 		while (true) {
 			try {
-				System.out.print(">");
+				System.out.print(prompt);
 				String inputLine = instream.readLine();
 				parseCommand(inputLine);
 			} catch (Exception e) {
@@ -63,6 +71,12 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * Értelmezi az adott parancsot.
+	 * 
+	 * @param input Az adott parancs.
+	 * @throws Exception
+	 */
 	public void parseCommand(String input) throws Exception {
 		if (input.isEmpty())
 			throw new Exception("Invalid Command!");
@@ -77,7 +91,12 @@ public class Prototype {
 
 		command.execute(Arrays.copyOfRange(splitInput, 1, splitInput.length));
 	}
-	
+
+	/**
+	 * Visszaadja a singleton instance-ot.
+	 * 
+	 * @return singleton instance
+	 */
 	public static Prototype Instance() {
 		if (instance == null) {
 			instance = new Prototype();
@@ -85,11 +104,30 @@ public class Prototype {
 		return instance;
 	}
 
+	/**
+	 * Visszaadja az aktuális {@code gameField} példányt.
+	 * 
+	 * @return a {@code gameField} példány.
+	 */
 	public GameField getGameField() {
 		return gameField;
 	}
 
+	/**
+	 * Beállítja a gameField példányt egy újra.
+	 * 
+	 * @param gameField
+	 *            az új gameField példány.
+	 */
 	public void setGameField(GameField gameField) {
 		this.gameField = gameField;
+	}
+
+	/**
+	 * Beállítja a promptot.
+	 * @param prompt A promptot reprezentáló karakter.
+	 */
+	public void setPrompt(String prompt) {
+		this.prompt = prompt;
 	}
 }
