@@ -29,16 +29,24 @@ public interface Visitor {
 	public void visit(Antlion antlion);
 
 	/**
-	 * A paraméterben megkapott {@code Ant} objektumon hívja meg szükséges metódusokat. 
+	 * A paraméterben megkapott {@code Ant} objektumon hívja meg szükséges metódusokat.
+	 *  
 	 * @param ant
 	 */
-	public void visit(Ant ant);
+	public boolean visit(Ant ant);
 
 	/**
 	 * A paraméterben megkapott {@code Block} objektumon hívja meg szükséges metódusokat.
 	 * 
-	 * @param akadaly
+	 * @param block
 	 */
-	public void visit(Block akadaly);
+	public boolean visit(Block block);
+	
+	/**
+	 * A paraméterben megkapott {@code Stone} objektumon hívja meg szükséges metódusokat.
+	 * 
+	 * @param stone
+	 */
+	public boolean visit(Stone stone);
 
 }

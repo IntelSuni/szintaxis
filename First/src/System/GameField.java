@@ -38,6 +38,10 @@ public class GameField {
 	 */
 	private Point size;
 	/**
+	 * Pályán levõ kavicsok száma.
+	 */
+	private int stoneNo;
+	/**
 	 * Pályán levõ frissítendõ objektumok.
 	 */
 	private List<Updatable> toUpdate;
@@ -90,6 +94,11 @@ public class GameField {
 	 */
 	public void addElementToField(Element element, Field field) {
 		Tracer.Instance().Trace(Direction.Enter, element, field);
+		for (Field fields : this.fields) {
+			if (fields.equals(field) == true) {
+				fields.addElement(element);
+			}
+		}
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -191,6 +200,7 @@ public class GameField {
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
+		this.toUpdate.add(element);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -199,6 +209,9 @@ public class GameField {
 	 */
 	public void updateUpdatables() {
 		Tracer.Instance().Trace(Direction.Enter);
+		for (Updatable updatables : this.toUpdate) {
+			updatables.update();
+		}
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

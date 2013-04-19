@@ -136,20 +136,24 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * {@code Ant} látogatása.
 	 * 
 	 * @param ant visitáló objektum
+	 * @return 
 	 */
-	public void visit(Ant ant) {
+	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(Direction.Enter, ant);
 		Tracer.Instance().Trace(Direction.Leave);
+		return false;
 	}
 
 	/**
 	 * {@code Block} látogatása.
 	 * 
 	 * @param akadaly visitáló objektum
+	 * @return 
 	 */
-	public void visit(Block akadaly) {
+	public boolean visit(Block akadaly) {
 		Tracer.Instance().Trace(Direction.Enter, akadaly);
 		Tracer.Instance().Trace(Direction.Leave);
+		return false;
 	}
 
 	/**
@@ -170,6 +174,18 @@ public class Anteater implements Updatable, Element, Visitor {
 	public void visit(Anteater anteater) {
 		Tracer.Instance().Trace(Direction.Enter, anteater);
 		Tracer.Instance().Trace(Direction.Leave);
+	}
+
+	/**
+	 * {@code Stone} látogatása.
+	 * 
+	 * @param stone visitáló objektum
+	 */
+	@Override
+	public boolean visit(Stone stone) {
+		Tracer.Instance().Trace(Direction.Enter, stone);
+		Tracer.Instance().Trace(Direction.Leave);
+		return false;
 	}
 
 }

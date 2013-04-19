@@ -217,20 +217,24 @@ public class Ant implements Updatable, Visitor, Element {
 	 * {@code Ant} látogatása.
 	 * 
 	 * @param ant visitáló objektum
+	 * @return 
 	 */
-	public void visit(Ant ant) {
+	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(Direction.Enter, ant);
 		Tracer.Instance().Trace(Direction.Leave);
+		return false;
 	}
 
 	/**
 	 * {@code Block} látogatása.
 	 * 
 	 * @param akadaly visitáló objektum
+	 * @return 
 	 */
-	public void visit(Block akadaly) {
+	public boolean visit(Block akadaly) {
 		Tracer.Instance().Trace(Direction.Enter, akadaly);
 		Tracer.Instance().Trace(Direction.Leave);
+		return false;
 	}
 
 	/**
@@ -255,6 +259,17 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(Direction.Enter, anteater);
 		this.kill();
 		Tracer.Instance().Trace(Direction.Leave);
+	}
+
+	/**
+	 * {@code Stone} látogatása.
+	 * 
+	 * @param stone visitáló objektum
+	 */
+	@Override
+	public boolean visit(Stone stone) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

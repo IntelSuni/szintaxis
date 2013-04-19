@@ -177,6 +177,9 @@ public class Field implements Element {
 	 */
 	public boolean moveTo(Ant h1) {
 		Tracer.Instance().Trace(Direction.Enter, h1);
+		for (Element e : this.elements) {
+			e.accept(h1);
+		}
 		Tracer.Instance().Trace(Direction.Leave);
 		return false;
 	}
@@ -196,6 +199,7 @@ public class Field implements Element {
 	 */
 	public void removeElement(Element element) {
 		Tracer.Instance().Trace(Direction.Enter, element);
+		this.elements.remove(element);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -206,6 +210,7 @@ public class Field implements Element {
 	 */
 	public void removeSmell(Smell smell) {
 		Tracer.Instance().Trace(Direction.Enter, smell);
+		this.smells.remove(smell);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
