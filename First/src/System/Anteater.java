@@ -3,7 +3,7 @@ package System;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Hangy�szt megval�s�t� oszt�ly.
@@ -82,7 +82,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param fields a mez�k list�ja, amelyek k�z�l kiv�lasztja a k�vetkez� mez�t
 	 * @return Field a k�vetkez� mez�, amelyre a hangya l�p
 	 */
-	public Field decideDirection(List<Field> fields) {
+	public Field decideDirection(ArrayList<Field> fields) {
 		Tracer.Instance().Trace(TracerDirection.Enter, fields);
 		Field result = null;
 		int x,y;
@@ -185,16 +185,16 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
-		List<Field> neighbours = currentField.getNeighbours();
+		ArrayList<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 		
 		Field prev=currentField;
 		
 		currentField.removeElement(this);
 		target.addElement(this);
-		setField(target);
+		this.setField(target);
 
-		List<Element> elements = target.getElements();
+		ArrayList<Element> elements = target.getElements();
 
 		for (Element element : elements) {
 			if(!element.accept(this)){

@@ -18,6 +18,7 @@ public class Antlion implements Element {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
+	
 
 	/*
 	 * (non-Javadoc)

@@ -103,7 +103,6 @@ public class Field implements Element {
 	 */
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
-		neighbour.addElement(neighbour);
 		neighbours.add(neighbour);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -118,7 +117,9 @@ public class Field implements Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		
 		if (smell.getIntensity() > 0) {
+			// nem biztos, hogy ez kell ???
 			smell.decrementIntensity();
+			
 			for (Field i : this.getNeighbours()) {
 				i.addSmell(smell);
 			}
@@ -200,6 +201,7 @@ public class Field implements Element {
 	 */
 	public void removeElement(Element element) {
 		Tracer.Instance().Trace(TracerDirection.Enter, element);
+		
 		this.elements.remove(element);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}

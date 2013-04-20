@@ -113,31 +113,6 @@ public class Ant implements Updatable, Visitor, Element {
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(TracerDirection.Enter, a);
 		
-//		ArrayList<Smell> q = null;
-//		ArrayList<Element> z = null;
-//		Field eredmeny = null;
-//		int lastintensity = -1, actual_intensity = 0;
-//		for (Field l : a) {
-//			actual_intensity = 0;
-//			q = l.getSmells();
-//			for (Smell s : q) {
-//				actual_intensity += s.getIntensity();
-//			}
-//			z = l.getElements();
-//			for (Element s : z) {
-//				// nem tudom hogy mit kell kezdeni az elementekkel amikor ir�nyt
-//				// d�nt�k el.
-//			}
-//
-//			// eldonteni a szag alapjan �s az alapjan hogy blokkolt e a mezo
-//			// a true a blokkolts�g vizsg�lata valahogy:)
-//			if ((actual_intensity > lastintensity) && (true)) {
-//				lastintensity = actual_intensity;
-//				eredmeny = l;
-//			}
-//		}
-		
-		
 		ArrayList<Smell> smells = new ArrayList<Smell>();
 		Field chosenField = null;
 		int intensity = 0, smellIntensity = 0;
@@ -159,10 +134,11 @@ public class Ant implements Updatable, Visitor, Element {
 				intensity = smellIntensity;
 				chosenField = field;
 			}
+			smells.clear();
 		}
 
 		Tracer.Instance().Trace(TracerDirection.Leave, field);
-//		return eredmeny;
+		
 		return chosenField;
 	}
 

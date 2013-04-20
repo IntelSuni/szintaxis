@@ -44,7 +44,7 @@ public class GameField {
 	/**
 	 * Pályán levõ frissítendõ objektumok.
 	 */
-	private List<Updatable> toUpdate;
+	private ArrayList<Updatable> toUpdate;
 	/**
 	 * Mezõket tároló lista.
 	 */
@@ -71,6 +71,7 @@ public class GameField {
 	public GameField() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		fields = new ArrayList<Field>();
+		toUpdate = new ArrayList<Updatable>();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
@@ -142,11 +143,11 @@ public class GameField {
 		Field neighbour5 = new Field(this);
 		Field neighbour6 = new Field(this);
 		
-		neighbour1.setPoint(0, 1);
-		neighbour2.setPoint(0, 2);
-		neighbour3.setPoint(1, 0);
-		neighbour4.setPoint(1, 2);
-		neighbour5.setPoint(2, 1);
+		neighbour1.setPoint(1, 0);
+		neighbour2.setPoint(2, 0);
+		neighbour3.setPoint(0, 1);
+		neighbour4.setPoint(2, 0);
+		neighbour5.setPoint(1, 2);
 		neighbour6.setPoint(2, 2);
 		
 		field1.addNeighbour(neighbour1);
@@ -156,26 +157,18 @@ public class GameField {
 		field1.addNeighbour(neighbour5);
 		field1.addNeighbour(neighbour6);
 		
-		FoodStore foodStore = new FoodStore();
-		FoodSmell foodSmell = new FoodSmell();
 		
-		addElementToField(foodStore, field1);
-		field1.addSmell(foodSmell);
+		Ant ant = new Ant(field1);
+		field1.addElement(ant);
 		
-		neighbour1.addSmell(new FoodSmell());
-		neighbour2.addSmell(new FoodSmell());
-		neighbour3.addSmell(new FoodSmell());
-		neighbour4.addSmell(new FoodSmell());
-		neighbour5.addSmell(new FoodSmell());
-		neighbour6.addSmell(new FoodSmell());
+		Antlion antlion = new Antlion();
+		antlion.setField(neighbour6);
+		neighbour6.addElement(antlion);
+		neighbour6.addSmell(new FoodSmell(10));
 		
-		AntHill antHill = new AntHill();
-		addElementToField(antHill, neighbour1);
-		
-		Block block = new Block();
-		addElementToField(block, neighbour4);
-		
-		
+		ant.update();
+
+				
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
