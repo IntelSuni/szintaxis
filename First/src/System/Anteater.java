@@ -143,13 +143,19 @@ public class Anteater implements Updatable, Element, Visitor {
 	/**
 	 * N�veli a megevett hangy�k sz�m�t, ha m�g ehet ({@code eatenAnts} < 3) 
 	 * �s meg�li a mez�n szerepl� hangy�t
+	 * @param ant 
+	 * @return 
+	 * @return 
 	 */
-	public void eat() {
+	public void eat(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (this.eatenAnts <= 3) {
 			this.eatenAnts++;
+			ant.kill();
+			
 		}
 		Tracer.Instance().Trace(TracerDirection.Leave);
+	
 	}
 
 	/**
@@ -221,6 +227,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter, ant);
+		eat(ant);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
@@ -274,7 +281,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 	@Override
 	public boolean visit(AntHill antHill) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub nem kell mast csinalni itt.
 		return true;
 	}
 

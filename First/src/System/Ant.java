@@ -303,7 +303,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public boolean visit(Anteater anteater) {
 		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
-		this.kill();
+		anteater.eat(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
