@@ -6,11 +6,11 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 import java.util.ArrayList;
 
 /**
- * Hangyát megvalósító osztály.
+ * Hangyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class Ant implements Updatable, Visitor, Element {
 	/**
-	 * A hangya haladási iránya.
+	 * A hangya haladï¿½si irï¿½nya.
 	 */
 	private Direction direction;
 	/**
@@ -18,19 +18,19 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private String name;
 	/**
-	 * A hangya jelenleg melyik pályán levõ mezõben van (tartózkodási helye).
+	 * A hangya jelenleg melyik pï¿½lyï¿½n levï¿½ mezï¿½ben van (tartï¿½zkodï¿½si helye).
 	 */
 	private Field field;
 	/**
-	 * A hangya élete.
+	 * A hangya ï¿½lete.
 	 */
 	private int HealtPoint;
 	/**
-	 * A hangya mérgezettségi szinje.
+	 * A hangya mï¿½rgezettsï¿½gi szinje.
 	 */
 	private int poisonLevel;
 	/**
-	 * A hangya eddig mely mezõkben járt, mielõtt a jelenlegi mezõbe lépett volna.
+	 * A hangya eddig mely mezï¿½kben jï¿½rt, mielï¿½tt a jelenlegi mezï¿½be lï¿½pett volna.
 	 */
 	private ArrayList<Field> visitedFields;
 
@@ -41,9 +41,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Létrehoz egy hangyát a {@code field} mezõn.
+	 * Lï¿½trehoz egy hangyï¿½t a {@code field} mezï¿½n.
 	 * 
-	 * @param field a mezõ, amelyen a hangya létrejön
+	 * @param field a mezï¿½, amelyen a hangya lï¿½trejï¿½n
 	 */
 	public Ant(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -72,9 +72,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visiting visit metódusának meghívására
+	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
 	public void accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
@@ -83,9 +83,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code level} értékkel növeli a hangya mérgezettségi szintjét.
+	 * {@code level} ï¿½rtï¿½kkel nï¿½veli a hangya mï¿½rgezettsï¿½gi szintjï¿½t.
 	 * 
-	 * @param level ennyivel növeli a mérgezettségi szintet
+	 * @param level ennyivel nï¿½veli a mï¿½rgezettsï¿½gi szintet
 	 */
 	public void addPoisonLevel(int level) {
 		Tracer.Instance().Trace(TracerDirection.Enter, level);
@@ -104,10 +104,10 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Eldönti és {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} közül a hangya hova lépjen.
+	 * Eldï¿½nti ï¿½s {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} kï¿½zï¿½l a hangya hova lï¿½pjen.
 	 * 
-	 * @param a a mezõk listája, amelyek közül kiválasztja a következõ mezõt
-	 * @return Field a következõ mezõ, amelyre a hangya lép
+	 * @param a a mezï¿½k listï¿½ja, amelyek kï¿½zï¿½l kivï¿½lasztja a kï¿½vetkezï¿½ mezï¿½t
+	 * @return Field a kï¿½vetkezï¿½ mezï¿½, amelyre a hangya lï¿½p
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(TracerDirection.Enter, a);
@@ -124,12 +124,12 @@ public class Ant implements Updatable, Visitor, Element {
 //			}
 //			z = l.getElements();
 //			for (Element s : z) {
-//				// nem tudom hogy mit kell kezdeni az elementekkel amikor irányt
-//				// döntök el.
+//				// nem tudom hogy mit kell kezdeni az elementekkel amikor irï¿½nyt
+//				// dï¿½ntï¿½k el.
 //			}
 //
-//			// eldonteni a szag alapjan és az alapjan hogy blokkolt e a mezo
-//			// a true a blokkoltság vizsgálata valahogy:)
+//			// eldonteni a szag alapjan ï¿½s az alapjan hogy blokkolt e a mezo
+//			// a true a blokkoltsï¿½g vizsgï¿½lata valahogy:)
 //			if ((actual_intensity > lastintensity) && (true)) {
 //				lastintensity = actual_intensity;
 //				eredmeny = l;
@@ -137,13 +137,13 @@ public class Ant implements Updatable, Visitor, Element {
 //		}
 		
 		
-		ArrayList<Smell> smells = null;
+		ArrayList<Smell> smells = new ArrayList<Smell>();
 		Field chosenField = null;
 		int intensity = 0, smellIntensity = 0;
 		
-		// A mezõ szomszédjain levõ hangya- és ételszagokat összegzi
-		// és azt választja, amelyik ezek közül a legnagyobb
-		// (A legutolsót választja.)
+		// A mezï¿½ szomszï¿½djain levï¿½ hangya- ï¿½s ï¿½telszagokat ï¿½sszegzi
+		// ï¿½s azt vï¿½lasztja, amelyik ezek kï¿½zï¿½l a legnagyobb
+		// (A legutolsï¿½t vï¿½lasztja.)
 		for (Field field : a) {
 			smells.addAll(field.getSmells());
 			
@@ -166,11 +166,11 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Csökkenti a hangya életpontját.
+	 * Csï¿½kkenti a hangya ï¿½letpontjï¿½t.
 	 */
 	public void decreaseHealtPoint() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
-		// Mérgezettség esetén csökken a HP.
+		// Mï¿½rgezettsï¿½g esetï¿½n csï¿½kken a HP.
 		if (this.poisonLevel > 0) {
 			this.HealtPoint -= this.poisonLevel;
 		}
@@ -183,7 +183,7 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * A hangya meghal, eltávolítja saját magát a mezõjébõl.
+	 * A hangya meghal, eltï¿½volï¿½tja sajï¿½t magï¿½t a mezï¿½jï¿½bï¿½l.
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -192,7 +192,7 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -200,9 +200,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Beállítja a {@code Field} paramétert a saját mezõjére.
+	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
 	 * 
-	 * @param field a mezõ, amelyre beállítja a saját mezõjét
+	 * @param field a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -211,9 +211,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Megkéri az aktuális mezõt mondja meg ki a 
-	 * szomszédja. Az eredményen meghívja a DecideDirection függvényt, majd törli a hangya
-	 * magát a aktuális mezõbõl és hozzáadja magát a másik mezõre.
+	 * Megkï¿½ri az aktuï¿½lis mezï¿½t mondja meg ki a 
+	 * szomszï¿½dja. Az eredmï¿½nyen meghï¿½vja a DecideDirection fï¿½ggvï¿½nyt, majd tï¿½rli a hangya
+	 * magï¿½t a aktuï¿½lis mezï¿½bï¿½l ï¿½s hozzï¿½adja magï¿½t a mï¿½sik mezï¿½re.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -234,7 +234,7 @@ public class Ant implements Updatable, Visitor, Element {
 			s.accept(this);
 		}
 		
-		// méregszint alapján az életpontok frissítése
+		// mï¿½regszint alapjï¿½n az ï¿½letpontok frissï¿½tï¿½se
 		ArrayList<Smell> smells = this.field.getSmells();
 		for (Smell s : smells) {
 			s.activate(this);
@@ -246,20 +246,21 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Antlion} látogatása esetén a hangya meghal.
+	 * {@code Antlion} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
 	 * 
-	 * @param antlion visitáló objektum
+	 * @param antlion visitï¿½lï¿½ objektum
 	 */
-	public void visit(Antlion antlion) {
+	public boolean visit(Antlion antlion) {
 		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
 		this.kill();
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Ant} látogatása.
+	 * {@code Ant} lï¿½togatï¿½sa.
 	 * 
-	 * @param ant visitáló objektum
+	 * @param ant visitï¿½lï¿½ objektum
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
@@ -269,9 +270,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Block} látogatása.
+	 * {@code Block} lï¿½togatï¿½sa.
 	 * 
-	 * @param akadaly visitáló objektum
+	 * @param akadaly visitï¿½lï¿½ objektum
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
@@ -281,33 +282,35 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code FoodStore} látogatása.
+	 * {@code FoodStore} lï¿½togatï¿½sa.
 	 * 
 	 * @param foodstore
-	 *            a hangya a meglátogatott {@code FoodStore}-ban eszik majd, miután evett meghal
+	 *            a hangya a meglï¿½togatott {@code FoodStore}-ban eszik majd, miutï¿½n evett meghal
 	 */
-	public void visit(FoodStore foodstore) {
+	public boolean visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
 		foodstore.eat();
 		this.kill();
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Anteater} látogatása esetén a hangya meghal.
+	 * {@code Anteater} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
 	 * 
-	 * @param anteater visitáló objektum
+	 * @param anteater visitï¿½lï¿½ objektum
 	 */
-	public void visit(Anteater anteater) {
+	public boolean visit(Anteater anteater) {
 		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
 		this.kill();
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Stone} látogatása.
+	 * {@code Stone} lï¿½togatï¿½sa.
 	 * 
-	 * @param stone visitáló objektum
+	 * @param stone visitï¿½lï¿½ objektum
 	 */
 	@Override
 	public boolean visit(Stone stone) {

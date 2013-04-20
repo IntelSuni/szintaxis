@@ -6,16 +6,16 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 import java.util.List;
 
 /**
- * Hangyászt megvalósító osztály.
+ * Hangyï¿½szt megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class Anteater implements Updatable, Element, Visitor {
 
 	/**
-	 * A hangyász ezen a mezõn van.
+	 * A hangyï¿½sz ezen a mezï¿½n van.
 	 */
 	private Field currentField;
 	/**
-	 * A hangyász által megevett hangyák száma.
+	 * A hangyï¿½sz ï¿½ltal megevett hangyï¿½k szï¿½ma.
 	 */
 	private int eatenAnts;
 
@@ -44,9 +44,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visiting visit metódusának meghívására
+	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
 	public void accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
@@ -55,10 +55,10 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Eldönti és {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} közül a hangyász hova lépjen.
+	 * Eldï¿½nti ï¿½s {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} kï¿½zï¿½l a hangyï¿½sz hova lï¿½pjen.
 	 * 
-	 * @param fields a mezõk listája, amelyek közül kiválasztja a következõ mezõt
-	 * @return Field a következõ mezõ, amelyre a hangya lép
+	 * @param fields a mezï¿½k listï¿½ja, amelyek kï¿½zï¿½l kivï¿½lasztja a kï¿½vetkezï¿½ mezï¿½t
+	 * @return Field a kï¿½vetkezï¿½ mezï¿½, amelyre a hangya lï¿½p
 	 */
 	public Field decideDirection(List<Field> fields) {
 		Tracer.Instance().Trace(TracerDirection.Enter, fields);
@@ -68,8 +68,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Növeli a megevett hangyák számát, ha még ehet ({@code eatenAnts} < 3) 
-	 * és megöli a mezõn szereplõ hangyát
+	 * Nï¿½veli a megevett hangyï¿½k szï¿½mï¿½t, ha mï¿½g ehet ({@code eatenAnts} < 3) 
+	 * ï¿½s megï¿½li a mezï¿½n szereplï¿½ hangyï¿½t
 	 */
 	public void eat() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -80,7 +80,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -88,9 +88,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Beállítja a {@code Field} paramétert a saját mezõjére.
+	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
 	 * 
-	 * @param field a mezõ, amelyre beállítja a saját mezõjét
+	 * @param field a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -99,17 +99,17 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Megkéri az aktuális mezõt mondja meg ki a 
-	 * szomszédja. Az eredményen meghívja a DecideDirection függvényt, majd törli a hangyász
-	 * magát a aktuális mezõbõl és hozzáadja magát a másik mezõre. 
-	 * Ha a mezõn hangya van, akkor megeszi.
+	 * Megkï¿½ri az aktuï¿½lis mezï¿½t mondja meg ki a 
+	 * szomszï¿½dja. Az eredmï¿½nyen meghï¿½vja a DecideDirection fï¿½ggvï¿½nyt, majd tï¿½rli a hangyï¿½sz
+	 * magï¿½t a aktuï¿½lis mezï¿½bï¿½l ï¿½s hozzï¿½adja magï¿½t a mï¿½sik mezï¿½re. 
+	 * Ha a mezï¿½n hangya van, akkor megeszi.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		List<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 
-		// A teszt miatt, mivel a decideDirection még nincs implementálva.
+		// A teszt miatt, mivel a decideDirection mï¿½g nincs implementï¿½lva.
 		target = neighbours.get(0);
 
 		target.addElement(this);
@@ -126,19 +126,20 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * {@code Antlion} látogatása.
+	 * {@code Antlion} lï¿½togatï¿½sa.
 	 * 
-	 * @param antlion visitáló objektum
+	 * @param antlion visitï¿½lï¿½ objektum
 	 */
-	public void visit(Antlion antlion) {
+	public boolean visit(Antlion antlion) {
 		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Ant} látogatása.
+	 * {@code Ant} lï¿½togatï¿½sa.
 	 * 
-	 * @param ant visitáló objektum
+	 * @param ant visitï¿½lï¿½ objektum
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
@@ -148,9 +149,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * {@code Block} látogatása.
+	 * {@code Block} lï¿½togatï¿½sa.
 	 * 
-	 * @param akadaly visitáló objektum
+	 * @param akadaly visitï¿½lï¿½ objektum
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
@@ -160,29 +161,31 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * {@code FoodStore} látogatása.
+	 * {@code FoodStore} lï¿½togatï¿½sa.
 	 * 
-	 * @param foodstore visitáló objektum
+	 * @param foodstore visitï¿½lï¿½ objektum
 	 */
-	public void visit(FoodStore foodstore) {
+	public boolean visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Anteater} látogatása esetén a hangya meghal.
+	 * {@code Anteater} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
 	 * 
-	 * @param anteater visitáló objektum
+	 * @param anteater visitï¿½lï¿½ objektum
 	 */
-	public void visit(Anteater anteater) {
+	public boolean visit(Anteater anteater) {
 		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return true;
 	}
 
 	/**
-	 * {@code Stone} látogatása.
+	 * {@code Stone} lï¿½togatï¿½sa.
 	 * 
-	 * @param stone visitáló objektum
+	 * @param stone visitï¿½lï¿½ objektum
 	 */
 	@Override
 	public boolean visit(Stone stone) {

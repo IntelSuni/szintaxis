@@ -1,49 +1,49 @@
 package System;
 
 /**
- * Visitor interfész.
- * A Visitor tervezési minta megvalósítására szolgáló olyan interfész,
- * amely tartalmazza a Element interfészt megvalósító osztályok visit függvényeit.
+ * Visitor interfï¿½sz.
+ * A Visitor tervezï¿½si minta megvalï¿½sï¿½tï¿½sï¿½ra szolgï¿½lï¿½ olyan interfï¿½sz,
+ * amely tartalmazza a Element interfï¿½szt megvalï¿½sï¿½tï¿½ osztï¿½lyok visit fï¿½ggvï¿½nyeit.
  */
 public interface Visitor {
 
 	/**
-	 * A paraméterben megkapott {@code Anteater} objektumon hívja meg szükséges metódusokat.
+	 * A paramï¿½terben megkapott {@code Anteater} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 * 
 	 * @param anteater
 	 */
-	public void visit(Anteater anteater);
+	public boolean visit(Anteater anteater);
 
 	/**
-	 * A paraméterben megkapott {@code FoodStore} objektumon hívja meg szükséges metódusokat.
+	 * A paramï¿½terben megkapott {@code FoodStore} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 * 
 	 * @param foodstore
 	 */
-	public void visit(FoodStore foodstore);
+	public boolean visit(FoodStore foodstore);
 
 	/**
-	 *A paraméterben megkapott {@code Antlion} objektumon hívja meg szükséges metódusokat.
+	 *A paramï¿½terben megkapott {@code Antlion} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 * 
 	 * @param antlion
 	 */
-	public void visit(Antlion antlion);
+	public boolean visit(Antlion antlion);
 
 	/**
-	 * A paraméterben megkapott {@code Ant} objektumon hívja meg szükséges metódusokat.
+	 * A paramï¿½terben megkapott {@code Ant} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 *  
 	 * @param ant
 	 */
 	public boolean visit(Ant ant);
 
 	/**
-	 * A paraméterben megkapott {@code Block} objektumon hívja meg szükséges metódusokat.
+	 * A paramï¿½terben megkapott {@code Block} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 * 
 	 * @param block
 	 */
 	public boolean visit(Block block);
 	
 	/**
-	 * A paraméterben megkapott {@code Stone} objektumon hívja meg szükséges metódusokat.
+	 * A paramï¿½terben megkapott {@code Stone} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
 	 * 
 	 * @param stone
 	 */
