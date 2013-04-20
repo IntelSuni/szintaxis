@@ -16,6 +16,7 @@ import System.Element;
 import System.Field;
 import System.FoodStore;
 import System.GameField;
+import System.Stone;
 
 /**
  * Az addElement parancs osztálya. Megadott elemet rak egy megadott mezõre.
@@ -38,6 +39,7 @@ public class AddElementCommand extends CommandBase {
 		elementTypes.put("Antlion", Antlion.class);
 		elementTypes.put("Block", Block.class);
 		elementTypes.put("Ant", Ant.class);
+		elementTypes.put("Stone", Stone.class);
 	}
 
 	@Override
