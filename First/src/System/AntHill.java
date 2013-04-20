@@ -7,12 +7,12 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * HangyaBolyt megvalósító osztály
+ * HangyaBolyt megvalï¿½sï¿½tï¿½ osztï¿½ly
  */
 public class AntHill implements Updatable, Element {
 
 	/**
-	 * A HangyaBoly ezen a mezõn van.
+	 * A HangyaBoly ezen a mezï¿½n van.
 	 */
 	private Field field;
 
@@ -33,9 +33,9 @@ public class AntHill implements Updatable, Element {
 	}
 
 	/**
-	 * Létrehoz egy hangyabolyt a {@code field} mezõn.
+	 * Lï¿½trehoz egy hangyabolyt a {@code field} mezï¿½n.
 	 * 
-	 * @param field a mezõ, amelyen a hangyaboly létrejön
+	 * @param field a mezï¿½, amelyen a hangyaboly lï¿½trejï¿½n
 	 */
 	public AntHill(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -53,17 +53,19 @@ public class AntHill implements Updatable, Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visitor visit metódusának meghívására
+	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
-	public void accept(Visitor visitor) {
+	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
+		boolean result=visitor.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 	
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -71,16 +73,16 @@ public class AntHill implements Updatable, Element {
 	}
 
 	/**
-	 * Létrehoz egy új hangyát és hangszagot, elhelyezi egy hangyabolyhoz 
-	 * közeli mezõn és a játékos pályára is beregisztrálja.
+	 * Lï¿½trehoz egy ï¿½j hangyï¿½t ï¿½s hangszagot, elhelyezi egy hangyabolyhoz 
+	 * kï¿½zeli mezï¿½n ï¿½s a jï¿½tï¿½kos pï¿½lyï¿½ra is beregisztrï¿½lja.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
-		// 1-6 közötti random számot generál
+		// 1-6 kï¿½zï¿½tti random szï¿½mot generï¿½l
 //		int randomFieldNum = new Random().nextInt(6 - 1 + 1) + 1;
 //		
-//		// A mezõ szomszédjai alapján kiválasztja az új hangya mezõjét
+//		// A mezï¿½ szomszï¿½djai alapjï¿½n kivï¿½lasztja az ï¿½j hangya mezï¿½jï¿½t
 //		ArrayList<Field> neighbours = this.field.getNeighbours();
 //		if (neighbours.size() >= randomFieldNum) {
 //			Field randomField = neighbours.get(randomFieldNum - 1);
@@ -94,7 +96,7 @@ public class AntHill implements Updatable, Element {
 //			this.field.gameField.registerNewUpdatable(ant);
 //		}
 		
-		// Ha nem sikerül szomszédra elhelyezni, akkor a saját mezõjére rakja
+		// Ha nem sikerï¿½l szomszï¿½dra elhelyezni, akkor a sajï¿½t mezï¿½jï¿½re rakja
 		Ant ant = new Ant(field);
 		AntSmell antSmell = new AntSmell();
 

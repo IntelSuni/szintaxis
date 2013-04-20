@@ -49,4 +49,6 @@ public interface Visitor {
 	 */
 	public boolean visit(Stone stone);
 
+	public boolean visit(AntHill antHill);
+
 }

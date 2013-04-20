@@ -10,7 +10,7 @@ package System;
 public class Stone extends Block {
 
 	/**
-	 * A kavics ezen a mezõn van.
+	 * A kavics ezen a mezï¿½n van.
 	 */
 	private Field currentField;
 	
@@ -18,8 +18,8 @@ public class Stone extends Block {
 	 * @see System.Block#accept(System.Visitor)
 	 */
 	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
+	public boolean accept(Visitor visitor) {
+		return visitor.visit(this);
 	}
 	
 	boolean moving (Direction direction){

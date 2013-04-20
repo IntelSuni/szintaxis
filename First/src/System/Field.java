@@ -7,29 +7,29 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 /**
- * Mezõt megvalósító osztály
+ * Mezï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly
  */
 public class Field implements Element {
 
 	/**
-	 * A mezõ ezen a {@code GameField}-en van
+	 * A mezï¿½ ezen a {@code GameField}-en van
 	 */
 	GameField gameField;
 	/**
-	 * A mezõn levõ {@code Element}-ek listája.
+	 * A mezï¿½n levï¿½ {@code Element}-ek listï¿½ja.
 	 */
 	private ArrayList<Element> elements;
 	private boolean move_blocked;
 	/**
-	 * A mezõn szomszéd {@code Element}-jeinek listája.
+	 * A mezï¿½n szomszï¿½d {@code Element}-jeinek listï¿½ja.
 	 */
 	private ArrayList<Field> neighbours;
 	/**
-	 * A mezõn koordinátái.
+	 * A mezï¿½n koordinï¿½tï¿½i.
 	 */
 	private Point points;
 	/**
-	 * A mezõn levõ {@code Smell}-ek listája.
+	 * A mezï¿½n levï¿½ {@code Smell}-ek listï¿½ja.
 	 */
 	private ArrayList<Smell> smells;
 
@@ -39,9 +39,9 @@ public class Field implements Element {
 	}
 	
 	/**
-	 * A {@code GameField}-re létrehozza a mezõt, inicializálja a szomszédokat, elemeket és a szagokat.
+	 * A {@code GameField}-re lï¿½trehozza a mezï¿½t, inicializï¿½lja a szomszï¿½dokat, elemeket ï¿½s a szagokat.
 	 * 
-	 * @param gameField a {@code GameField}, amelyen a mezõ van.
+	 * @param gameField a {@code GameField}, amelyen a mezï¿½ van.
 	 */
 	public Field(GameField gameField) {
 		Tracer.Instance().Trace(TracerDirection.Enter, gameField);
@@ -74,17 +74,18 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visitor visit metódusának meghívására
+	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
-	public void accept(Visitor visitor) {
+	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return false;
 	}
 
 	/**
-	 * Az {@code Element} objektumot a mezõ {@code Element}-eket tároló listájához adja.
+	 * Az {@code Element} objektumot a mezï¿½ {@code Element}-eket tï¿½rolï¿½ listï¿½jï¿½hoz adja.
 	 * 
 	 * @param element az {@code Element}, amelyet a {@code Field}-hez ad
 	 */
@@ -95,10 +96,10 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Hozzáad egy szomszédot a szomszéd listához.
+	 * Hozzï¿½ad egy szomszï¿½dot a szomszï¿½d listï¿½hoz.
 	 * 
 	 * @param neighbour
-	 *            Hozzáadandó szomszéd.
+	 *            Hozzï¿½adandï¿½ szomszï¿½d.
 	 */
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
@@ -108,10 +109,10 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Hozzáad egy szagot egy mezõhöz és a mezõ szomszádjaihoz.
+	 * Hozzï¿½ad egy szagot egy mezï¿½hï¿½z ï¿½s a mezï¿½ szomszï¿½djaihoz.
 	 * 
 	 * @param smell
-	 *            Hozzáadandó szag.
+	 *            Hozzï¿½adandï¿½ szag.
 	 */
 	public void addSmell(Smell smell) {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
@@ -128,9 +129,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * {@code ArrayList<Element>} listában megadja a mezõn szereplõ {@code Element} objektumokat.
+	 * {@code ArrayList<Element>} listï¿½ban megadja a mezï¿½n szereplï¿½ {@code Element} objektumokat.
 	 * 
-	 * @return a mezõn levõ elemek
+	 * @return a mezï¿½n levï¿½ elemek
 	 */
 	public ArrayList<Element> getElements() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -139,9 +140,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * {@code ArrayList<Field>} listában megadja a mezõ szomszédjait.
+	 * {@code ArrayList<Field>} listï¿½ban megadja a mezï¿½ szomszï¿½djait.
 	 * 
-	 * @return a mezõn szomszédjai
+	 * @return a mezï¿½n szomszï¿½djai
 	 */
 	public ArrayList<Field> getNeighbours() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -150,9 +151,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * {@code Point}-ban megadja a mezõn koordinátáit.
+	 * {@code Point}-ban megadja a mezï¿½n koordinï¿½tï¿½it.
 	 * 
-	 * @return a mezõ koordinátái
+	 * @return a mezï¿½ koordinï¿½tï¿½i
 	 */
 	public Point getPoint() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -161,9 +162,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * {@code ArrayList<Smell>} listában megadja a mezõn szereplõ {@code Smell} szagokat.
+	 * {@code ArrayList<Smell>} listï¿½ban megadja a mezï¿½n szereplï¿½ {@code Smell} szagokat.
 	 * 
-	 * @return a mezõn levõ szagok
+	 * @return a mezï¿½n levï¿½ szagok
 	 */
 	public ArrayList<Smell> getSmells() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -185,7 +186,7 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -193,9 +194,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Eltávolítja az {@code Element} objektumot a mezõrõl.
+	 * Eltï¿½volï¿½tja az {@code Element} objektumot a mezï¿½rï¿½l.
 	 * 
-	 * @param element mezõrõl eltávolítandó elem
+	 * @param element mezï¿½rï¿½l eltï¿½volï¿½tandï¿½ elem
 	 */
 	public void removeElement(Element element) {
 		Tracer.Instance().Trace(TracerDirection.Enter, element);
@@ -204,9 +205,9 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Eltávolítja az {@code Smell} szagot a mezõrõl.
+	 * Eltï¿½volï¿½tja az {@code Smell} szagot a mezï¿½rï¿½l.
 	 * 
-	 * @param smell mezõrõl eltávolítandó szag
+	 * @param smell mezï¿½rï¿½l eltï¿½volï¿½tandï¿½ szag
 	 */
 	public void removeSmell(Smell smell) {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
@@ -224,12 +225,12 @@ public class Field implements Element {
 	}
 
 	/**
-	 * Beállítja a mezõ koordinátáit
+	 * Beï¿½llï¿½tja a mezï¿½ koordinï¿½tï¿½it
 	 * 
 	 * @param x
-	 *            X koordináta.
+	 *            X koordinï¿½ta.
 	 * @param y
-	 *            Y koordináta.
+	 *            Y koordinï¿½ta.
 	 */
 	public void setPoint(int x, int y) {
 		Tracer.Instance().Trace(TracerDirection.Enter, x, y);

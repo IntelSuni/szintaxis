@@ -4,13 +4,13 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Hangyalesõt megvalósító objektum.
+ * Hangyalesï¿½t megvalï¿½sï¿½tï¿½ objektum.
  
  */
 public class Antlion implements Element {
 
 	/**
-	 * A hangyalesõ ezen a mezõn van.
+	 * A hangyalesï¿½ ezen a mezï¿½n van.
 	 */
 	private Field currentField;
 
@@ -39,18 +39,19 @@ public class Antlion implements Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visiting visit metódusának meghívására
+	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
-	public void accept(Visitor visiting) {
+	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
-		visiting.visit(this);
+		boolean result=visiting.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -58,9 +59,9 @@ public class Antlion implements Element {
 	}
 
 	/**
-	 * Beállítja a {@code Field} paramétert a saját mezõjére.
+	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
 	 * 
-	 * @param field a mezõ, amelyre beállítja a saját mezõjét
+	 * @param field a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter);

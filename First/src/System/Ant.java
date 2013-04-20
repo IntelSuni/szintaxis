@@ -76,10 +76,11 @@ public class Ant implements Updatable, Visitor, Element {
 	 * 
 	 * @param visiting visit met�dus�nak megh�v�s�ra
 	 */
-	public void accept(Visitor visiting) {
+	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
-		visiting.visit(this);
+		boolean result=visiting.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 
 	/**
@@ -317,6 +318,12 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, stone);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
+	}
+
+	@Override
+	public boolean visit(AntHill antHill) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

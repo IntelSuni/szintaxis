@@ -4,7 +4,7 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Akadályt megvalósító osztály.
+ * Akadï¿½lyt megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class Block implements Element {
 
@@ -32,18 +32,19 @@ public class Block implements Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visitor visit metódusának meghívására
+	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
-	public void accept(Visitor visitor) {
+	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter,visitor);
-		visitor.visit(this);
+		boolean result=visitor.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);

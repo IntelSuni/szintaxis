@@ -1,19 +1,19 @@
 package System;
 
 /**
- * Element interfész.
+ * Element interfï¿½sz.
  */
 public interface Element {
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 * 
-	 * @param visitor visit metódusának meghívására
+	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
-	public void accept(Visitor visitor);
+	public boolean accept(Visitor visitor);
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public abstract void onDraw();
 

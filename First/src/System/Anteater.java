@@ -18,12 +18,33 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * A hangy�sz �ltal megevett hangy�k sz�ma.
 	 */
 	private int eatenAnts;
+	private Direction direction;
 
 	public Anteater() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
+		eatenAnts=0;
+		currentField=null;
+		direction=Direction.east;
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
-
+	/**
+	 * Masik constructor hatha kell
+	 */
+	public Anteater(Field field){
+		eatenAnts=0;
+		currentField=field;
+		direction=Direction.east;
+	}
+	/**
+	 * Az alap irany megvalasztasa létrehozáskor
+	 * @param field
+	 * @param defDirection
+	 */
+	public Anteater(Field field,Direction defDirection){
+		eatenAnts=0;
+		currentField=field;
+		direction=defDirection;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -48,10 +69,11 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * 
 	 * @param visiting visit met�dus�nak megh�v�s�ra
 	 */
-	public void accept(Visitor visiting) {
+	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
-		visiting.visit(this);
+		boolean result=visiting.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 
 	/**
@@ -63,6 +85,57 @@ public class Anteater implements Updatable, Element, Visitor {
 	public Field decideDirection(List<Field> fields) {
 		Tracer.Instance().Trace(TracerDirection.Enter, fields);
 		Field result = null;
+		int x,y;
+		x=currentField.getPoint().x;
+		y=currentField.getPoint().y;
+		switch (direction) {
+		case east:	
+				for(Field f : fields){
+					if (f.getPoint().y==y){
+						if(f.getPoint().x>y)result=f;
+					}
+				}
+			break;
+		case northEast:		
+			for(Field f : fields){
+				if (f.getPoint().y>=y){
+					if(f.getPoint().x>x)result=f;
+				}
+			}
+			break;
+		case northWest:		
+			for(Field f : fields){
+				if (f.getPoint().y<=y){
+					if(f.getPoint().x<x)result=f;
+				}
+			}
+			break;
+		case west:
+			for(Field f : fields){
+				if (f.getPoint().y==y){
+					if(f.getPoint().x<x)result=f;
+				}
+			}
+			break;
+		case southWest:		
+			for(Field f : fields){
+				if (f.getPoint().y<=y){
+					if(f.getPoint().x<y)result=f;
+				}
+			}
+			break;
+		case southEast:		
+			for(Field f : fields){
+				if (f.getPoint().y<=y){
+					if(f.getPoint().x>y)result=f;
+				}
+			}
+			break;
+		
+		default:
+			break;
+		
+		}
 		Tracer.Instance().Trace(TracerDirection.Leave, result);
 		return result;
 	}
@@ -108,12 +181,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		List<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
-
-		// A teszt miatt, mivel a decideDirection m�g nincs implement�lva.
-		target = neighbours.get(0);
-
+		
+		currentField.removeElement(this);
 		target.addElement(this);
-
 		setField(target);
 
 		List<Element> elements = target.getElements();
@@ -192,6 +262,11 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(TracerDirection.Enter, stone);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
+	}
+	@Override
+	public boolean visit(AntHill antHill) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

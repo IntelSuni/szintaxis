@@ -6,16 +6,16 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * ÉtelRaktárat megvalósító osztály.
+ * ï¿½telRaktï¿½rat megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class FoodStore implements Element {
 	/**
-	 * Az ÉtelRaktár ezen a mezõn van.
+	 * Az ï¿½telRaktï¿½r ezen a mezï¿½n van.
 	 */
 	private Field field; // a mezo amin rajta van kell ahoz hogy amikor kiurul
 							// meg lehessen szuntetni.
 	/**
-	 * Az ÉtelRaktárban levõ ételmennyiség.
+	 * Az ï¿½telRaktï¿½rban levï¿½ ï¿½telmennyisï¿½g.
 	 */
 	private int food;
 
@@ -26,37 +26,37 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * Létrehoz egy ételraktárat a {@code field} mezõn.
-	 * A mezõn és annak 4 sugarú környezetében csökkenõ erõsségû ételszagot hoz létre.
+	 * Lï¿½trehoz egy ï¿½telraktï¿½rat a {@code field} mezï¿½n.
+	 * A mezï¿½n ï¿½s annak 4 sugarï¿½ kï¿½rnyezetï¿½ben csï¿½kkenï¿½ erï¿½ssï¿½gï¿½ ï¿½telszagot hoz lï¿½tre.
 	 * 
-	 * @param field a mezõ, amelyen az ételraktár létrejön
+	 * @param field a mezï¿½, amelyen az ï¿½telraktï¿½r lï¿½trejï¿½n
 	 */
 	public FoodStore(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.food = 30;
 		
-		// Az ételraktár mezõjére 5-erõséggû ételszagot tesz.
+		// Az ï¿½telraktï¿½r mezï¿½jï¿½re 5-erï¿½sï¿½ggï¿½ ï¿½telszagot tesz.
 		this.field.addSmell(new FoodSmell(5));
 		
 		ArrayList<Field> neighbours = this.field.getNeighbours();
-		// A mezõ szomszédjaira 4-erõséggû éteszagot tesz.
+		// A mezï¿½ szomszï¿½djaira 4-erï¿½sï¿½ggï¿½ ï¿½teszagot tesz.
 		for (Field fields : neighbours) {
 			fields.addSmell(new FoodSmell(4));
 			
-			// Sz-Sz-jaira 3-as erõsség, ha még nincs rajtuk ételszag.
+			// Sz-Sz-jaira 3-as erï¿½ssï¿½g, ha mï¿½g nincs rajtuk ï¿½telszag.
 			for (Field field2 : fields.getNeighbours()) {
 				if (field2.getSmells().contains(FoodSmell.class) == false) {
 					field2.addSmell(new FoodSmell(3));
 				}
 				
-				// Sz-Sz-Sz-jaira 2-es erõsség, ha még nincs rajtuk ételszag.
+				// Sz-Sz-Sz-jaira 2-es erï¿½ssï¿½g, ha mï¿½g nincs rajtuk ï¿½telszag.
 				for (Field field3 : field2.getNeighbours()) {
 					if (field3.getSmells().contains(FoodSmell.class) == false) {
 						field3.addSmell(new FoodSmell(2));
 					}
 					
-					// Sz-Sz-Sz-Sz-jaira 1-as erõsség, ha még nincs rajtuk ételszag.
+					// Sz-Sz-Sz-Sz-jaira 1-as erï¿½ssï¿½g, ha mï¿½g nincs rajtuk ï¿½telszag.
 					for (Field field4 : field3.getNeighbours()) {
 						if (field4.getSmells().contains(FoodSmell.class) == false) {
 							field4.addSmell(new FoodSmell(1));
@@ -89,19 +89,20 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * Visitor tervezési mintának megfelelõ accept, a paraméterben megkapott {@code Visitor}-on meghívja annak visit metódusát önmagával paraméterezve.
+	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
 	 *
 	 * @param visitor
-	 *            a {@code visitor}-on meghívja a class a saját magához tartozó függvényt
+	 *            a {@code visitor}-on meghï¿½vja a class a sajï¿½t magï¿½hoz tartozï¿½ fï¿½ggvï¿½nyt
 	 */
-	public void accept(Visitor visitor) {
+	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
-		visitor.visit(this);
+		boolean result=visitor.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+		return result;
 	}
 
 	/**
-	 * A hangya, aki meglátogatta ezt a ételraktárat megeszik belõle valamennyit.
+	 * A hangya, aki meglï¿½togatta ezt a ï¿½telraktï¿½rat megeszik belï¿½le valamennyit.
 	 */
 	public void eat() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -115,9 +116,9 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * {@code int} típusban megadja az ételraktárban levõ étel mennyiségét.
+	 * {@code int} tï¿½pusban megadja az ï¿½telraktï¿½rban levï¿½ ï¿½tel mennyisï¿½gï¿½t.
 	 * 
-	 * @return az ételraktárban elérhetõ ételmennyiség
+	 * @return az ï¿½telraktï¿½rban elï¿½rhetï¿½ ï¿½telmennyisï¿½g
 	 */
 	public int getFoodLeft() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -126,8 +127,8 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * A foodstore eltávolítja saját magát a mezõjérõl.
-	 * A mezõrõrõl és a szomszédjairól eltünteti az ételszag objektumokat.
+	 * A foodstore eltï¿½volï¿½tja sajï¿½t magï¿½t a mezï¿½jï¿½rï¿½l.
+	 * A mezï¿½rï¿½rï¿½l ï¿½s a szomszï¿½djairï¿½l eltï¿½nteti az ï¿½telszag objektumokat.
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -139,7 +140,7 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
