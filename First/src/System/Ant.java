@@ -10,6 +10,10 @@ import java.util.ArrayList;
  */
 public class Ant implements Updatable, Visitor, Element {
 	/**
+	 * A hangya haladási iránya.
+	 */
+	private Direction direction;
+	/**
 	 * A hangya neve.
 	 */
 	private String name;
@@ -107,32 +111,58 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(Direction.Enter, a);
-		ArrayList<Smell> q = null;
-		ArrayList<Element> z = null;
-		Field eredmeny = null;
-		int lastintensity = -1, actual_intensity = 0;
-		for (Field l : a) {
-			actual_intensity = 0;
-			q = l.getSmells();
-			for (Smell s : q) {
-				actual_intensity += s.getIntensity();
+		
+//		ArrayList<Smell> q = null;
+//		ArrayList<Element> z = null;
+//		Field eredmeny = null;
+//		int lastintensity = -1, actual_intensity = 0;
+//		for (Field l : a) {
+//			actual_intensity = 0;
+//			q = l.getSmells();
+//			for (Smell s : q) {
+//				actual_intensity += s.getIntensity();
+//			}
+//			z = l.getElements();
+//			for (Element s : z) {
+//				// nem tudom hogy mit kell kezdeni az elementekkel amikor irányt
+//				// döntök el.
+//			}
+//
+//			// eldonteni a szag alapjan és az alapjan hogy blokkolt e a mezo
+//			// a true a blokkoltság vizsgálata valahogy:)
+//			if ((actual_intensity > lastintensity) && (true)) {
+//				lastintensity = actual_intensity;
+//				eredmeny = l;
+//			}
+//		}
+		
+		
+		ArrayList<Smell> smells = null;
+		Field chosenField = null;
+		int intensity = 0, smellIntensity = 0;
+		
+		// A mezõ szomszédjain levõ hangya- és ételszagokat összegzi
+		// és azt választja, amelyik ezek közül a legnagyobb
+		// (A legutolsót választja.)
+		for (Field field : a) {
+			smells.addAll(field.getSmells());
+			
+			for (Smell smell : smells) {
+				String smellClassName = smell.getClass().getName();
+				if (smellClassName.contains("AntSmell") || smellClassName.contains("FoodSmell")) {
+					smellIntensity += smell.getIntensity();
+				}
 			}
-			z = l.getElements();
-			for (Element s : z) {
-				// nem tudom hogy mit kell kezdeni az elementekkel amikor irányt
-				// döntök el.
-			}
-
-			// eldonteni a szag alapjan és az alapjan hogy blokkolt e a mezo
-			// a true a blokkoltság vizsgálata valahogy:)
-			if ((actual_intensity > lastintensity) && (true)) {
-				lastintensity = actual_intensity;
-				eredmeny = l;
+			
+			if (smellIntensity >= intensity) {
+				intensity = smellIntensity;
+				chosenField = field;
 			}
 		}
 
 		Tracer.Instance().Trace(Direction.Leave, field);
-		return eredmeny;
+//		return eredmeny;
+		return chosenField;
 	}
 
 	/**
@@ -140,6 +170,14 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void decreaseHealtPoint() {
 		Tracer.Instance().Trace(Direction.Enter);
+		// Mérgezettség esetén csökken a HP.
+		if (this.poisonLevel > 0) {
+			this.HealtPoint -= this.poisonLevel;
+		}
+		// Ha nincs HP, a hangya meghal.
+		if (this.HealtPoint <= 0) {
+			this.kill();
+		}
 		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
