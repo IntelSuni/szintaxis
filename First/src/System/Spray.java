@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Sprayt megvalósító õsosztály.
@@ -13,9 +13,9 @@ public class Spray {
 	protected int capacity;
 
 	public Spray() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.capacity = 20;
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -31,8 +31,8 @@ public class Spray {
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -42,13 +42,13 @@ public class Spray {
 	 * @param mezo spray használata ezen a mezõn
 	 */
 	public void use(Field mezo) {
-		Tracer.Instance().Trace(Direction.Enter,mezo);
+		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
 		
 //		if(this.capacity > 0){
 //			mezo.addSmell(new ExterminatorSmell());
 //		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * HangyaSzagot megvalósító osztály.
@@ -10,8 +10,8 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class AntSmell extends Smell {
 
 	public AntSmell() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -29,21 +29,21 @@ public class AntSmell extends Smell {
 	 * @param ant a hangya, amire a szag hat
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Csökkenti a hangyaszag intenzitását.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.intensity > 0) {
 			this.intensity--;
 		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class AntSmell extends Smell {
 	 * @return a hangyszag intenzitása
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave,intensity);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
@@ -60,8 +60,8 @@ public class AntSmell extends Smell {
 	 * Az hangyaszag intenzitás frissítését végzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

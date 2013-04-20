@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * ÉtelSzagot megvalósító osztály
@@ -9,8 +9,14 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class FoodSmell extends Smell {
 
 	public FoodSmell() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+	
+	public FoodSmell(int intensity) {
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		this.intensity = intensity;
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -37,16 +43,16 @@ public class FoodSmell extends Smell {
 	 * @param ant a hangya, amire a szag hat
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Csökkenti az ételszag intenzitását.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -54,8 +60,8 @@ public class FoodSmell extends Smell {
 	 * @return az ételszag intenzitása
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave,intensity);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
@@ -63,8 +69,8 @@ public class FoodSmell extends Smell {
 	 * Az ételszag intenzitás frissítését végzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

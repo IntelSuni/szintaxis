@@ -5,8 +5,9 @@ package hu.szintaxis.skeleton;
  * Tracer osztály a szkeletonhoz a metódusok követésére.
  */
 public class Tracer {
-//nyuszi
-	public enum Direction {
+	//nyuszi
+	// Névütközés miatt, TracerDirection lett.
+	public enum TracerDirection {
 		Enter,
 		Leave
 	}
@@ -28,11 +29,11 @@ public class Tracer {
 	 * @param direction Be vagy kilépési pontja a metódusnak.
 	 * @param arguments Metódus argumentumai/visszatérési értéke.
 	 */
-	public void Trace(Direction direction, Object... arguments){
+	public void Trace(TracerDirection direction, Object... arguments){
 		StackTraceElement[] stack = Thread.currentThread().getStackTrace();
 		StringBuilder sBuilder = new StringBuilder();
 		//Kilépésnél a mélységet azelõtt kell csökkenteni, hogy számolnánk vele.
-		if (direction == Direction.Leave)
+		if (direction == TracerDirection.Leave)
 			depth--;
 		
 		//Kiszámolja a behúzást.
@@ -40,7 +41,7 @@ public class Tracer {
 			sBuilder.append("\t");
 		}
 		
-		if (direction == Direction.Enter)
+		if (direction == TracerDirection.Enter)
 			depth++;
 		
 		//Irányt hozzáfûzi a stringhez.
@@ -62,7 +63,7 @@ public class Tracer {
 		sBuilder.append(stack[2].getMethodName());
 		
 		//Esetleges argumentumok kiírása
-		if (direction == Direction.Enter) {
+		if (direction == TracerDirection.Enter) {
 			sBuilder.append("(");
 			for (int i = 0; i < arguments.length; i++) {
 				sBuilder.append(arguments[i].toString());
@@ -74,7 +75,7 @@ public class Tracer {
 		}
 		
 		//Esetleges visszatérési érték kiírása
-		if (direction == Direction.Leave && arguments.length == 1) {
+		if (direction == TracerDirection.Leave && arguments.length == 1) {
 			sBuilder.append(":");
 			if(arguments[0] != null) {
 				sBuilder.append(arguments[0].toString());

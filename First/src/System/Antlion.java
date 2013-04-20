@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Hangyalesõt megvalósító objektum.
@@ -15,8 +15,8 @@ public class Antlion implements Element {
 	private Field currentField;
 
 	public Antlion() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -44,17 +44,17 @@ public class Antlion implements Element {
 	 * @param visiting visit metódusának meghívására
 	 */
 	public void accept(Visitor visiting) {
-		Tracer.Instance().Trace(Direction.Enter, visiting);
+		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		visiting.visit(this);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -63,9 +63,9 @@ public class Antlion implements Element {
 	 * @param field a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
-		Tracer.Instance().Trace(Direction.Leave, field);
+		Tracer.Instance().Trace(TracerDirection.Leave, field);
 	}
 
 }

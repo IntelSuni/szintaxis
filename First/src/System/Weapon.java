@@ -3,7 +3,7 @@ package System;
 import java.awt.Point;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Fegyvert megvalósító osztály, amelyen keresztül elérhetõk a fegyvertípusok.
@@ -36,10 +36,10 @@ public class Weapon {
 	}
 
 	private  Weapon() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		extSpray = new Exterminator();
 		neutSpray = new Neutralizer();
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -48,10 +48,10 @@ public class Weapon {
 	 * @return fegyver létezõ példánya
 	 */
 	public static Weapon InstanceOf() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if(Instance==null)Instance=new Weapon();
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return  Instance;
 	}
 
@@ -61,13 +61,13 @@ public class Weapon {
 	 * @param field fegyverhasználat ezen a mezõn
 	 */
 	public void Use(Field field) {
-		Tracer.Instance().Trace(Direction.Enter,field);
+		Tracer.Instance().Trace(TracerDirection.Enter,field);
 		
 		GameField.instanceOf().getField(new Point());
 		Spray current = new Spray();
 		current.use(field);
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	/**

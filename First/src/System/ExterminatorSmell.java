@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * IrtóSzagot megvalósító osztály.
@@ -10,9 +10,9 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class ExterminatorSmell extends Smell {
 
 	public ExterminatorSmell() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = 5;
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -39,22 +39,22 @@ public class ExterminatorSmell extends Smell {
 	 * @param ant a hangya, amire hatunk
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		ant.addPoisonLevel(intensity);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Csökkenti az irtószag intenzitását.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.intensity > 0) {
 			this.intensity--;
 		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class ExterminatorSmell extends Smell {
 	 * @return az irtószag intenzitása
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave,intensity);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
@@ -71,8 +71,8 @@ public class ExterminatorSmell extends Smell {
 	 * Az irtószag intenzitás frissítését végzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

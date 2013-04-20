@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -69,9 +69,9 @@ public class GameField {
 
 	// csak a tesztek miatt public, eredetileg private !
 	public GameField() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		fields = new ArrayList<Field>();
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public GameField(Point size) {
@@ -93,13 +93,13 @@ public class GameField {
 	 * @param field Field, amihez hozzá szeretnénk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
-		Tracer.Instance().Trace(Direction.Enter, element, field);
+		Tracer.Instance().Trace(TracerDirection.Enter, element, field);
 		for (Field fields : this.fields) {
 			if (fields.equals(field) == true) {
 				fields.addElement(element);
 			}
 		}
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class GameField {
 	 * @param f pályán mezõlistához hozzáadandó mezõ
 	 */
 	public void addField(Field f) {
-		Tracer.Instance().Trace(Direction.Enter, f);
+		Tracer.Instance().Trace(TracerDirection.Enter, f);
 		fields.add(f);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -120,8 +120,8 @@ public class GameField {
 	 * @return {@code Point} által meghatározott {@code Field}
 	 */
 	public Field getField(Point points) {
-		Tracer.Instance().Trace(Direction.Enter, points);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, points);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return null;
 	}
 
@@ -130,7 +130,7 @@ public class GameField {
 	 * létrehozza a pályán található elemeket és beállítja õket.
 	 */
 	public void Initialize() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		Field field1 = new Field(this);
 		field1.setPoint(1, 1);
@@ -176,7 +176,7 @@ public class GameField {
 		addElementToField(block, neighbour4);
 		
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -185,11 +185,11 @@ public class GameField {
 	 * @return {@code GameField} osztálypéldány
 	 */
 	public static GameField instanceOf() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (instance == null)
 			instance = new GameField();
 
-		Tracer.Instance().Trace(Direction.Leave, instance);
+		Tracer.Instance().Trace(TracerDirection.Leave, instance);
 		return instance;
 	}
 
@@ -199,20 +199,20 @@ public class GameField {
 	 * @param element frissítendõ objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
-		Tracer.Instance().Trace(Direction.Enter, element);
+		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.toUpdate.add(element);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Frissíti a pálya frissítendõ objektumait.
 	 */
 	public void updateUpdatables() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		for (Updatable updatables : this.toUpdate) {
 			updatables.update();
 		}
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

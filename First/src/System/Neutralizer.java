@@ -3,7 +3,7 @@ package System;
 import java.util.ArrayList;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Hangyaszag semlegesítõt megvalósító osztály.
@@ -13,8 +13,8 @@ public class Neutralizer extends Spray {
 
 	public Neutralizer(){
 		super();
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -38,8 +38,8 @@ public class Neutralizer extends Spray {
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw(){
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Neutralizer extends Spray {
 	 * @param mezoeltávolítja a mezõrõl és a szomszédjairól a hangyaszagot
 	 */
 	public void use(Field mezo){
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.capacity > 0) {
 			// Eltünteti a mezõrõl a hangyaszagot.
@@ -69,7 +69,7 @@ public class Neutralizer extends Spray {
 			this.capacity--;
 		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

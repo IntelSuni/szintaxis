@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Hangyairtót megvalósító osztály.
@@ -10,8 +10,8 @@ public class Exterminator extends Spray {
 
 	public Exterminator() {
 		super();
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -36,8 +36,8 @@ public class Exterminator extends Spray {
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class Exterminator extends Spray {
 	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
 	 */
 	public void use(Field mezo) {
-		Tracer.Instance().Trace(Direction.Enter,mezo);
+		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
 		
 		if(this.capacity > 0){
 			// A mezõre tesz Irtószagot
@@ -58,7 +58,7 @@ public class Exterminator extends Spray {
 			this.capacity--;
 		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

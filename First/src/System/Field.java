@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -34,8 +34,8 @@ public class Field implements Element {
 	private ArrayList<Smell> smells;
 
 	public Field() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	/**
@@ -44,14 +44,14 @@ public class Field implements Element {
 	 * @param gameField a {@code GameField}, amelyen a mezõ van.
 	 */
 	public Field(GameField gameField) {
-		Tracer.Instance().Trace(Direction.Enter, gameField);
+		Tracer.Instance().Trace(TracerDirection.Enter, gameField);
 		this.gameField = gameField;
 
 		neighbours = new ArrayList<Field>();
 		elements = new ArrayList<Element>();
 		smells = new ArrayList<Smell>();
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -79,8 +79,8 @@ public class Field implements Element {
 	 * @param visitor visit metódusának meghívására
 	 */
 	public void accept(Visitor visitor) {
-		Tracer.Instance().Trace(Direction.Enter, visitor);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -89,9 +89,9 @@ public class Field implements Element {
 	 * @param element az {@code Element}, amelyet a {@code Field}-hez ad
 	 */
 	public void addElement(Element element) {
-		Tracer.Instance().Trace(Direction.Enter, element);
+		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.elements.add(element);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -101,10 +101,10 @@ public class Field implements Element {
 	 *            Hozzáadandó szomszéd.
 	 */
 	public void addNeighbour(Field neighbour) {
-		Tracer.Instance().Trace(Direction.Enter, neighbour);
+		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
 		neighbour.addElement(neighbour);
 		neighbours.add(neighbour);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class Field implements Element {
 	 *            Hozzáadandó szag.
 	 */
 	public void addSmell(Smell smell) {
-		Tracer.Instance().Trace(Direction.Enter, smell);
+		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		
 		if (smell.getIntensity() > 0) {
 			smell.decrementIntensity();
@@ -124,7 +124,7 @@ public class Field implements Element {
 			smells.add(smell);
 		}
 		
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -133,8 +133,8 @@ public class Field implements Element {
 	 * @return a mezõn levõ elemek
 	 */
 	public ArrayList<Element> getElements() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave, elements);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave, elements);
 		return new ArrayList<Element>(elements);
 	}
 
@@ -144,8 +144,8 @@ public class Field implements Element {
 	 * @return a mezõn szomszédjai
 	 */
 	public ArrayList<Field> getNeighbours() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave, neighbours);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave, neighbours);
 		return neighbours;
 	}
 
@@ -155,8 +155,8 @@ public class Field implements Element {
 	 * @return a mezõ koordinátái
 	 */
 	public Point getPoint() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave, points);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave, points);
 		return points;
 	}
 
@@ -166,8 +166,8 @@ public class Field implements Element {
 	 * @return a mezõn levõ szagok
 	 */
 	public ArrayList<Smell> getSmells() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave, smells);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave, smells);
 		return smells;
 	}
 
@@ -176,11 +176,11 @@ public class Field implements Element {
 	 * @param h1 
 	 */
 	public boolean moveTo(Ant h1) {
-		Tracer.Instance().Trace(Direction.Enter, h1);
+		Tracer.Instance().Trace(TracerDirection.Enter, h1);
 		for (Element e : this.elements) {
 			e.accept(h1);
 		}
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -188,8 +188,8 @@ public class Field implements Element {
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -198,9 +198,9 @@ public class Field implements Element {
 	 * @param element mezõrõl eltávolítandó elem
 	 */
 	public void removeElement(Element element) {
-		Tracer.Instance().Trace(Direction.Enter, element);
+		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.elements.remove(element);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -209,9 +209,9 @@ public class Field implements Element {
 	 * @param smell mezõrõl eltávolítandó szag
 	 */
 	public void removeSmell(Smell smell) {
-		Tracer.Instance().Trace(Direction.Enter, smell);
+		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		this.smells.remove(smell);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -219,8 +219,8 @@ public class Field implements Element {
 	 * @param mov_blocked
 	 */
 	public void set_move_blocked(boolean mov_blocked) {
-		Tracer.Instance().Trace(Direction.Enter, mov_blocked);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, mov_blocked);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -232,9 +232,9 @@ public class Field implements Element {
 	 *            Y koordináta.
 	 */
 	public void setPoint(int x, int y) {
-		Tracer.Instance().Trace(Direction.Enter, x, y);
+		Tracer.Instance().Trace(TracerDirection.Enter, x, y);
 		points = new Point(x, y);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

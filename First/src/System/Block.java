@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * Akadályt megvalósító osztály.
@@ -9,8 +9,8 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class Block implements Element {
 
 	public Block() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -37,17 +37,17 @@ public class Block implements Element {
 	 * @param visitor visit metódusának meghívására
 	 */
 	public void accept(Visitor visitor) {
-		Tracer.Instance().Trace(Direction.Enter,visitor);
+		Tracer.Instance().Trace(TracerDirection.Enter,visitor);
 		visitor.visit(this);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

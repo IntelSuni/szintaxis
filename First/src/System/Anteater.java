@@ -1,7 +1,7 @@
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
-import hu.szintaxis.skeleton.Tracer.Direction;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	private int eatenAnts;
 
 	public Anteater() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -49,9 +49,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param visiting visit metódusának meghívására
 	 */
 	public void accept(Visitor visiting) {
-		Tracer.Instance().Trace(Direction.Enter, visiting);
+		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		visiting.visit(this);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -61,9 +61,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return Field a következõ mezõ, amelyre a hangya lép
 	 */
 	public Field decideDirection(List<Field> fields) {
-		Tracer.Instance().Trace(Direction.Enter, fields);
+		Tracer.Instance().Trace(TracerDirection.Enter, fields);
 		Field result = null;
-		Tracer.Instance().Trace(Direction.Leave, result);
+		Tracer.Instance().Trace(TracerDirection.Leave, result);
 		return result;
 	}
 
@@ -72,19 +72,19 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * és megöli a mezõn szereplõ hangyát
 	 */
 	public void eat() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (this.eatenAnts <= 3) {
 			this.eatenAnts++;
 		}
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(Direction.Enter);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -93,9 +93,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param field a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(Direction.Enter, field);
+		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		currentField = field;
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * Ha a mezõn hangya van, akkor megeszi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(Direction.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		List<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 
@@ -122,7 +122,7 @@ public class Anteater implements Updatable, Element, Visitor {
 			element.accept(this);
 		}
 
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -131,8 +131,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param antlion visitáló objektum
 	 */
 	public void visit(Antlion antlion) {
-		Tracer.Instance().Trace(Direction.Enter, antlion);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -142,8 +142,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
-		Tracer.Instance().Trace(Direction.Enter, ant);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, ant);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -154,8 +154,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
-		Tracer.Instance().Trace(Direction.Enter, akadaly);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -165,8 +165,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param foodstore visitáló objektum
 	 */
 	public void visit(FoodStore foodstore) {
-		Tracer.Instance().Trace(Direction.Enter, foodstore);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -175,8 +175,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param anteater visitáló objektum
 	 */
 	public void visit(Anteater anteater) {
-		Tracer.Instance().Trace(Direction.Enter, anteater);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -186,8 +186,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	@Override
 	public boolean visit(Stone stone) {
-		Tracer.Instance().Trace(Direction.Enter, stone);
-		Tracer.Instance().Trace(Direction.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, stone);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
