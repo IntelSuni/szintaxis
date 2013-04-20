@@ -182,6 +182,8 @@ public class Anteater implements Updatable, Element, Visitor {
 		List<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 		
+		Field prev=currentField;
+		
 		currentField.removeElement(this);
 		target.addElement(this);
 		setField(target);
@@ -189,7 +191,12 @@ public class Anteater implements Updatable, Element, Visitor {
 		List<Element> elements = target.getElements();
 
 		for (Element element : elements) {
-			element.accept(this);
+			if(!element.accept(this)){
+				currentField=prev;
+				target.removeElement(this);
+				currentField.addElement(this);
+				direction=direction.negate();
+			}
 		}
 
 		Tracer.Instance().Trace(TracerDirection.Leave);
@@ -215,7 +222,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter, ant);
 		Tracer.Instance().Trace(TracerDirection.Leave);
-		return false;
+		return true;
 	}
 
 	/**
@@ -227,7 +234,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	public boolean visit(Block akadaly) {
 		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
 		Tracer.Instance().Trace(TracerDirection.Leave);
-		return false;
+		return true;
 	}
 
 	/**
@@ -260,8 +267,10 @@ public class Anteater implements Updatable, Element, Visitor {
 	@Override
 	public boolean visit(Stone stone) {
 		Tracer.Instance().Trace(TracerDirection.Enter, stone);
+		
+		boolean result=stone.moving(direction);
 		Tracer.Instance().Trace(TracerDirection.Leave);
-		return false;
+		return result;
 	}
 	@Override
 	public boolean visit(AntHill antHill) {
