@@ -19,6 +19,7 @@ public class FoodStore implements Element {
 
 	public FoodStore() {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.food = 30;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -30,6 +31,7 @@ public class FoodStore implements Element {
 	public FoodStore(Field field) {
 		Tracer.Instance().Trace(Direction.Enter, field);
 		this.field = field;
+		this.food = 30;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
