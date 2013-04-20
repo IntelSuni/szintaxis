@@ -1,5 +1,8 @@
 package System;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.Direction;
 
@@ -74,6 +77,24 @@ public class AntHill implements Updatable, Element {
 	public void update() {
 		Tracer.Instance().Trace(Direction.Enter);
 		
+		// 1-6 közötti random számot generál
+		int randomFieldNum = new Random().nextInt(6 - 1 + 1) + 1;
+		
+		// A mezõ szomszédjai alapján kiválasztja az új hangya mezõjét
+		ArrayList<Field> neighbours = this.field.getNeighbours();
+		if (neighbours.size() >= randomFieldNum) {
+			Field randomField = neighbours.get(randomFieldNum - 1);
+			
+			Ant ant = new Ant(randomField);
+			randomField.addElement(ant);
+			
+			AntSmell antSmell = new AntSmell();
+			randomField.addSmell(antSmell);
+			
+			this.field.gameField.registerNewUpdatable(ant);
+		}
+		
+		// Ha nem sikerül szomszédra elhelyezni, akkor a saját mezõjére rakja
 		Ant ant = new Ant(field);
 		AntSmell antSmell = new AntSmell();
 

@@ -73,6 +73,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	public void eat() {
 		Tracer.Instance().Trace(Direction.Enter);
+		if (this.eatenAnts <= 3) {
+			this.eatenAnts++;
+		}
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

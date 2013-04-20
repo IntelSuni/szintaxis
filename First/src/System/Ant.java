@@ -32,6 +32,7 @@ public class Ant implements Updatable, Visitor, Element {
 
 	public Ant() {
 		Tracer.Instance().Trace(Direction.Enter);
+		this.HealtPoint = 20;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -43,6 +44,7 @@ public class Ant implements Updatable, Visitor, Element {
 	public Ant(Field field) {
 		Tracer.Instance().Trace(Direction.Enter, field);
 		this.field = field;
+		this.HealtPoint = 20;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -83,6 +85,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void addPoisonLevel(int level) {
 		Tracer.Instance().Trace(Direction.Enter, level);
+		this.poisonLevel += level;
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -92,6 +95,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void blocked_direction(Field f) {
 		Tracer.Instance().Trace(Direction.Enter, f);
+		this.visitedFields.add(f);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -136,6 +140,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void decreaseHealtPoint() {
 		Tracer.Instance().Trace(Direction.Enter);
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
@@ -268,7 +273,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	@Override
 	public boolean visit(Stone stone) {
-		// TODO Auto-generated method stub
+		Tracer.Instance().Trace(Direction.Enter, stone);
+		Tracer.Instance().Trace(Direction.Leave);
 		return false;
 	}
 
