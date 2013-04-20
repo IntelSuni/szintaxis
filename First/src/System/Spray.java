@@ -10,7 +10,7 @@ public class Spray {
 	/**
 	 * A spray kapacitása.
 	 */
-	private int capacity;
+	protected int capacity;
 
 	public Spray() {
 		Tracer.Instance().Trace(Direction.Enter);
@@ -44,9 +44,9 @@ public class Spray {
 	public void use(Field mezo) {
 		Tracer.Instance().Trace(Direction.Enter,mezo);
 		
-		if(this.capacity > 0){
-			mezo.addSmell(new ExterminatorSmell());
-		}
+//		if(this.capacity > 0){
+//			mezo.addSmell(new ExterminatorSmell());
+//		}
 		
 		Tracer.Instance().Trace(Direction.Leave);
 	}

@@ -9,6 +9,7 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class Exterminator extends Spray {
 
 	public Exterminator() {
+		super();
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
@@ -46,6 +47,17 @@ public class Exterminator extends Spray {
 	 */
 	public void use(Field mezo) {
 		Tracer.Instance().Trace(Direction.Enter,mezo);
+		
+		if(this.capacity > 0){
+			// A mezõre tesz Irtószagot
+			mezo.addSmell(new ExterminatorSmell());
+			// A mezõ szomszédjaira tesz irtószagot
+			for (Field neighbours : mezo.getNeighbours()) {
+				neighbours.addSmell(new ExterminatorSmell());
+			}
+			this.capacity--;
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

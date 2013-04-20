@@ -1,5 +1,7 @@
 package System;
 
+import java.util.ArrayList;
+
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.Direction;
 
@@ -10,6 +12,7 @@ import hu.szintaxis.skeleton.Tracer.Direction;
 public class Neutralizer extends Spray {
 
 	public Neutralizer(){
+		super();
 		Tracer.Instance().Trace(Direction.Enter);
 		Tracer.Instance().Trace(Direction.Leave);
 	}
@@ -42,10 +45,30 @@ public class Neutralizer extends Spray {
 	/**
 	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
 	 * 
-	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
+	 * @param mezoeltávolítja a mezõrõl és a szomszédjairól a hangyaszagot
 	 */
 	public void use(Field mezo){
 		Tracer.Instance().Trace(Direction.Enter);
+		
+		if (this.capacity > 0) {
+			// Eltünteti a mezõrõl a hangyaszagot.
+			for (Smell smells : mezo.getSmells()) {
+				if (smells.getClass().getName().contains("AntSmell")) {
+					mezo.getSmells().remove(smells);
+				}
+			}
+			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
+			ArrayList<Field> neighbours = mezo.getNeighbours();
+			for (Field field : neighbours) {
+				for (Smell smells : field.getSmells()) {
+					if (smells.getClass().getName().contains("AntSmell")) {
+						field.getSmells().remove(smells);
+					}
+				}
+			}
+			this.capacity--;
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 

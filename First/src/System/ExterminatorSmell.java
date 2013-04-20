@@ -49,7 +49,11 @@ public class ExterminatorSmell extends Smell {
 	 */
 	public void decrementIntensity() {
 		Tracer.Instance().Trace(Direction.Enter);
-		this.intensity--;
+		
+		if (this.intensity > 0) {
+			this.intensity--;
+		}
+		
 		Tracer.Instance().Trace(Direction.Leave);
 	}
 
