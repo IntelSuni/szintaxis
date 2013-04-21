@@ -10,47 +10,47 @@ import java.util.List;
 import javax.print.attribute.Size2DSyntax;
 
 /**
- * Pályát megvalósító osztály.
+ * Pï¿½lyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class GameField {
 	/**
-	 * Pályán levõ hangyászok száma.
+	 * Pï¿½lyï¿½n levï¿½ hangyï¿½szok szï¿½ma.
 	 */
 	private int anteaterNo;
 	/**
-	 * Pályán levõ hangyabolyok száma.
+	 * Pï¿½lyï¿½n levï¿½ hangyabolyok szï¿½ma.
 	 */
 	private int antHillNo;
 	/**
-	 * Pályán levõ akadályok száma.
+	 * Pï¿½lyï¿½n levï¿½ akadï¿½lyok szï¿½ma.
 	 */
 	private int blockNo;
 	/**
-	 * Pályán levõ ételraktárak száma.
+	 * Pï¿½lyï¿½n levï¿½ ï¿½telraktï¿½rak szï¿½ma.
 	 */
 	private int foodStoreNo;
 	/**
-	 * Pályát tároló statikus objektum (singleton).
+	 * Pï¿½lyï¿½t tï¿½rolï¿½ statikus objektum (singleton).
 	 */
 	private static GameField instance;
 	/**
-	 * Pálya méretkoordinátái.
+	 * Pï¿½lya mï¿½retkoordinï¿½tï¿½i.
 	 */
 	private Point size;
 	/**
-	 * Pályán levõ kavicsok száma.
+	 * Pï¿½lyï¿½n levï¿½ kavicsok szï¿½ma.
 	 */
 	private int stoneNo;
 	/**
-	 * Pályán levõ frissítendõ objektumok.
+	 * Pï¿½lyï¿½n levï¿½ frissï¿½tendï¿½ objektumok.
 	 */
 	private ArrayList<Updatable> toUpdate;
 	/**
-	 * Mezõket tároló lista.
+	 * Mezï¿½ket tï¿½rolï¿½ lista.
 	 */
 	public List<Field> fields;
 	/**
-	 * Pályán levõ frissítendõ objektumok.
+	 * Pï¿½lyï¿½n levï¿½ frissï¿½tendï¿½ objektumok.
 	 */
 	public List<Updatable> updatables;
 	/**
@@ -89,9 +89,9 @@ public class GameField {
 	}
 
 	/**
-	 * Hozzáad egy {@code element}-et egy {@code field}-hez.
-	 * @param element Hozzáadantó element.
-	 * @param field Field, amihez hozzá szeretnénk adni.
+	 * Hozzï¿½ad egy {@code element}-et egy {@code field}-hez.
+	 * @param element Hozzï¿½adantï¿½ element.
+	 * @param field Field, amihez hozzï¿½ szeretnï¿½nk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, element, field);
@@ -104,9 +104,9 @@ public class GameField {
 	}
 
 	/**
-	 * Hozzáadja a {@code Field} mezõt a mezõket tároló listához.
+	 * Hozzï¿½adja a {@code Field} mezï¿½t a mezï¿½ket tï¿½rolï¿½ listï¿½hoz.
 	 * 
-	 * @param f pályán mezõlistához hozzáadandó mezõ
+	 * @param f pï¿½lyï¿½n mezï¿½listï¿½hoz hozzï¿½adandï¿½ mezï¿½
 	 */
 	public void addField(Field f) {
 		Tracer.Instance().Trace(TracerDirection.Enter, f);
@@ -115,10 +115,10 @@ public class GameField {
 	}
 
 	/**
-	 * A {@code Points} által meghatározott {@code Field}-et adja meg.
+	 * A {@code Points} ï¿½ltal meghatï¿½rozott {@code Field}-et adja meg.
 	 * 
-	 * @param points koordináták, amely meghatározza a {@code Field}-et
-	 * @return {@code Point} által meghatározott {@code Field}
+	 * @param points koordinï¿½tï¿½k, amely meghatï¿½rozza a {@code Field}-et
+	 * @return {@code Point} ï¿½ltal meghatï¿½rozott {@code Field}
 	 */
 	public Field getField(Point points) {
 		Tracer.Instance().Trace(TracerDirection.Enter, points);
@@ -127,16 +127,17 @@ public class GameField {
 	}
 
 	/**
-	 * Inicializálja a játékos mezõt:
-	 * létrehozza a pályán található elemeket és beállítja õket.
+	 * Inicializï¿½lja a jï¿½tï¿½kos mezï¿½t:
+	 * lï¿½trehozza a pï¿½lyï¿½n talï¿½lhatï¿½ elemeket ï¿½s beï¿½llï¿½tja ï¿½ket.
 	 */
 	public void Initialize() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
-		
-		ArrayList<Field> fields = new ArrayList<Field>(9);
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		int n=3;
+		int m=3;
+		ArrayList<Field> fields = new ArrayList<Field>(n*m);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				Field tempField = new Field();
 				tempField.setPoint(i, j);
 				
@@ -149,10 +150,28 @@ public class GameField {
 		int numOfFields = fields.size();
 		for (int i = 0; i < numOfFields; i++) {
 			Field tempField = fields.get(i);
-			
-			// Nem tökéletes, több szomszédot is hozzáad !!!
+			int x=tempField.getPoint().x;
+			int y=tempField.getPoint().y;
+			// Nem tï¿½kï¿½letes, tï¿½bb szomszï¿½dot is hozzï¿½ad !!!
 			for (int j = 0; j < numOfFields ; j++) {
 				Field tTempField = fields.get(j);
+				
+				if (tTempField.getPoint().x==x){
+					if(tTempField.getPoint().y==y) continue;//ekkor onmaga
+					if(tTempField.getPoint().y==y+1) tempField.addNeighbour(tTempField);//ekkor egyik szomszed
+					if(tTempField.getPoint().y==y-1) tempField.addNeighbour(tTempField);//ekkor masik szomszed
+					
+				}
+				if (tTempField.getPoint().y==y){
+					if(tTempField.getPoint().x==x) continue;//ekkor onmaga
+					if(tTempField.getPoint().x==x+1) tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
+					if(tTempField.getPoint().x==x-1) tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
+					
+				}
+				//meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
+				if ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor otodik szomszed
+				if ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor hatodik szomszed
+			}/*
 				if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
 						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1) ||
 						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
@@ -166,7 +185,7 @@ public class GameField {
 						) {
 					tempField.addNeighbour(tTempField);
 				}
-			}
+			}*/
 			
 			System.out.println(fields.get(i).getNeighbours().toString());			
 		}
@@ -176,9 +195,9 @@ public class GameField {
 	}
 
 	/**
-	 * Magát a pályát adja meg.
+	 * Magï¿½t a pï¿½lyï¿½t adja meg.
 	 * 
-	 * @return {@code GameField} osztálypéldány
+	 * @return {@code GameField} osztï¿½lypï¿½ldï¿½ny
 	 */
 	public static GameField instanceOf() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -190,9 +209,9 @@ public class GameField {
 	}
 
 	/**
-	 * Beregisztrálja a pályára a {@code Updatable} frissítendõ objektumot.
+	 * Beregisztrï¿½lja a pï¿½lyï¿½ra a {@code Updatable} frissï¿½tendï¿½ objektumot.
 	 * 
-	 * @param element frissítendõ objektum
+	 * @param element frissï¿½tendï¿½ objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		Tracer.Instance().Trace(TracerDirection.Enter, element);
@@ -201,7 +220,7 @@ public class GameField {
 	}
 
 	/**
-	 * Frissíti a pálya frissítendõ objektumait.
+	 * Frissï¿½ti a pï¿½lya frissï¿½tendï¿½ objektumait.
 	 */
 	public void updateUpdatables() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
