@@ -99,16 +99,14 @@ public class DrawCommand extends CommandBase {
 
 			sb.append("_");
 
-			Element element = null;
-			if (!field.getElements().isEmpty()) {
-				element = field.getElements().get(0);
-			}
-
 			String elementString = null;
-			if (element != null) {
-				elementString = elementTypes.get(element.getClass());
+			for (Element element : field.getElements()) {
+				if (elementTypes.containsKey(element.getClass())) {
+					elementString = elementTypes.get(element.getClass());
+					break;
+				}
 			}
-
+			
 			sb.append((elementString == null) ? ' ' : elementString);
 		}
 

@@ -52,24 +52,32 @@ public class AddElementCommand extends CommandBase {
 					+ ", Antlion, Block, Ant");
 		}
 
-		
 		if (Prototype.Instance().getGameField() == null) {
 			throw new Exception("GameField not yet initialized.");
 		}
-		
-		Point point = PrototypeUtil.stringToPoint(args[1]);		
+
+		Point point = PrototypeUtil.stringToPoint(args[1]);
 		Field field = Prototype.Instance().getGameField().getField(point);
 		if (field == null) {
 			throw new Exception("Field not found.");
 		}
-		
-		Class<? extends Element> element = elementTypes.get(args[0]);
-		if (element == null) {
+
+		Class<? extends Element> elementClass = elementTypes.get(args[0]);
+		if (elementClass == null) {
 			throw new Exception("Element type not found.");
 		}
-		
-		field.addElement(element.newInstance());
-		
+
+		Element elementInstance;
+
+		if (elementClass == AntHill.class || elementClass == Ant.class) {
+			elementInstance = elementClass.getConstructor(Field.class)
+					.newInstance(field);
+		} else {
+			elementInstance = elementClass.newInstance();
+		}
+
+		Prototype.Instance().getGameField()
+				.addElementToField(elementInstance, field);
 	}
 
 }

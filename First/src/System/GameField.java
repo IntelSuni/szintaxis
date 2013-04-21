@@ -50,10 +50,6 @@ public class GameField {
 	 */
 	public List<Field> fields;
 	/**
-	 * P�ly�n lev� friss�tend� objektumok.
-	 */
-	public List<Updatable> updatables;
-	/**
 	 * 
 	 */
 	public Game game;
@@ -98,7 +94,12 @@ public class GameField {
 		for (Field fields : this.fields) {
 			if (fields.equals(field) == true) {
 				fields.addElement(element);
+				
 			}
+		}
+		if (element instanceof Updatable) {
+			Updatable updatable = (Updatable) element;
+			toUpdate.add(updatable);
 		}
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -143,7 +144,7 @@ public class GameField {
 		fields = new ArrayList<Field>(n*m);
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				Field tempField = new Field();
+				Field tempField = new Field(this);
 				tempField.setPoint(i, j);
 				
 				fields.add(tempField);
@@ -253,8 +254,10 @@ public class GameField {
 	 */
 	public void updateUpdatables() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
+		for (int i = 0; i < toUpdate.size(); i++) {
+			toUpdate.get(i).update();			
+		}
 		for (Updatable updatables : this.toUpdate) {
-			updatables.update();
 		}
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}

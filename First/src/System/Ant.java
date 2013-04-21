@@ -18,7 +18,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private String name;
 	/**
-	 * A hangya jelenleg melyik p�ly�n lev� mez�ben van (tart�zkod�si helye).
+	 * A hangya jelenleg melyik p�ly�n lev� mez�ben van
+	 * (tart�zkod�si helye).
 	 */
 	private Field field;
 	/**
@@ -30,7 +31,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private int poisonLevel;
 	/**
-	 * A hangya eddig mely mez�kben j�rt, miel�tt a jelenlegi mez�be l�pett volna.
+	 * A hangya eddig mely mez�kben j�rt, miel�tt a jelenlegi mez�be
+	 * l�pett volna.
 	 */
 	private ArrayList<Field> visitedFields;
 
@@ -44,7 +46,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * L�trehoz egy hangy�t a {@code field} mez�n.
 	 * 
-	 * @param field a mez�, amelyen a hangya l�trej�n
+	 * @param field
+	 *            a mez�, amelyen a hangya l�trej�n
 	 */
 	public Ant(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -74,21 +77,26 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Visitor tervez�si mint�nak megfelel� accept, a param�terben megkapott {@code Visitor}-on megh�vja annak visit met�dus�t �nmag�val param�terezve.
+	 * Visitor tervez�si mint�nak megfelel� accept, a param�terben
+	 * megkapott {@code Visitor}-on megh�vja annak visit met�dus�t
+	 * �nmag�val param�terezve.
 	 * 
-	 * @param visiting visit met�dus�nak megh�v�s�ra
+	 * @param visiting
+	 *            visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
-		boolean result=visiting.visit(this);
+		boolean result = visiting.visit(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
 	/**
-	 * {@code level} �rt�kkel n�veli a hangya m�rgezetts�gi szintj�t.
+	 * {@code level} �rt�kkel n�veli a hangya m�rgezetts�gi
+	 * szintj�t.
 	 * 
-	 * @param level ennyivel n�veli a m�rgezetts�gi szintet
+	 * @param level
+	 *            ennyivel n�veli a m�rgezetts�gi szintet
 	 */
 	public void addPoisonLevel(int level) {
 		Tracer.Instance().Trace(TracerDirection.Enter, level);
@@ -107,33 +115,37 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Eld�nti �s {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} k�z�l a hangya hova l�pjen.
+	 * Eld�nti �s {@code Field}-ben visszaadja, hogy a
+	 * {@code ArrayList<Field>} k�z�l a hangya hova l�pjen.
 	 * 
-	 * @param a a mez�k list�ja, amelyek k�z�l kiv�lasztja a k�vetkez� mez�t
+	 * @param a
+	 *            a mez�k list�ja, amelyek k�z�l kiv�lasztja a
+	 *            k�vetkez� mez�t
 	 * @return Field a k�vetkez� mez�, amelyre a hangya l�p
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(TracerDirection.Enter, a);
-		
+
 		ArrayList<Smell> smells = new ArrayList<Smell>();
 		Field chosenField = null;
 		int intensity = 0, smellIntensity = 0;
 		int x = this.field.getPoint().x, y = this.field.getPoint().y;
-		
+
 		// A mez� szomsz�djain lev� hangya- �s �telszagokat �sszegzi
 		// �s azt v�lasztja, amelyik ezek k�z�l a legnagyobb
 		// (A legutols�t v�lasztja.)
 		for (Field field : a) {
 			smells.addAll(field.getSmells());
-			
+
 			for (Smell smell : smells) {
 				String smellClassName = smell.getClass().getName();
-				if (smellClassName.contains("AntSmell") || smellClassName.contains("FoodSmell")) {
+				if (smellClassName.contains("AntSmell")
+						|| smellClassName.contains("FoodSmell")) {
 					smellIntensity += smell.getIntensity();
 					System.out.println(smellIntensity + smellClassName);
 				}
 			}
-			
+
 			if (smellIntensity >= intensity) {
 				intensity = smellIntensity;
 				chosenField = field;
@@ -143,7 +155,7 @@ public class Ant implements Updatable, Visitor, Element {
 		}
 
 		Tracer.Instance().Trace(TracerDirection.Leave, field);
-		
+
 		return chosenField;
 	}
 
@@ -159,9 +171,9 @@ public class Ant implements Updatable, Visitor, Element {
 		// Ha nincs HP, a hangya meghal.
 		if (this.HealtPoint <= 0) {
 			this.kill();
-//			System.gc();
+			// System.gc();
 		}
-		
+
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -185,7 +197,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * Be�ll�tja a {@code Field} param�tert a saj�t mez�j�re.
 	 * 
-	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
+	 * @param field
+	 *            a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -194,17 +207,25 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Megk�ri az aktu�lis mez�t mondja meg ki a 
-	 * szomsz�dja. Az eredm�nyen megh�vja a DecideDirection f�ggv�nyt, majd t�rli a hangya
-	 * mag�t a aktu�lis mez�b�l �s hozz�adja mag�t a m�sik mez�re.
+	 * Megk�ri az aktu�lis mez�t mondja meg ki a szomsz�dja. Az
+	 * eredm�nyen megh�vja a DecideDirection f�ggv�nyt, majd t�rli a
+	 * hangya mag�t a aktu�lis mez�b�l �s hozz�adja mag�t a
+	 * m�sik mez�re.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		// a kovetkezo mezo eldontese
-		Field next_field;
+		Field next_field = null;
 		ArrayList<Field> neighbours = field.getNeighbours();
+		do {		
+		if (next_field != null) {
+			neighbours.remove(next_field);
+		}
 		next_field = decideDirection(neighbours);
-
+		} while (direction.negate() == Direction.getDirection(neighbours.indexOf(next_field)));
+		
+		direction = Direction.getDirection(neighbours.indexOf(next_field));
+		
 		// atmozgas a kovetkezo mezore
 		field.removeElement(this);
 		next_field.addElement(this);
@@ -231,7 +252,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * {@code Antlion} l�togat�sa eset�n a hangya meghal.
 	 * 
-	 * @param antlion visit�l� objektum
+	 * @param antlion
+	 *            visit�l� objektum
 	 */
 	public boolean visit(Antlion antlion) {
 		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
@@ -243,8 +265,9 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * {@code Ant} l�togat�sa.
 	 * 
-	 * @param ant visit�l� objektum
-	 * @return 
+	 * @param ant
+	 *            visit�l� objektum
+	 * @return
 	 */
 	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter, ant);
@@ -255,8 +278,9 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * {@code Block} l�togat�sa.
 	 * 
-	 * @param akadaly visit�l� objektum
-	 * @return 
+	 * @param akadaly
+	 *            visit�l� objektum
+	 * @return
 	 */
 	public boolean visit(Block akadaly) {
 		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
@@ -268,7 +292,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * {@code FoodStore} l�togat�sa.
 	 * 
 	 * @param foodstore
-	 *            a hangya a megl�togatott {@code FoodStore}-ban eszik majd, miut�n evett meghal
+	 *            a hangya a megl�togatott {@code FoodStore}-ban eszik majd,
+	 *            miut�n evett meghal
 	 */
 	public boolean visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
@@ -281,7 +306,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * {@code Anteater} l�togat�sa eset�n a hangya meghal.
 	 * 
-	 * @param anteater visit�l� objektum
+	 * @param anteater
+	 *            visit�l� objektum
 	 */
 	public boolean visit(Anteater anteater) {
 		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
@@ -293,7 +319,8 @@ public class Ant implements Updatable, Visitor, Element {
 	/**
 	 * {@code Stone} l�togat�sa.
 	 * 
-	 * @param stone visit�l� objektum
+	 * @param stone
+	 *            visit�l� objektum
 	 */
 	@Override
 	public boolean visit(Stone stone) {
