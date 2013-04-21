@@ -49,11 +49,25 @@ public class Exterminator extends Spray {
 		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
 		
 		if(this.capacity > 0){
+			ExterminatorSmell exterminatorSmell = new ExterminatorSmell();
 			// A mezõre tesz Irtószagot
-			mezo.addSmell(new ExterminatorSmell());
+			mezo.addSmell(exterminatorSmell);
+			
+			// A mezõ hangya elemein aktiválja az irtószagot.
+			for (Element e : mezo.getElements()) {
+				if (e instanceof Ant) {
+					exterminatorSmell.activate((Ant) e);
+				}
+			}
+			
 			// A mezõ szomszédjaira tesz irtószagot
 			for (Field neighbours : mezo.getNeighbours()) {
-				neighbours.addSmell(new ExterminatorSmell());
+				neighbours.addSmell(exterminatorSmell);
+				for (Element e : neighbours.getElements()) {
+					if (e instanceof Ant) {
+						exterminatorSmell.activate((Ant) e);
+					}
+				}
 			}
 			this.capacity--;
 		}

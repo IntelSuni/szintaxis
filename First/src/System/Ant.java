@@ -159,6 +159,7 @@ public class Ant implements Updatable, Visitor, Element {
 		// Ha nincs HP, a hangya meghal.
 		if (this.HealtPoint <= 0) {
 			this.kill();
+//			System.gc();
 		}
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);

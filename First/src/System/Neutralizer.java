@@ -51,28 +51,33 @@ public class Neutralizer extends Spray {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.capacity > 0) {
-//			// Eltünteti a mezõrõl a hangyaszagot.
-//			ArrayList<Smell> Smells = mezo.getSmells();
-//			for (Smell smells : Smells) {
-//				if (smells.getClass().getName().contains("AntSmell")) {
-//					mezo.removeSmell();
-//					System.out.println("Itt kell eltávolítani.");
-//				}
-//			}
-//			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
-//			ArrayList<Field> neighbours = mezo.getNeighbours();
-//			for (Field field : neighbours) {
-//				ArrayList<Smell> nSmells = mezo.getSmells();
-//				for (Smell smells : nSmells) {
-//					if (smells.getClass().getName().contains("AntSmell")) {
-//						mezo.removeSmell();;
-//					}
-//				}
-//			}
-			mezo.removeSmell();
+			
+			// Eltünteti a mezõrõl a hangyaszagot.
+			ArrayList<Smell> Smells = mezo.getSmells();
+			int sSize = Smells.size();
+			for (int i = 0; i < sSize; i++) {
+				Smell s = Smells.get(i);
+				if (s instanceof AntSmell) {
+					Smells.remove(s);
+				}
+			}
+			
+			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
+			ArrayList<Field> neighbours = mezo.getNeighbours();
+			int nSize = neighbours.size();
+			for (int i = 0; i < nSize; i++) {
+				Field f = neighbours.get(i);
+				ArrayList<Smell> nSmells = f.getSmells();
+				int nSSize = nSmells.size();
+				for (int j = 0; j < nSSize; j++) {
+					Smell s = nSmells.get(j);
+					if (s instanceof AntSmell) {
+						nSmells.remove(s);
+					}
+				}
+			}	
 			this.capacity--;
 		}
-		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 

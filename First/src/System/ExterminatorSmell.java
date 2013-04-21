@@ -41,6 +41,7 @@ public class ExterminatorSmell extends Smell {
 	public void activate(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		ant.addPoisonLevel(intensity);
+		this.decrementIntensity();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -72,6 +73,7 @@ public class ExterminatorSmell extends Smell {
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 

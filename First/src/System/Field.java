@@ -35,6 +35,11 @@ public class Field implements Element {
 
 	public Field() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
+		
+		neighbours = new ArrayList<Field>();
+		elements = new ArrayList<Element>();
+		smells = new ArrayList<Smell>();
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
@@ -101,10 +106,12 @@ public class Field implements Element {
 	 * @param neighbour
 	 *            Hozz�adand� szomsz�d.
 	 */
-	// !!!!
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
-		this.neighbours.add(neighbour);
+//		if (this.neighbours.size() < 6) {
+			this.neighbours.add(neighbour);
+//		}
+//		this.neighbours.add(neighbour);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -205,7 +212,6 @@ public class Field implements Element {
 	 */
 	public void removeElement(Element element) {
 		Tracer.Instance().Trace(TracerDirection.Enter, element);
-		
 		this.elements.remove(element);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -223,12 +229,7 @@ public class Field implements Element {
 	
 	public void removeSmell() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
-//		for (Smell s : this.smells) {
-//			if (s instanceof AntSmell || s instanceof FoodSmell) {
-//				this.smells.remove(s);
-//			}
-//		}
-		
+
 		for (int i = 0; i < this.smells.size(); i++) {
 			Smell s = this.smells.get(i);
 			if (s instanceof AntSmell || s instanceof FoodSmell) {

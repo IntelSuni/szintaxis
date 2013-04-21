@@ -133,42 +133,45 @@ public class GameField {
 	public void Initialize() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
-		Field field1 = new Field(this);
-		field1.setPoint(1, 1);
 		
-		Field neighbour1 = new Field(this);
-		Field neighbour2 = new Field(this);
-		Field neighbour3 = new Field(this);
-		Field neighbour4 = new Field(this);
-		Field neighbour5 = new Field(this);
-		Field neighbour6 = new Field(this);
-		
-		neighbour1.setPoint(1, 0);
-		neighbour2.setPoint(2, 0);
-		neighbour3.setPoint(0, 1);
-		neighbour4.setPoint(2, 0);
-		neighbour5.setPoint(1, 2);
-		neighbour6.setPoint(2, 2);
-		
-		field1.addNeighbour(neighbour1);
-		field1.addNeighbour(neighbour2);
-		field1.addNeighbour(neighbour3);
-		field1.addNeighbour(neighbour4);
-		field1.addNeighbour(neighbour5);
-		field1.addNeighbour(neighbour6);
-		
-		
-		Ant ant = new Ant(field1);
-		field1.addElement(ant);
-		
-		Antlion antlion = new Antlion();
-		antlion.setField(neighbour6);
-		neighbour6.addElement(antlion);
-		neighbour6.addSmell(new FoodSmell(10));
-		
-		ant.update();
-
+		ArrayList<Field> fields = new ArrayList<Field>(9);
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				Field tempField = new Field();
+				tempField.setPoint(i, j);
 				
+				fields.add(tempField);
+			}
+		}
+		
+		System.out.println(fields.toString());
+		
+		int numOfFields = fields.size();
+		for (int i = 0; i < numOfFields; i++) {
+			Field tempField = fields.get(i);
+			
+			// Nem tökéletes, több szomszédot is hozzáad !!!
+			for (int j = 0; j < numOfFields ; j++) {
+				Field tTempField = fields.get(j);
+				if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
+						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1) ||
+						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
+						((tTempField.getPoint().y - tempField.getPoint().y) == 0)) ||
+						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
+						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y)) == 1)) 
+//						 && (((tTempField.getPoint().x - tempField.getPoint().x) != -1) &&
+//						((tTempField.getPoint().y - tempField.getPoint().y) != 1)) &&
+//						(((tTempField.getPoint().x - tempField.getPoint().x) != 1) &&
+//						((tTempField.getPoint().y - tempField.getPoint().y) != -1))
+						) {
+					tempField.addNeighbour(tTempField);
+				}
+			}
+			
+			System.out.println(fields.get(i).getNeighbours().toString());			
+		}
+		
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
