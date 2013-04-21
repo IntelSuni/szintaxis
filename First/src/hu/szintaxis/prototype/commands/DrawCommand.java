@@ -77,25 +77,35 @@ public class DrawCommand extends CommandBase {
 			}
 		});
 
-		int row = fields.get(0).getPoint().y;
-		
+		int row = -1;
+
 		StringBuilder sb = new StringBuilder();
 
 		for (Field field : fields) {
 			if (field.getPoint().y != row) {
 				row = field.getPoint().y;
 				sb.append("\n");
+				
+				if (row % 2 == 0) {
+					sb.append(" ");
+				}
 			}
 
 			sb.append("_");
 
-			Element element = field.getElements().get(0);
+			Element element = null;
+			if (!field.getElements().isEmpty()) {
+				element = field.getElements().get(0);
+			}
 
-			String elementString = elementTypes.get(element.getClass());
+			String elementString = null;
+			if (element != null) {
+				elementString = elementTypes.get(element.getClass());
+			}
 
 			sb.append((elementString == null) ? ' ' : elementString);
 		}
-		
+
 		System.out.println(sb.toString());
 	}
 

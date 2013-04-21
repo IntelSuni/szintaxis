@@ -122,6 +122,11 @@ public class GameField {
 	 */
 	public Field getField(Point points) {
 		Tracer.Instance().Trace(TracerDirection.Enter, points);
+		for (Field field : fields) {
+			if (field.getPoint().equals(points)) {
+				return field;
+			}
+		}
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return null;
 	}
@@ -135,7 +140,7 @@ public class GameField {
 		
 		int n=3;
 		int m=3;
-		ArrayList<Field> fields = new ArrayList<Field>(n*m);
+		fields = new ArrayList<Field>(n*m);
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				Field tempField = new Field();
@@ -147,31 +152,55 @@ public class GameField {
 		
 		System.out.println(fields.toString());
 		
-		int numOfFields = fields.size();
-		for (int i = 0; i < numOfFields; i++) {
-			Field tempField = fields.get(i);
-			int x=tempField.getPoint().x;
-			int y=tempField.getPoint().y;
-			// Nem t�k�letes, t�bb szomsz�dot is hozz�ad !!!
-			for (int j = 0; j < numOfFields ; j++) {
-				Field tTempField = fields.get(j);
-				
-				if (tTempField.getPoint().x==x){
-					if(tTempField.getPoint().y==y) continue;//ekkor onmaga
-					if(tTempField.getPoint().y==y+1) tempField.addNeighbour(tTempField);//ekkor egyik szomszed
-					if(tTempField.getPoint().y==y-1) tempField.addNeighbour(tTempField);//ekkor masik szomszed
-					
-				}
-				if (tTempField.getPoint().y==y){
-					if(tTempField.getPoint().x==x) continue;//ekkor onmaga
-					if(tTempField.getPoint().x==x+1) tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
-					if(tTempField.getPoint().x==x-1) tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
-					
-				}
-				//meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
-				if ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor otodik szomszed
-				if ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor hatodik szomszed
-			}/*
+		for (Field field : fields) {
+			Point pos = field.getPoint();
+			
+			if(pos.y % 2 == 0) {
+				field.addNeighbour(getField(new Point(pos.x-1, pos.y-1)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y-1)));
+				field.addNeighbour(getField(new Point(pos.x-1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x+1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x-1, pos.y+1)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y+1)));
+			} else {
+				field.addNeighbour(getField(new Point(pos.x, pos.y-1)));
+				field.addNeighbour(getField(new Point(pos.x+1, pos.y-1)));
+				field.addNeighbour(getField(new Point(pos.x-1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x+1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y+1)));
+				field.addNeighbour(getField(new Point(pos.x+1, pos.y+1)));
+			}
+		}
+		
+//		int numOfFields = fields.size();
+//		for (int i = 0; i < numOfFields; i++) {
+//			Field tempField = fields.get(i);
+//			int x=tempField.getPoint().x;
+//			int y=tempField.getPoint().y;
+//			
+//			
+//			
+//			// Nem t�k�letes, t�bb szomsz�dot is hozz�ad !!!
+//			for (int j = 0; j < numOfFields ; j++) {
+//				Field tTempField = fields.get(j);
+//				
+//				if (tTempField.getPoint().x==x){
+//					if(tTempField.getPoint().y==y) continue;//ekkor onmaga
+//					if(tTempField.getPoint().y==y+1) tempField.addNeighbour(tTempField);//ekkor egyik szomszed
+//					if(tTempField.getPoint().y==y-1) tempField.addNeighbour(tTempField);//ekkor masik szomszed
+//					
+//				}
+//				if (tTempField.getPoint().y==y){
+//					if(tTempField.getPoint().x==x) continue;//ekkor onmaga
+//					if(tTempField.getPoint().x==x+1) tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
+//					if(tTempField.getPoint().x==x-1) tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
+//					
+//				}
+//				//meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
+//				if ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor otodik szomszed
+//				if ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor hatodik szomszed
+//			}
+		/*
 				if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
 						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1) ||
 						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
@@ -187,8 +216,8 @@ public class GameField {
 				}
 			}*/
 			
-			System.out.println(fields.get(i).getNeighbours().toString());			
-		}
+//			System.out.println(fields.get(i).getNeighbours().toString());			
+//		}
 		
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
