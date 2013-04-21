@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import System.Ant;
 import System.AntHill;
@@ -54,8 +56,10 @@ public class DrawCommand extends CommandBase {
 		Point point = PrototypeUtil.stringToPoint(args[0]);
 		int rad = Integer.parseInt(args[1]);
 
-		List<Field> fields = getFields(rad, Prototype.Instance().getGameField()
+		Set<Field> f = getFields(rad, Prototype.Instance().getGameField()
 				.getField(point));
+		List<Field> fields = new ArrayList<Field>();
+		fields.addAll(f);
 
 		Collections.sort(fields, new Comparator<Field>() {
 			@Override
@@ -77,6 +81,7 @@ public class DrawCommand extends CommandBase {
 			}
 		});
 
+		int zeroRow = point.y;
 		int row = -1;
 
 		StringBuilder sb = new StringBuilder();
@@ -85,8 +90,9 @@ public class DrawCommand extends CommandBase {
 			if (field.getPoint().y != row) {
 				row = field.getPoint().y;
 				sb.append("\n");
-				
-				if (row % 2 == 0) {
+
+				int i = Math.abs(row - zeroRow);
+				for (int j = 0; j < i; j++) {
 					sb.append(" ");
 				}
 			}
@@ -109,16 +115,21 @@ public class DrawCommand extends CommandBase {
 		System.out.println(sb.toString());
 	}
 
-	private List<Field> getFields(int depth, Field root) {
-		List<Field> fields = new ArrayList<Field>();
+	private Set<Field> getFields(int depth, Field root) {
+		Set<Field> fields = new HashSet<Field>();
 		if (depth > 0) {
 			List<Field> neighbours = root.getNeighbours();
 			for (Field field : neighbours) {
+				if (field == null)
+					continue;
 				fields.addAll(getFields(depth - 1, field));
 			}
 			fields.add(root);
 			return fields;
 		} else {
+			if (root == null) {
+				System.out.println("ANYÁD");
+			}
 			fields.add(root);
 			return fields;
 		}
