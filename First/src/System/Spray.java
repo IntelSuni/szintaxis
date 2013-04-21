@@ -4,18 +4,16 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Sprayt megvalósító õsosztály.
+ * Sprayt megvalï¿½sï¿½tï¿½ ï¿½sosztï¿½ly.
  */
 public class Spray {
 	/**
-	 * A spray kapacitása.
+	 * A spray kapacitï¿½sa.
 	 */
 	protected int capacity;
 
 	public Spray() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.capacity = 20;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -28,27 +26,21 @@ public class Spray {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * /**
-	 * A {@code Field} paraméterre {@code Smell} szagot rak.
+	 * A {@code Field} paramï¿½terre {@code Smell} szagot rak.
 	 * 
-	 * @param mezo spray használata ezen a mezõn
+	 * @param mezo spray hasznï¿½lata ezen a mezï¿½n
 	 */
 	public void use(Field mezo) {
-		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
-		
 //		if(this.capacity > 0){
 //			mezo.addSmell(new ExterminatorSmell());
 //		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

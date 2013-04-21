@@ -4,18 +4,16 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Játékot megvalósító osztály.
+ * Jï¿½tï¿½kot megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class Game {
 
 	/**
-	 * A pálya mely tartalmazza a mezõket.
+	 * A pï¿½lya mely tartalmazza a mezï¿½ket.
 	 */
 	private GameField gamefield;
 
 	public Game() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	public void finalize() throws Throwable {
@@ -23,37 +21,29 @@ public class Game {
 	}
 
 	/**
-	 * A játék vége, ablak bezárása.
+	 * A jï¿½tï¿½k vï¿½ge, ablak bezï¿½rï¿½sa.
 	 */
 	public void Exit() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Segítség a játékosnak.
+	 * Segï¿½tsï¿½g a jï¿½tï¿½kosnak.
 	 */
 	public void Help() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
-	}
+		}
 
 	/**
-	 * Új játék indítása, a játéktér létrehozása, inicializálása.
+	 * ï¿½j jï¿½tï¿½k indï¿½tï¿½sa, a jï¿½tï¿½ktï¿½r lï¿½trehozï¿½sa, inicializï¿½lï¿½sa.
 	 */
 	public void newGame() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		gamefield = GameField.instanceOf();
 		gamefield.Initialize();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * A játék felfüggesztése.
+	 * A jï¿½tï¿½k felfï¿½ggesztï¿½se.
 	 */
 	public void Pause() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

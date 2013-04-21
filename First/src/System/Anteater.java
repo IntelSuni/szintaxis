@@ -21,11 +21,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	private Direction direction;
 
 	public Anteater() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		eatenAnts=0;
 		currentField=null;
 		direction=Direction.east;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	/**
 	 * Masik constructor hatha kell
@@ -70,9 +68,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param visiting visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visiting) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		boolean result=visiting.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
@@ -83,7 +79,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return Field a k�vetkez� mez�, amelyre a hangya l�p
 	 */
 	public Field decideDirection(ArrayList<Field> fields) {
-		Tracer.Instance().Trace(TracerDirection.Enter, fields);
 		Field result = null;
 		int x,y;
 		x=currentField.getPoint().x;
@@ -136,7 +131,6 @@ public class Anteater implements Updatable, Element, Visitor {
 			break;
 		
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave, result);
 		return result;
 	}
 
@@ -148,13 +142,11 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public void eat(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (this.eatenAnts <= 3) {
 			this.eatenAnts++;
 			ant.kill();
 			
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	
 	}
 
@@ -172,9 +164,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		currentField = field;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -184,7 +174,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * Ha a mez�n hangya van, akkor megeszi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		ArrayList<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 		
@@ -204,8 +193,6 @@ public class Anteater implements Updatable, Element, Visitor {
 				direction=direction.negate();
 			}
 		}
-
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -214,8 +201,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param antlion visit�l� objektum
 	 */
 	public boolean visit(Antlion antlion) {
-		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -226,9 +211,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter, ant);
 		eat(ant);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -239,8 +222,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
-		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -250,8 +231,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param foodstore visit�l� objektum
 	 */
 	public boolean visit(FoodStore foodstore) {
-		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -261,8 +240,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param anteater visit�l� objektum
 	 */
 	public boolean visit(Anteater anteater) {
-		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -273,10 +250,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	@Override
 	public boolean visit(Stone stone) {
-		Tracer.Instance().Trace(TracerDirection.Enter, stone);
-		
 		boolean result=stone.moving(direction);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 	@Override

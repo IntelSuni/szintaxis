@@ -4,19 +4,15 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * ÉtelSzagot megvalósító osztály
+ * ï¿½telSzagot megvalï¿½sï¿½tï¿½ osztï¿½ly
  */
 public class FoodSmell extends Smell {
 
 	public FoodSmell() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public FoodSmell(int intensity) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = intensity;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -38,39 +34,31 @@ public class FoodSmell extends Smell {
 	}
 
 	/**
-	 * Beállítja az ételszagot.
+	 * Beï¿½llï¿½tja az ï¿½telszagot.
 	 * 
 	 * @param ant a hangya, amire a szag hat
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Csökkenti az ételszag intenzitását.
+	 * Csï¿½kkenti az ï¿½telszag intenzitï¿½sï¿½t.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Az ételszag lekérdezésére szolgál.
-	 * @return az ételszag intenzitása
+	 * Az ï¿½telszag lekï¿½rdezï¿½sï¿½re szolgï¿½l.
+	 * @return az ï¿½telszag intenzitï¿½sa
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
 	/**
-	 * Az ételszag intenzitás frissítését végzi.
+	 * Az ï¿½telszag intenzitï¿½s frissï¿½tï¿½sï¿½t vï¿½gzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

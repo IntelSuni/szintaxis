@@ -10,9 +10,7 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 public class ExterminatorSmell extends Smell {
 
 	public ExterminatorSmell() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = 5;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	/**
 	 * amikor terjed a szag a szomszedoknal, ez a konstruktor van hasznalva
@@ -20,9 +18,7 @@ public class ExterminatorSmell extends Smell {
 	 * @param intensity	A szag erossege
 	 */
 	public ExterminatorSmell(int intensity) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = intensity;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	/* (non-Javadoc)
 	 * 
@@ -48,23 +44,18 @@ public class ExterminatorSmell extends Smell {
 	 * @param ant a hangya, amire hatunk
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		ant.addPoisonLevel(intensity);
 		this.decrementIntensity();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Cs�kkenti az irt�szag intenzit�s�t.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		if (this.intensity > 0) {
 			this.intensity--;
 		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
+	
 	}
 
 	/**
@@ -72,8 +63,6 @@ public class ExterminatorSmell extends Smell {
 	 * @return az irt�szag intenzit�sa
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
@@ -81,9 +70,7 @@ public class ExterminatorSmell extends Smell {
 	 * Az irt�szag intenzit�s friss�t�s�t v�gzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
+	
 	}
 
 }

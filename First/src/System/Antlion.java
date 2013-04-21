@@ -15,8 +15,6 @@ public class Antlion implements Element {
 	private Field currentField;
 
 	public Antlion() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 
@@ -45,9 +43,7 @@ public class Antlion implements Element {
 	 * @param visiting visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visiting) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		boolean result=visiting.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
@@ -55,8 +51,6 @@ public class Antlion implements Element {
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -65,9 +59,7 @@ public class Antlion implements Element {
 	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
-		Tracer.Instance().Trace(TracerDirection.Leave, field);
 	}
 
 }

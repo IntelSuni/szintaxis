@@ -18,8 +18,6 @@ public class AntHill implements Updatable, Element {
 
 	public AntHill() {
 		super();
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -38,9 +36,7 @@ public class AntHill implements Updatable, Element {
 	 * @param field a mez�, amelyen a hangyaboly l�trej�n
 	 */
 	public AntHill(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -58,9 +54,7 @@ public class AntHill implements Updatable, Element {
 	 * @param visitor visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visitor) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
 		boolean result=visitor.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 	
@@ -68,8 +62,6 @@ public class AntHill implements Updatable, Element {
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -77,9 +69,7 @@ public class AntHill implements Updatable, Element {
 	 * k�zeli mez�n �s a j�t�kos p�ly�ra is beregisztr�lja.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
-		// 1-6 k�z�tti random sz�mot gener�l
+// 1-6 k�z�tti random sz�mot gener�l
 //		int randomFieldNum = new Random().nextInt(6 - 1 + 1) + 1;
 //		
 //		// A mez� szomsz�djai alapj�n kiv�lasztja az �j hangya mez�j�t
@@ -104,7 +94,5 @@ public class AntHill implements Updatable, Element {
 		field.addSmell(antSmell);
 
 		this.field.gameField.registerNewUpdatable(ant);
-
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 }

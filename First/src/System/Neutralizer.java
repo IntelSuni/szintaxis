@@ -6,15 +6,13 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Hangyaszag semlegesítõt megvalósító osztály.
+ * Hangyaszag semlegesï¿½tï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
 
  */
 public class Neutralizer extends Spray {
 
 	public Neutralizer(){
 		super();
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -35,24 +33,20 @@ public class Neutralizer extends Spray {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw(){
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
+	 * A {@code Field} paramï¿½terre ï¿½s szomszï¿½djaira {@code ExterminatorSmell} szagot rak.
 	 * 
-	 * @param mezoeltávolítja a mezõrõl és a szomszédjairól a hangyaszagot
+	 * @param mezoeltï¿½volï¿½tja a mezï¿½rï¿½l ï¿½s a szomszï¿½djairï¿½l a hangyaszagot
 	 */
 	public void use(Field mezo){
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
-		if (this.capacity > 0) {
+			if (this.capacity > 0) {
 			
-			// Eltünteti a mezõrõl a hangyaszagot.
+			// Eltï¿½nteti a mezï¿½rï¿½l a hangyaszagot.
 			ArrayList<Smell> Smells = mezo.getSmells();
 			int sSize = Smells.size();
 			for (int i = 0; i < sSize; i++) {
@@ -62,7 +56,7 @@ public class Neutralizer extends Spray {
 				}
 			}
 			
-			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
+			//Eltï¿½nteti a mezï¿½ szomszï¿½djairï¿½l a hangyaszagot.
 			ArrayList<Field> neighbours = mezo.getNeighbours();
 			int nSize = neighbours.size();
 			for (int i = 0; i < nSize; i++) {
@@ -78,7 +72,6 @@ public class Neutralizer extends Spray {
 			}	
 			this.capacity--;
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

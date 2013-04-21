@@ -4,14 +4,12 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Hangyairtót megvalósító osztály.
+ * Hangyairtï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public class Exterminator extends Spray {
 
 	public Exterminator() {
 		super();
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -33,34 +31,30 @@ public class Exterminator extends Spray {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
+	 * A {@code Field} paramï¿½terre ï¿½s szomszï¿½djaira {@code ExterminatorSmell} szagot rak.
 	 * 
-	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
+	 * @param mezo rï¿½ helyezei el az {@code ExterminatorSmell} szagot
 	 */
 	public void use(Field mezo) {
-		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
-		
 		if(this.capacity > 0){
 			ExterminatorSmell exterminatorSmell = new ExterminatorSmell();
-			// A mezõre tesz Irtószagot
+			// A mezï¿½re tesz Irtï¿½szagot
 			mezo.addSmell(exterminatorSmell);
 			
-			// A mezõ hangya elemein aktiválja az irtószagot.
+			// A mezï¿½ hangya elemein aktivï¿½lja az irtï¿½szagot.
 			for (Element e : mezo.getElements()) {
 				if (e instanceof Ant) {
 					exterminatorSmell.activate((Ant) e);
 				}
 			}
 			
-			// A mezõ szomszédjaira tesz irtószagot
+			// A mezï¿½ szomszï¿½djaira tesz irtï¿½szagot
 			for (Field neighbours : mezo.getNeighbours()) {
 				neighbours.addSmell(exterminatorSmell);
 				for (Element e : neighbours.getElements()) {
@@ -71,8 +65,6 @@ public class Exterminator extends Spray {
 			}
 			this.capacity--;
 		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

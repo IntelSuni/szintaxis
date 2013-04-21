@@ -9,8 +9,6 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 public class Block implements Element {
 
 	public Block() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/* (non-Javadoc)
@@ -37,9 +35,7 @@ public class Block implements Element {
 	 * @param visitor visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visitor) {
-		Tracer.Instance().Trace(TracerDirection.Enter,visitor);
 		boolean result=visitor.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
@@ -47,8 +43,7 @@ public class Block implements Element {
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+
 	}
 
 }

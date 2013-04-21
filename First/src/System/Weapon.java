@@ -6,23 +6,23 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Fegyvert megvalósító osztály, amelyen keresztül elérhetõk a fegyvertípusok.
+ * Fegyvert megvalï¿½sï¿½tï¿½ osztï¿½ly, amelyen keresztï¿½l elï¿½rhetï¿½k a fegyvertï¿½pusok.
  */
 public class Weapon {
 	/**
-	 * Fegyverpéldány (Singleton)	
+	 * Fegyverpï¿½ldï¿½ny (Singleton)	
 	 */
 	private static Weapon Instance;
 	/**
-	 * Használható spray.
+	 * Hasznï¿½lhatï¿½ spray.
 	 */
 	public Spray m_Spray;
 	/**
-	 * Az exterminátor spray példánya.
+	 * Az exterminï¿½tor spray pï¿½ldï¿½nya.
 	 */
 	public Exterminator extSpray;
 	/**
-	 * A szagtalanító spray példánya.
+	 * A szagtalanï¿½tï¿½ spray pï¿½ldï¿½nya.
 	 */
 	public Neutralizer neutSpray;
 
@@ -36,49 +36,40 @@ public class Weapon {
 	}
 
 	private  Weapon() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		extSpray = new Exterminator();
 		neutSpray = new Neutralizer();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Fegyverpéldány elérésére.
+	 * Fegyverpï¿½ldï¿½ny elï¿½rï¿½sï¿½re.
 	 * 
-	 * @return fegyver létezõ példánya
+	 * @return fegyver lï¿½tezï¿½ pï¿½ldï¿½nya
 	 */
 	public static Weapon InstanceOf() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		if(Instance==null)Instance=new Weapon();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return  Instance;
 	}
 
 	/**
-	 * Az elérhetõ fegyver használata a {@code Field} mezõn.
+	 * Az elï¿½rhetï¿½ fegyver hasznï¿½lata a {@code Field} mezï¿½n.
 	 * 
-	 * @param field fegyverhasználat ezen a mezõn
+	 * @param field fegyverhasznï¿½lat ezen a mezï¿½n
 	 */
 	public void Use(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter,field);
-		
 		GameField.instanceOf().getField(new Point());
 		Spray current = new Spray();
 		current.use(field);
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
-	}
+		}
 	
 	/**
-	 * Kiválasztja a hangyaölõ sprayt.
+	 * Kivï¿½lasztja a hangyaï¿½lï¿½ sprayt.
 	 */
 	public void SelectExterminator() {
 		m_Spray = extSpray;
 	}
 
 	/**
-	 * Kiválasztja a szagtalanító sprayt.
+	 * Kivï¿½lasztja a szagtalanï¿½tï¿½ sprayt.
 	 */
 	public void SelectNeutralizer() {
 		m_Spray = neutSpray;

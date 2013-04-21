@@ -34,13 +34,9 @@ public class Field implements Element {
 	private ArrayList<Smell> smells;
 
 	public Field() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		neighbours = new ArrayList<Field>();
 		elements = new ArrayList<Element>();
 		smells = new ArrayList<Smell>();
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	/**
@@ -49,14 +45,11 @@ public class Field implements Element {
 	 * @param gameField a {@code GameField}, amelyen a mez� van.
 	 */
 	public Field(GameField gameField) {
-		Tracer.Instance().Trace(TracerDirection.Enter, gameField);
 		this.gameField = gameField;
 
 		neighbours = new ArrayList<Field>();
 		elements = new ArrayList<Element>();
 		smells = new ArrayList<Smell>();
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -84,8 +77,6 @@ public class Field implements Element {
 	 * @param visitor visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visitor) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -95,9 +86,7 @@ public class Field implements Element {
 	 * @param element az {@code Element}, amelyet a {@code Field}-hez ad
 	 */
 	public void addElement(Element element) {
-		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.elements.add(element);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -107,12 +96,10 @@ public class Field implements Element {
 	 *            Hozz�adand� szomsz�d.
 	 */
 	public void addNeighbour(Field neighbour) {
-		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
-//		if (this.neighbours.size() < 6) {
+		//		if (this.neighbours.size() < 6) {
 			this.neighbours.add(neighbour);
 //		}
 //		this.neighbours.add(neighbour);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -123,8 +110,6 @@ public class Field implements Element {
 	 */
 	// !!!!
 	public void addSmell(Smell smell) {
-		Tracer.Instance().Trace(TracerDirection.Enter, smell);
-		
 		smells.add(smell);
 		int intensityNeighbours=smell.getIntensity()-1;
 		ArrayList<Field> neighbours = this.getNeighbours();
@@ -156,7 +141,6 @@ public class Field implements Element {
 //			}
 //		}
 		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -165,8 +149,6 @@ public class Field implements Element {
 	 * @return a mez�n lev� elemek
 	 */
 	public ArrayList<Element> getElements() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave, elements);
 		return new ArrayList<Element>(elements);
 	}
 
@@ -176,8 +158,7 @@ public class Field implements Element {
 	 * @return a mez�n szomsz�djai
 	 */
 	public ArrayList<Field> getNeighbours() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave, neighbours);
+
 		return neighbours;
 	}
 
@@ -187,8 +168,6 @@ public class Field implements Element {
 	 * @return a mez� koordin�t�i
 	 */
 	public Point getPoint() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave, points);
 		return points;
 	}
 
@@ -198,8 +177,6 @@ public class Field implements Element {
 	 * @return a mez�n lev� szagok
 	 */
 	public ArrayList<Smell> getSmells() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave, smells);
 		return smells;
 	}
 
@@ -208,11 +185,9 @@ public class Field implements Element {
 	 * @param h1 
 	 */
 	public boolean moveTo(Ant h1) {
-		Tracer.Instance().Trace(TracerDirection.Enter, h1);
 		for (Element e : this.elements) {
 			e.accept(h1);
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -220,8 +195,7 @@ public class Field implements Element {
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+	
 	}
 
 	/**
@@ -230,10 +204,8 @@ public class Field implements Element {
 	 * @param element mez�r�l elt�vol�tand� elem
 	 */
 	public void removeElement(Element element) {
-		Tracer.Instance().Trace(TracerDirection.Enter, element);
-		this.elements.remove(element);
-		Tracer.Instance().Trace(TracerDirection.Leave);
-	}
+			this.elements.remove(element);
+		}
 
 	/**
 	 * Elt�vol�tja az {@code Smell} szagot a mez�r�l.
@@ -241,22 +213,16 @@ public class Field implements Element {
 	 * @param smell mez�r�l elt�vol�tand� szag
 	 */
 	public void removeSmell(Smell smell) {
-		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		this.smells.remove(smell);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public void removeSmell() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-
 		for (int i = 0; i < this.smells.size(); i++) {
 			Smell s = this.smells.get(i);
 			if (s instanceof AntSmell || s instanceof FoodSmell) {
 				this.smells.remove(s);
 			}
 		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -264,8 +230,6 @@ public class Field implements Element {
 	 * @param mov_blocked
 	 */
 	public void set_move_blocked(boolean mov_blocked) {
-		Tracer.Instance().Trace(TracerDirection.Enter, mov_blocked);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -277,9 +241,7 @@ public class Field implements Element {
 	 *            Y koordin�ta.
 	 */
 	public void setPoint(int x, int y) {
-		Tracer.Instance().Trace(TracerDirection.Enter, x, y);
 		points = new Point(x, y);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

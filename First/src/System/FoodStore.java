@@ -20,9 +20,7 @@ public class FoodStore implements Element {
 	private int food;
 
 	public FoodStore() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.food = 30;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -32,7 +30,6 @@ public class FoodStore implements Element {
 	 * @param field a mez�, amelyen az �telrakt�r l�trej�n
 	 */
 	public FoodStore(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.food = 30;
 		
@@ -65,8 +62,6 @@ public class FoodStore implements Element {
 				}
 			}
 		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -95,9 +90,7 @@ public class FoodStore implements Element {
 	 *            a {@code visitor}-on megh�vja a class a saj�t mag�hoz tartoz� f�ggv�nyt
 	 */
 	public boolean accept(Visitor visitor) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
 		boolean result=visitor.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
@@ -105,14 +98,10 @@ public class FoodStore implements Element {
 	 * A hangya, aki megl�togatta ezt a �telrakt�rat megeszik bel�le valamennyit.
 	 */
 	public void eat() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-
 		food--; // nem tudom mennyit eszik meg a hangya itt 1et vettem le
 		if (food <= 0) {
 			this.kill();
 		}
-
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -121,8 +110,6 @@ public class FoodStore implements Element {
 	 * @return az �telrakt�rban el�rhet� �telmennyis�g
 	 */
 	public int getFoodLeft() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave, food);
 		return food;
 	}
 
@@ -131,20 +118,13 @@ public class FoodStore implements Element {
 	 * A mez�r�r�l �s a szomsz�djair�l elt�nteti az �telszag objektumokat.
 	 */
 	public void kill() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		field.removeElement(this);
-		
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
-	}
+		}
 
 	/**
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

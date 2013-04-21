@@ -35,10 +35,8 @@ public class Ant implements Updatable, Visitor, Element {
 	private ArrayList<Field> visitedFields;
 
 	public Ant() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -47,11 +45,10 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param field a mez�, amelyen a hangya l�trej�n
 	 */
 	public Ant(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/*
@@ -79,9 +76,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param visiting visit met�dus�nak megh�v�s�ra
 	 */
 	public boolean accept(Visitor visiting) {
-		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		boolean result=visiting.visit(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 		return result;
 	}
 
@@ -91,9 +87,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param level ennyivel n�veli a m�rgezetts�gi szintet
 	 */
 	public void addPoisonLevel(int level) {
-		Tracer.Instance().Trace(TracerDirection.Enter, level);
 		this.poisonLevel += level;
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
@@ -101,9 +96,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param f
 	 */
 	public void blocked_direction(Field f) {
-		Tracer.Instance().Trace(TracerDirection.Enter, f);
 		this.visitedFields.add(f);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
@@ -113,8 +107,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @return Field a k�vetkez� mez�, amelyre a hangya l�p
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
-		Tracer.Instance().Trace(TracerDirection.Enter, a);
-		
 		ArrayList<Smell> smells = new ArrayList<Smell>();
 		Field chosenField = null;
 		int intensity = 0, smellIntensity = 0;
@@ -151,7 +143,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * Cs�kkenti a hangya �letpontj�t.
 	 */
 	public void decreaseHealtPoint() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+		
 		// M�rgezetts�g eset�n cs�kken a HP.
 		if (this.poisonLevel > 0) {
 			this.HealtPoint -= this.poisonLevel;
@@ -162,24 +154,24 @@ public class Ant implements Updatable, Visitor, Element {
 //			System.gc();
 		}
 		
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
 	 * A hangya meghal, elt�vol�tja saj�t mag�t a mez�j�b�l.
 	 */
 	public void kill() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+		
 		this.field.removeElement(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
 	 * Grafikus v�ltozathoz kirajzol�s�hoz.
 	 */
 	public void onDraw() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
+		
 	}
 
 	/**
@@ -188,9 +180,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
@@ -199,7 +190,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * mag�t a aktu�lis mez�b�l �s hozz�adja mag�t a m�sik mez�re.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+		
 		// a kovetkezo mezo eldontese
 		Field next_field;
 		ArrayList<Field> neighbours = field.getNeighbours();
@@ -225,7 +216,7 @@ public class Ant implements Updatable, Visitor, Element {
 		
 		this.decreaseHealtPoint();
 
-		Tracer.Instance().Trace(TracerDirection.Leave);
+		
 	}
 
 	/**
@@ -234,9 +225,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param antlion visit�l� objektum
 	 */
 	public boolean visit(Antlion antlion) {
-		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
 		this.kill();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -247,8 +236,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter, ant);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -259,8 +246,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
-		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 
@@ -271,10 +256,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 *            a hangya a megl�togatott {@code FoodStore}-ban eszik majd, miut�n evett meghal
 	 */
 	public boolean visit(FoodStore foodstore) {
-		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
 		foodstore.eat();
 		this.kill();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -284,9 +267,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * @param anteater visit�l� objektum
 	 */
 	public boolean visit(Anteater anteater) {
-		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
 		anteater.eat(this);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -297,8 +278,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	@Override
 	public boolean visit(Stone stone) {
-		Tracer.Instance().Trace(TracerDirection.Enter, stone);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return false;
 	}
 

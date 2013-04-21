@@ -4,14 +4,12 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * HangyaSzagot megvalósító osztály.
+ * HangyaSzagot megvalï¿½sï¿½tï¿½ osztï¿½ly.
 
  */
 public class AntSmell extends Smell {
 
 	public AntSmell() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*
@@ -24,44 +22,34 @@ public class AntSmell extends Smell {
 	}
 	
 	/**
-	 * Beállítja a hangyaszagot.
+	 * Beï¿½llï¿½tja a hangyaszagot.
 	 * 
 	 * @param ant a hangya, amire a szag hat
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Csökkenti a hangyaszag intenzitását.
+	 * Csï¿½kkenti a hangyaszag intenzitï¿½sï¿½t.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		if (this.intensity > 0) {
 			this.intensity--;
 		}
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * A hangyaszag lekérdezésére szolgál.
-	 * @return a hangyszag intenzitása
+	 * A hangyaszag lekï¿½rdezï¿½sï¿½re szolgï¿½l.
+	 * @return a hangyszag intenzitï¿½sa
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
 	/**
-	 * Az hangyaszag intenzitás frissítését végzi.
+	 * Az hangyaszag intenzitï¿½s frissï¿½tï¿½sï¿½t vï¿½gzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

@@ -4,20 +4,18 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Szagot megvalósító osztály.
+ * Szagot megvalï¿½sï¿½tï¿½ osztï¿½ly.
  */
 public abstract class Smell implements Updatable {
 
 	/**
-	 * A szag intenzitása.
+	 * A szag intenzitï¿½sa.
 	 */
 	protected int intensity;
 
 	public Smell() {	
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = 10;
-		Tracer.Instance().Trace(TracerDirection.Leave);
-	}
+		}
 
 	/*
 	 * (non-Javadoc)
@@ -29,39 +27,32 @@ public abstract class Smell implements Updatable {
 	}
 
 	/**
-	 * Beállítja a szagot.
+	 * Beï¿½llï¿½tja a szagot.
 	 * 
 	 * @param ant a hangya, amire hatunk
 	 */
 	public void activate(Ant ant) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Csökkenti a szag intenzitását.
+	 * Csï¿½kkenti a szag intenzitï¿½sï¿½t.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+
 	}
 
 	/**
-	 * A szag lekérdezésére szolgál.
-	 * @return a szag intenzitása
+	 * A szag lekï¿½rdezï¿½sï¿½re szolgï¿½l.
+	 * @return a szag intenzitï¿½sa
 	 */
 	public int getIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave,intensity);
 		return intensity;
 	}
 
 	/**
-	 * A szag intenzitás frissítését végzi.
+	 * A szag intenzitï¿½s frissï¿½tï¿½sï¿½t vï¿½gzi.
 	 */
 	public void update() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }
