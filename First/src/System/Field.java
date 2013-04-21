@@ -126,6 +126,25 @@ public class Field implements Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		
 		smells.add(smell);
+		int intensityNeighbours=smell.getIntensity()-1;
+		ArrayList<Field> neighbours = this.getNeighbours();
+		ArrayList<Smell> szSmells=null;
+		for (Field n : neighbours){
+			szSmells=n.getSmells();
+			for(Smell s :szSmells){
+				//ha a szomszedos mezon volt mar ilyen szag
+				if(s.getClass()==smell.getClass()){
+					//es annak az erossege gyengebb mint az ujonnan adogatott
+					if(!(s.getIntensity()<intensityNeighbours)){
+						//aakkor letrehozunk egy uj szagot
+						if(smell.getClass()==ExterminatorSmell.class)
+							n.addSmell(new ExterminatorSmell(intensityNeighbours));
+						else
+							n.addSmell(new FoodSmell(intensityNeighbours));
+					}
+				}
+			}
+		}
 //		smell.decrementIntensity();
 //		ArrayList<Field> neighbours = this.getNeighbours();
 //		if (smell.getIntensity() > 0) {	

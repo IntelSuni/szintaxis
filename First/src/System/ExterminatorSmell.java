@@ -4,7 +4,7 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * IrtóSzagot megvalósító osztály.
+ * Irtï¿½Szagot megvalï¿½sï¿½tï¿½ osztï¿½ly.
  
  */
 public class ExterminatorSmell extends Smell {
@@ -14,7 +14,16 @@ public class ExterminatorSmell extends Smell {
 		this.intensity = 5;
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
-
+	/**
+	 * amikor terjed a szag a szomszedoknal, ez a konstruktor van hasznalva
+	 * valamint olxyan esetekben, amikor el akarunk terni az alapertelmezett szagerossegtol
+	 * @param intensity	A szag erossege
+	 */
+	public ExterminatorSmell(int intensity) {
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		this.intensity = intensity;
+		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
 	/* (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#toString()
@@ -34,7 +43,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Beállítja a paraméterként kapott hangya mérgezettségi szintjét.
+	 * Beï¿½llï¿½tja a paramï¿½terkï¿½nt kapott hangya mï¿½rgezettsï¿½gi szintjï¿½t.
 	 * 
 	 * @param ant a hangya, amire hatunk
 	 */
@@ -46,7 +55,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Csökkenti az irtószag intenzitását.
+	 * Csï¿½kkenti az irtï¿½szag intenzitï¿½sï¿½t.
 	 */
 	public void decrementIntensity() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -59,8 +68,8 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Az irtószag lekérdezésére szolgál.
-	 * @return az irtószag intenzitása
+	 * Az irtï¿½szag lekï¿½rdezï¿½sï¿½re szolgï¿½l.
+	 * @return az irtï¿½szag intenzitï¿½sa
 	 */
 	public int getIntensity() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -69,7 +78,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Az irtószag intenzitás frissítését végzi.
+	 * Az irtï¿½szag intenzitï¿½s frissï¿½tï¿½sï¿½t vï¿½gzi.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
