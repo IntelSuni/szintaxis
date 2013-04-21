@@ -65,10 +65,8 @@ public class GameField {
 
 	// csak a tesztek miatt public, eredetileg private !
 	public GameField() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		fields = new ArrayList<Field>();
 		toUpdate = new ArrayList<Updatable>();
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public GameField(Point size) {
@@ -90,7 +88,6 @@ public class GameField {
 	 * @param field Field, amihez hozz� szeretn�nk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, element, field);
 		for (Field fields : this.fields) {
 			if (fields.equals(field) == true) {
 				fields.addElement(element);
@@ -101,7 +98,6 @@ public class GameField {
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -110,9 +106,7 @@ public class GameField {
 	 * @param f p�ly�n mez�list�hoz hozz�adand� mez�
 	 */
 	public void addField(Field f) {
-		Tracer.Instance().Trace(TracerDirection.Enter, f);
 		fields.add(f);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -122,13 +116,11 @@ public class GameField {
 	 * @return {@code Point} �ltal meghat�rozott {@code Field}
 	 */
 	public Field getField(Point points) {
-		Tracer.Instance().Trace(TracerDirection.Enter, points);
 		for (Field field : fields) {
 			if (field.getPoint().equals(points)) {
 				return field;
 			}
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 		return null;
 	}
 
@@ -137,8 +129,6 @@ public class GameField {
 	 * l�trehozza a p�ly�n tal�lhat� elemeket �s be�ll�tja �ket.
 	 */
 	public void Initialize() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		
 		int n=size.x;
 		int m=size.y;
 		fields = new ArrayList<Field>(n*m);
@@ -219,9 +209,6 @@ public class GameField {
 			
 //			System.out.println(fields.get(i).getNeighbours().toString());			
 //		}
-		
-		
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -230,11 +217,8 @@ public class GameField {
 	 * @return {@code GameField} oszt�lyp�ld�ny
 	 */
 	public static GameField instanceOf() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (instance == null)
 			instance = new GameField();
-
-		Tracer.Instance().Trace(TracerDirection.Leave, instance);
 		return instance;
 	}
 
@@ -244,22 +228,18 @@ public class GameField {
 	 * @param element friss�tend� objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
-		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.toUpdate.add(element);
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
 	 * Friss�ti a p�lya friss�tend� objektumait.
 	 */
 	public void updateUpdatables() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
 		for (int i = 0; i < toUpdate.size(); i++) {
 			toUpdate.get(i).update();			
 		}
 		for (Updatable updatables : this.toUpdate) {
 		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }
