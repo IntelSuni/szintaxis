@@ -101,9 +101,10 @@ public class Field implements Element {
 	 * @param neighbour
 	 *            Hozz�adand� szomsz�d.
 	 */
+	// !!!!
 	public void addNeighbour(Field neighbour) {
 		Tracer.Instance().Trace(TracerDirection.Enter, neighbour);
-		neighbours.add(neighbour);
+		this.neighbours.add(neighbour);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -113,18 +114,21 @@ public class Field implements Element {
 	 * @param smell
 	 *            Hozz�adand� szag.
 	 */
+	// !!!!
 	public void addSmell(Smell smell) {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		
-		if (smell.getIntensity() > 0) {
-			// nem biztos, hogy ez kell ???
-			smell.decrementIntensity();
-			
-			for (Field i : this.getNeighbours()) {
-				i.addSmell(smell);
-			}
-			smells.add(smell);
-		}
+		smells.add(smell);
+//		smell.decrementIntensity();
+//		ArrayList<Field> neighbours = this.getNeighbours();
+//		if (smell.getIntensity() > 0) {	
+//			for (Field i : neighbours) {
+//				if (i.getSmells().contains(smell) == false) {
+//					i.addSmell(smell);
+//				}
+//				
+//			}
+//		}
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -214,6 +218,24 @@ public class Field implements Element {
 	public void removeSmell(Smell smell) {
 		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		this.smells.remove(smell);
+		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+	
+	public void removeSmell() {
+		Tracer.Instance().Trace(TracerDirection.Enter);
+//		for (Smell s : this.smells) {
+//			if (s instanceof AntSmell || s instanceof FoodSmell) {
+//				this.smells.remove(s);
+//			}
+//		}
+		
+		for (int i = 0; i < this.smells.size(); i++) {
+			Smell s = this.smells.get(i);
+			if (s instanceof AntSmell || s instanceof FoodSmell) {
+				this.smells.remove(s);
+			}
+		}
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 

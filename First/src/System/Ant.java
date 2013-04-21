@@ -37,6 +37,7 @@ public class Ant implements Updatable, Visitor, Element {
 	public Ant() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.HealtPoint = 20;
+		this.direction = Direction.east;
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -49,6 +50,7 @@ public class Ant implements Updatable, Visitor, Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.HealtPoint = 20;
+		this.direction = Direction.east;
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -116,6 +118,7 @@ public class Ant implements Updatable, Visitor, Element {
 		ArrayList<Smell> smells = new ArrayList<Smell>();
 		Field chosenField = null;
 		int intensity = 0, smellIntensity = 0;
+		int x = this.field.getPoint().x, y = this.field.getPoint().y;
 		
 		// A mez� szomsz�djain lev� hangya- �s �telszagokat �sszegzi
 		// �s azt v�lasztja, amelyik ezek k�z�l a legnagyobb
@@ -127,6 +130,7 @@ public class Ant implements Updatable, Visitor, Element {
 				String smellClassName = smell.getClass().getName();
 				if (smellClassName.contains("AntSmell") || smellClassName.contains("FoodSmell")) {
 					smellIntensity += smell.getIntensity();
+					System.out.println(smellIntensity + smellClassName);
 				}
 			}
 			
@@ -135,6 +139,7 @@ public class Ant implements Updatable, Visitor, Element {
 				chosenField = field;
 			}
 			smells.clear();
+			smellIntensity = 0;
 		}
 
 		Tracer.Instance().Trace(TracerDirection.Leave, field);

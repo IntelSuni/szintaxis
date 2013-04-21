@@ -51,21 +51,25 @@ public class Neutralizer extends Spray {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.capacity > 0) {
-			// Eltünteti a mezõrõl a hangyaszagot.
-			for (Smell smells : mezo.getSmells()) {
-				if (smells.getClass().getName().contains("AntSmell")) {
-					mezo.getSmells().remove(smells);
-				}
-			}
-			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
-			ArrayList<Field> neighbours = mezo.getNeighbours();
-			for (Field field : neighbours) {
-				for (Smell smells : field.getSmells()) {
-					if (smells.getClass().getName().contains("AntSmell")) {
-						field.getSmells().remove(smells);
-					}
-				}
-			}
+//			// Eltünteti a mezõrõl a hangyaszagot.
+//			ArrayList<Smell> Smells = mezo.getSmells();
+//			for (Smell smells : Smells) {
+//				if (smells.getClass().getName().contains("AntSmell")) {
+//					mezo.removeSmell();
+//					System.out.println("Itt kell eltávolítani.");
+//				}
+//			}
+//			//Eltünteti a mezõ szomszédjairól a hangyaszagot.
+//			ArrayList<Field> neighbours = mezo.getNeighbours();
+//			for (Field field : neighbours) {
+//				ArrayList<Smell> nSmells = mezo.getSmells();
+//				for (Smell smells : nSmells) {
+//					if (smells.getClass().getName().contains("AntSmell")) {
+//						mezo.removeSmell();;
+//					}
+//				}
+//			}
+			mezo.removeSmell();
 			this.capacity--;
 		}
 		
