@@ -138,8 +138,8 @@ public class GameField {
 	public void Initialize() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
-		int n=3;
-		int m=3;
+		int n=size.x;
+		int m=size.y;
 		fields = new ArrayList<Field>(n*m);
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
