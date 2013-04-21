@@ -137,7 +137,7 @@ public class Field implements Element {
 					//es annak az erossege gyengebb mint az ujonnan adogatott
 					if(!(s.getIntensity()<intensityNeighbours)){
 						//aakkor letrehozunk egy uj szagot
-						if(smell.getClass()==ExterminatorSmell.class)
+						if(smell instanceof ExterminatorSmell)
 							n.addSmell(new ExterminatorSmell(intensityNeighbours));
 						else
 							n.addSmell(new FoodSmell(intensityNeighbours));
