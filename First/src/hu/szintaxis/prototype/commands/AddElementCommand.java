@@ -69,13 +69,13 @@ public class AddElementCommand extends CommandBase {
 
 		Element elementInstance;
 
-		if (elementClass == AntHill.class || elementClass == Ant.class) {
+		if (elementClass == AntHill.class || elementClass == Ant.class || elementClass == Anteater.class) {
 			elementInstance = elementClass.getConstructor(Field.class)
 					.newInstance(field);
 		} else {
 			elementInstance = elementClass.newInstance();
 		}
-
+		
 		Prototype.Instance().getGameField()
 				.addElementToField(elementInstance, field);
 	}

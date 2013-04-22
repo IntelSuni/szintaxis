@@ -38,9 +38,10 @@ public class AntHill implements Updatable, Element {
 	 * @param field a mez�, amelyen a hangyaboly l�trej�n
 	 */
 	public AntHill(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter, field);
+//		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
-		Tracer.Instance().Trace(TracerDirection.Leave);
+//		System.out.println("Anteater successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/*

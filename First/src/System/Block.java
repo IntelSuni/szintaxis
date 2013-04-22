@@ -9,9 +9,10 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 public class Block implements Element {
 
 	public Block() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
+	
 
 	/* (non-Javadoc)
 	 * 

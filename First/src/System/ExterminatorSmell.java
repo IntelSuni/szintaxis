@@ -58,13 +58,13 @@ public class ExterminatorSmell extends Smell {
 	 * Cs�kkenti az irt�szag intenzit�s�t.
 	 */
 	public void decrementIntensity() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.intensity > 0) {
 			this.intensity--;
 		}
 		
-		Tracer.Instance().Trace(TracerDirection.Leave);
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**

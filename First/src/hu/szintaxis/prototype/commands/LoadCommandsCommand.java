@@ -33,7 +33,7 @@ public class LoadCommandsCommand extends CommandBase {
 		String currentLine;
 		
 		while ((currentLine = br.readLine()) != null) {
-			System.out.println(currentLine);
+//			System.out.println(currentLine);
 			Prototype.Instance().parseCommand(currentLine);
 		}
 	}

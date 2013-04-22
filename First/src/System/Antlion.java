@@ -19,6 +19,13 @@ public class Antlion implements Element {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
+	public Antlion(Field field) {
+//		Tracer.Instance().Trace(TracerDirection.Enter);
+		this.currentField = field;
+//		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
+//		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -65,9 +72,10 @@ public class Antlion implements Element {
 	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
-		Tracer.Instance().Trace(TracerDirection.Leave, field);
+//		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
+//		Tracer.Instance().Trace(TracerDirection.Leave, field);
 	}
 
 }

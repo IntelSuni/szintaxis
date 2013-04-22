@@ -65,7 +65,19 @@ public class Weapon {
 		
 		GameField.instanceOf().getField(new Point());
 		Spray current = new Spray();
-		current.use(field);
+		try {
+			Spray cureent = this.m_Spray.getClass().newInstance();
+			cureent.use(field);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		current.use(field);
+		
+		System.out.println(" used successfully on " + field.getPoint().x + "," + field.getPoint().y + " and its neighbours.");
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -75,6 +87,7 @@ public class Weapon {
 	 */
 	public void SelectExterminator() {
 		m_Spray = extSpray;
+		System.out.print(m_Spray.getClass().getSimpleName());
 	}
 
 	/**
@@ -82,5 +95,6 @@ public class Weapon {
 	 */
 	public void SelectNeutralizer() {
 		m_Spray = neutSpray;
+		System.out.print(m_Spray.getClass().getSimpleName());
 	}
 }

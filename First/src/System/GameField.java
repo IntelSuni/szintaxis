@@ -72,6 +72,7 @@ public class GameField {
 	public GameField(Point size) {
 		this();
 		this.size = size;
+		System.out.println("Successfully crated gameField of size " + size.x + "," + size.y + ".");
 	}
 
 	/* (non-Javadoc)
@@ -98,6 +99,9 @@ public class GameField {
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
+		
+		System.out.println(element.getClass().getSimpleName() + " successfully added at " + field.getPoint().x + "," + field.getPoint().y + ".");
+		
 	}
 
 	/**
@@ -140,9 +144,7 @@ public class GameField {
 				fields.add(tempField);
 			}
 		}
-		
-		System.out.println(fields.toString());
-		
+				
 		for (Field field : fields) {
 			Point pos = field.getPoint();
 			
@@ -238,8 +240,9 @@ public class GameField {
 		for (int i = 0; i < toUpdate.size(); i++) {
 			toUpdate.get(i).update();			
 		}
-		for (Updatable updatables : this.toUpdate) {
-		}
+//		for (Updatable updatables : this.toUpdate) {
+//			updatables.update();
+//		}
 	}
 
 }

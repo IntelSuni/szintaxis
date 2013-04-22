@@ -51,7 +51,7 @@ public class Ant implements Updatable, Visitor, Element {
 		this.field = field;
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
-		
+//		System.out.println("Ant successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
 	}
 
 	/*
@@ -95,8 +95,10 @@ public class Ant implements Updatable, Visitor, Element {
 	 *            ennyivel n�veli a m�rgezetts�gi szintet
 	 */
 	public void addPoisonLevel(int level) {
+		Tracer.Instance().Trace(TracerDirection.Enter, level);
 		this.poisonLevel += level;
-		
+		System.out.println("\tAnt get poisoned.");
+		Tracer.Instance().Trace(TracerDirection.Leave, this.poisonLevel);
 	}
 
 	/**
@@ -129,23 +131,24 @@ public class Ant implements Updatable, Visitor, Element {
 		// �s azt v�lasztja, amelyik ezek k�z�l a legnagyobb
 		// (A legutols�t v�lasztja.)
 		for (Field field : a) {
-			smells.addAll(field.getSmells());
+			if (field != null) {
+				smells.addAll(field.getSmells());
 
-			for (Smell smell : smells) {
-				String smellClassName = smell.getClass().getName();
-				if (smellClassName.contains("AntSmell")
-						|| smellClassName.contains("FoodSmell")) {
-					smellIntensity += smell.getIntensity();
-					System.out.println(smellIntensity + smellClassName);
+				for (Smell smell : smells) {
+					String smellClassName = smell.getClass().getName();
+					if (smellClassName.contains("AntSmell")
+							|| smellClassName.contains("FoodSmell")) {
+						smellIntensity += smell.getIntensity();
+					}
 				}
-			}
 
-			if (smellIntensity >= intensity) {
-				intensity = smellIntensity;
-				chosenField = field;
+				if (smellIntensity >= intensity) {
+					intensity = smellIntensity;
+					chosenField = field;
+				}
+				smells.clear();
+				smellIntensity = 0;
 			}
-			smells.clear();
-			smellIntensity = 0;
 		}
 
 		Tracer.Instance().Trace(TracerDirection.Leave, field);
@@ -157,17 +160,18 @@ public class Ant implements Updatable, Visitor, Element {
 	 * Cs�kkenti a hangya �letpontj�t.
 	 */
 	public void decreaseHealtPoint() {
-		
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		// M�rgezetts�g eset�n cs�kken a HP.
 		if (this.poisonLevel > 0) {
 			this.HealtPoint -= this.poisonLevel;
 		}
 		// Ha nincs HP, a hangya meghal.
 		if (this.HealtPoint <= 0) {
+			System.out.println("\tAnt's HealthPoint is 0 and died.");
 			this.kill();
 			// System.gc();
 		}
-
+		Tracer.Instance().Trace(TracerDirection.Leave, this.HealtPoint);
 		
 	}
 
@@ -219,11 +223,15 @@ public class Ant implements Updatable, Visitor, Element {
 		
 		direction = Direction.getDirection(neighbours.indexOf(next_field));
 		
+		System.out.println("\tAnt moved from " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
+		
 		// atmozgas a kovetkezo mezore
 		field.removeElement(this);
 		next_field.addElement(this);
 		this.setField(next_field);
 
+		System.out.println("\tAnt moved to " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
+		
 		// visitor minta alkalmazasa
 		ArrayList<Element> aktualis_mezoe = this.field.getElements();
 		for (Element s : aktualis_mezoe) {
@@ -249,6 +257,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 *            visit�l� objektum
 	 */
 	public boolean visit(Antlion antlion) {
+		System.out.println("\tAnt killed by Antlion.");
+		System.out.println("\tAntlion ate an Ant.");
 		this.kill();
 		return true;
 	}
@@ -284,6 +294,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public boolean visit(FoodStore foodstore) {
 		foodstore.eat();
+		System.out.println("\tAnt ate food and died.");
 		this.kill();
 		return true;
 	}

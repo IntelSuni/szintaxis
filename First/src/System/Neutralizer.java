@@ -48,7 +48,7 @@ public class Neutralizer extends Spray {
 	 * @param mezoeltávolítja a mezõrõl és a szomszédjairól a hangyaszagot
 	 */
 	public void use(Field mezo){
-		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
 		
 		if (this.capacity > 0) {
 			
@@ -77,8 +77,9 @@ public class Neutralizer extends Spray {
 				}
 			}	
 			this.capacity--;
-		}
-		Tracer.Instance().Trace(TracerDirection.Leave);
+			System.out.println(this.getClass().getSimpleName() + " used successfully on " + mezo.getPoint().x + "," + mezo.getPoint().y + " and its neighbours.");
+		}		
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 }

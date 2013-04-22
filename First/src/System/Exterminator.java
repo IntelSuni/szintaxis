@@ -70,6 +70,7 @@ public class Exterminator extends Spray {
 				}
 			}
 			this.capacity--;
+			System.out.println(this.getClass().getSimpleName() + " used successfully on " + mezo.getPoint().x + "," + mezo.getPoint().y + " and its neighbours.");
 		}
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);

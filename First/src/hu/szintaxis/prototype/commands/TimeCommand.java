@@ -23,6 +23,8 @@ public class TimeCommand extends CommandBase {
 			throw new Exception("GameField not yet initialized.");
 		}
 		
+		System.out.println(times + " step(s) simulated."); 
+		
 		for (int i = 0; i < times; i++) {
 			Prototype.Instance().getGameField().updateUpdatables();
 		}

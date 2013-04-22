@@ -99,6 +99,8 @@ public class Stone extends Block {
 		for(Element e:elements){
 			if(e.getClass()== Ant.class) result.removeElement(e);
 			}
+		
+		System.out.println("Stone moved from " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 		//ko mozgatasa
 		result.addElement(this);
 		currentField.removeElement(this);
