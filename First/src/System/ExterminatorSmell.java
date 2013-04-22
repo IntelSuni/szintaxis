@@ -50,6 +50,7 @@ public class ExterminatorSmell extends Smell {
 	public void activate(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		ant.addPoisonLevel(intensity);
+		System.out.println("\tAnt get poisoned.");
 		this.decrementIntensity();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}

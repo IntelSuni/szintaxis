@@ -77,7 +77,7 @@ public class Weapon {
 		}
 //		current.use(field);
 		
-		System.out.println(" used successfully on " + field.getPoint().x + "," + field.getPoint().y + " and its neighbours.");
+//		System.out.println(" used successfully on " + field.getPoint().x + "," + field.getPoint().y + " and its neighbours.");
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -87,7 +87,7 @@ public class Weapon {
 	 */
 	public void SelectExterminator() {
 		m_Spray = extSpray;
-		System.out.print(m_Spray.getClass().getSimpleName());
+//		System.out.print(m_Spray.getClass().getSimpleName());
 	}
 
 	/**
@@ -95,6 +95,6 @@ public class Weapon {
 	 */
 	public void SelectNeutralizer() {
 		m_Spray = neutSpray;
-		System.out.print(m_Spray.getClass().getSimpleName());
+//		System.out.print(m_Spray.getClass().getSimpleName());
 	}
 }

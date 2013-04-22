@@ -97,7 +97,7 @@ public class Ant implements Updatable, Visitor, Element {
 	public void addPoisonLevel(int level) {
 		Tracer.Instance().Trace(TracerDirection.Enter, level);
 		this.poisonLevel += level;
-		System.out.println("\tAnt get poisoned.");
+//		System.out.println("\tAnt get poisoned.");
 		Tracer.Instance().Trace(TracerDirection.Leave, this.poisonLevel);
 	}
 
@@ -179,9 +179,10 @@ public class Ant implements Updatable, Visitor, Element {
 	 * A hangya meghal, elt�vol�tja saj�t mag�t a mez�j�b�l.
 	 */
 	public void kill() {
-		
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.field.removeElement(this);
-		
+//		GameField.instanceOf().unregisterUpdatable(this);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -210,7 +211,7 @@ public class Ant implements Updatable, Visitor, Element {
 	 * m�sik mez�re.
 	 */
 	public void update() {
-		
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		// a kovetkezo mezo eldontese
 		Field next_field = null;
 		ArrayList<Field> neighbours = field.getNeighbours();
@@ -246,7 +247,7 @@ public class Ant implements Updatable, Visitor, Element {
 		}
 		
 		this.decreaseHealtPoint();
-
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		
 	}
 
@@ -276,8 +277,7 @@ public class Ant implements Updatable, Visitor, Element {
 
 	/**
 	 * {@code Block} l�togat�sa.
-	 * 
-	 * @param akadaly
+	 * 	 * @param akadaly
 	 *            visit�l� objektum
 	 * @return
 	 */

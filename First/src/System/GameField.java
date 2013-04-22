@@ -96,6 +96,18 @@ public class GameField {
 			}
 		}
 		if (element instanceof Updatable) {
+//			if (this.toUpdate.contains(Anteater.class) && !(element instanceof Ant)) {
+//				Updatable updatable = (Updatable) element;
+//				toUpdate.add(updatable);
+//			}
+//			if (!(element instanceof Ant)) {
+//				Updatable updatable = (Updatable) element;
+//				toUpdate.add(updatable);
+//			}
+//			if (this.toUpdate.contains(Antlion.class) && (element instanceof Ant)) {
+//				Updatable updatable = (Updatable) element;
+//				toUpdate.add(updatable);
+//			}
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
@@ -231,6 +243,19 @@ public class GameField {
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		this.toUpdate.add(element);
+	}
+	
+	/**
+	 * Eltávolítja az elementet a frissítendõ objektumok közül.
+	 * 
+	 * @param element
+	 */
+	public void unregisterUpdatable(Updatable element){
+		Tracer.Instance().Trace(TracerDirection.Enter);
+//		if (this.toUpdate.contains(element)) {
+			this.toUpdate.remove(element);
+//		}
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**

@@ -97,6 +97,11 @@ public class Field implements Element {
 	public void addElement(Element element) {
 //		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.elements.add(element);
+		
+		// Ha az új elem hangya, akkor a mezõn hagy egy hangyaszagot.
+		if (element instanceof Ant) {
+			this.addSmell(new AntSmell());
+		}
 //		System.out.println(element.getClass().getSimpleName() + " moved to " + this.getPoint().x + "," + this.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -127,25 +132,28 @@ public class Field implements Element {
 //		Tracer.Instance().Trace(TracerDirection.Enter, smell);
 		
 		smells.add(smell);
-		int intensityNeighbours=smell.getIntensity()-1;
-		ArrayList<Field> neighbours = this.getNeighbours();
-		ArrayList<Smell> szSmells=null;
-		for (Field n : neighbours){
-			szSmells=n.getSmells();
-			for(Smell s :szSmells){
-				//ha a szomszedos mezon volt mar ilyen szag
-				if(s.getClass()==smell.getClass()){
-					//es annak az erossege gyengebb mint az ujonnan adogatott
-					if(!(s.getIntensity()<intensityNeighbours)){
-						//aakkor letrehozunk egy uj szagot
-						if(smell instanceof ExterminatorSmell)
-							n.addSmell(new ExterminatorSmell(intensityNeighbours));
-						else
-							n.addSmell(new FoodSmell(intensityNeighbours));
-					}
-				}
-			}
-		}
+		
+//		int intensityNeighbours=smell.getIntensity()-1;
+//		ArrayList<Field> neighbours = this.getNeighbours();
+//		ArrayList<Smell> szSmells=null;
+//		for (Field n : neighbours){
+//			szSmells=n.getSmells();
+//			for(Smell s :szSmells){
+//				//ha a szomszedos mezon volt mar ilyen szag
+//				if(s.getClass()==smell.getClass()){
+//					//es annak az erossege gyengebb mint az ujonnan adogatott
+//					if(!(s.getIntensity()<intensityNeighbours)){
+//						//aakkor letrehozunk egy uj szagot
+//						if(smell instanceof ExterminatorSmell)
+//							// StackOwerFlowError-t dob
+//							n.addSmell(new ExterminatorSmell(intensityNeighbours));
+//						else
+//							n.addSmell(new FoodSmell(intensityNeighbours));
+//					}
+//				}
+//			}
+//		}
+		
 //		smell.decrementIntensity();
 //		ArrayList<Field> neighbours = this.getNeighbours();
 //		if (smell.getIntensity() > 0) {	
@@ -159,6 +167,23 @@ public class Field implements Element {
 		
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
+	
+	public void addSmellToNeighbours(Smell smell){
+		smell.decrementIntensity();
+		ArrayList<Field> neighbours = this.getNeighbours();
+		int nSize = neighbours.size();
+		for (int i = 0; i < nSize; i++) {
+			ArrayList<Smell> nSmells = neighbours.get(i).getSmells();
+			int sSize = nSmells.size();
+			for (int j = 0; j < sSize; j++) {
+				Smell sSmell = nSmells.get(i);
+				if (sSmell.getClass().equals(smell.getClass()) 
+						&& sSmell.getIntensity() < smell.intensity) {
+					sSmell = smell;
+				}
+			}
+		}
+	}
 
 	/**
 	 * {@code ArrayList<Element>} listï¿½ban megadja a mezï¿½n szereplï¿½ {@code Element} objektumokat.
@@ -168,7 +193,8 @@ public class Field implements Element {
 	public ArrayList<Element> getElements() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 //		Tracer.Instance().Trace(TracerDirection.Leave, elements);
-		return new ArrayList<Element>(elements);
+//		return new ArrayList<Element>(elements);
+		return this.elements;
 	}
 
 	/**
@@ -231,10 +257,10 @@ public class Field implements Element {
 	 * @param element mezï¿½rï¿½l eltï¿½volï¿½tandï¿½ elem
 	 */
 	public void removeElement(Element element) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, element);
+		Tracer.Instance().Trace(TracerDirection.Enter, element);
 		this.elements.remove(element);
 //		System.out.println(element.getClass().getSimpleName() + " moved from " + this.getPoint().x + "," + this.getPoint().y + ".");
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**

@@ -87,7 +87,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return Field a k�vetkez� mez�, amelyre a hangya l�p
 	 */
 	public Field decideDirection(ArrayList<Field> fields) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, fields);
+		Tracer.Instance().Trace(TracerDirection.Enter, fields);
 		Field result = null;
 		int x,y;
 		x=currentField.getPoint().x;
@@ -157,7 +157,7 @@ public class Anteater implements Updatable, Element, Visitor {
 			break;
 
 		}
-//		Tracer.Instance().Trace(TracerDirection.Leave, result);
+		Tracer.Instance().Trace(TracerDirection.Leave, result);
 		return result;
 	}
 
@@ -169,14 +169,14 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public void eat(Ant ant) {
-//		Tracer.Instance().Trace(TracerDirection.Enter);
-		if (this.eatenAnts <= 3) {
+		Tracer.Instance().Trace(TracerDirection.Enter);
+		if (this.eatenAnts < 3) {
 			this.eatenAnts++;
 			ant.kill();
 			System.out.println("\tAnt killed by Anteater.");
 			System.out.println("\tAnteater ate an Ant.");
 		}
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave, this.eatenAnts);
 	
 	}
 
@@ -194,9 +194,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param field a mez�, amelyre be�ll�tja a saj�t mez�j�t
 	 */
 	public void setField(Field field) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, field);
+		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		currentField = field;
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * Ha a mez�n hangya van, akkor megeszi.
 	 */
 	public void update() {
-//		Tracer.Instance().Trace(TracerDirection.Enter);
+		Tracer.Instance().Trace(TracerDirection.Enter);
 		ArrayList<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 		
@@ -231,7 +231,7 @@ public class Anteater implements Updatable, Element, Visitor {
 			}
 		}
 
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
@@ -265,8 +265,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Block akadaly) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -299,7 +299,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	@Override
 	public boolean visit(Stone stone) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, stone);
+		Tracer.Instance().Trace(TracerDirection.Enter, stone);
 		
 		boolean result=stone.moving(direction);
 		if (result == true) {
@@ -308,7 +308,7 @@ public class Anteater implements Updatable, Element, Visitor {
 		else{
 			System.out.println("\tAnteater cannot moved stone.");
 		}
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 	@Override

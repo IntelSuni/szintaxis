@@ -20,9 +20,9 @@ public class FoodStore implements Element {
 	private int food;
 
 	public FoodStore() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.food = 30;
-		Tracer.Instance().Trace(TracerDirection.Leave);
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**

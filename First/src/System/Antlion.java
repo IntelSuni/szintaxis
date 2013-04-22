@@ -15,8 +15,8 @@ public class Antlion implements Element {
 	private Field currentField;
 
 	public Antlion() {
-		Tracer.Instance().Trace(TracerDirection.Enter);
-		Tracer.Instance().Trace(TracerDirection.Leave);
+//		Tracer.Instance().Trace(TracerDirection.Enter);
+//		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public Antlion(Field field) {

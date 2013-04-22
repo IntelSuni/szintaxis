@@ -57,7 +57,7 @@ public class Neutralizer extends Spray {
 			int sSize = Smells.size();
 			for (int i = 0; i < sSize; i++) {
 				Smell s = Smells.get(i);
-				if (s instanceof AntSmell) {
+				if (s instanceof AntSmell || s instanceof FoodSmell) {
 					Smells.remove(s);
 				}
 			}
@@ -71,7 +71,7 @@ public class Neutralizer extends Spray {
 				int nSSize = nSmells.size();
 				for (int j = 0; j < nSSize; j++) {
 					Smell s = nSmells.get(j);
-					if (s instanceof AntSmell) {
+					if (s instanceof AntSmell || s instanceof FoodSmell) {
 						nSmells.remove(s);
 					}
 				}

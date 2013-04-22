@@ -69,7 +69,8 @@ public class AddElementCommand extends CommandBase {
 
 		Element elementInstance;
 
-		if (elementClass == AntHill.class || elementClass == Ant.class || elementClass == Anteater.class) {
+		if (elementClass == AntHill.class || elementClass == Ant.class 
+				|| elementClass == Anteater.class || elementClass == Stone.class) {
 			elementInstance = elementClass.getConstructor(Field.class)
 					.newInstance(field);
 		} else {

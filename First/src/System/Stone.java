@@ -3,6 +3,9 @@
  */
 package System;
 
+import hu.szintaxis.skeleton.Tracer;
+import hu.szintaxis.skeleton.Tracer.TracerDirection;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +14,14 @@ import java.util.ArrayList;
  */
 public class Stone extends Block {
 
+	public Stone() {
+		
+	}
+	
+	public Stone(Field field) {
+		this.currentField = field;
+	}
+	
 	/**
 	 * A kavics ezen a mezï¿½n van.
 	 */
@@ -29,53 +40,75 @@ public class Stone extends Block {
 	 * @return
 	 */
 	boolean moving (Direction direction){
+		Tracer.Instance().Trace(TracerDirection.Enter, direction);
 		ArrayList<Field> fields = this.currentField.getNeighbours();
 		//ez tartalmazza a masik mezot amire at kellene rakni a kavicsot
 		Field result = null;
 		int x,y;
 		x=this.currentField.getPoint().x;
 		y=this.currentField.getPoint().y;
+		
+		
 		switch (direction) {
 			case east:	
 					for(Field f : fields){
-						if (f.getPoint().y==y){
-							if(f.getPoint().x>y)result=f;
+						if (f != null) {
+							if (f.getPoint().y==y){
+								//y-t lecseréltem x-re, mert különben nem adott vissz eredményt
+								if(f.getPoint().x>x)result=f;
+							}
 						}
+						
 					}
 				break;
 			case northEast:		
 				for(Field f : fields){
-					if (f.getPoint().y>=y){
-						if(f.getPoint().x>x)result=f;
+					if (f != null) {
+						if (f.getPoint().y>=y){
+							if(f.getPoint().x>x)result=f;
+						}
 					}
+					
 				}
 				break;
 			case northWest:		
 				for(Field f : fields){
-					if (f.getPoint().y<=y){
-						if(f.getPoint().x<x)result=f;
+					if (f != null) {
+						if (f.getPoint().y<=y){
+							if(f.getPoint().x<x)result=f;
+						}
 					}
+					
 				}
 				break;
 			case west:
 				for(Field f : fields){
-					if (f.getPoint().y==y){
-						if(f.getPoint().x<x)result=f;
+					if (f != null) {
+						if (f.getPoint().y==y){
+							if(f.getPoint().x<x)result=f;
+						}
 					}
+					
 				}
 				break;
 			case southWest:		
 				for(Field f : fields){
-					if (f.getPoint().y<=y){
-						if(f.getPoint().x<y)result=f;
+					if (f != null) {
+						if (f.getPoint().y<=y){
+							if(f.getPoint().x<y)result=f;
+						}
 					}
+					
 				}
 				break;
 			case southEast:		
 				for(Field f : fields){
-					if (f.getPoint().y<=y){
-						if(f.getPoint().x>y)result=f;
+					if (f != null) {
+						if (f.getPoint().y<=y){
+							if(f.getPoint().x>y)result=f;
+						}
 					}
+					
 				}
 				break;
 			
@@ -100,10 +133,14 @@ public class Stone extends Block {
 			if(e.getClass()== Ant.class) result.removeElement(e);
 			}
 		
-		System.out.println("Stone moved from " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
+		System.out.println("\tStone moved from " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 		//ko mozgatasa
 		result.addElement(this);
+		
+		System.out.println("\tStone moved to " + result.getPoint().x + "," + result.getPoint().y + ".");
+
 		currentField.removeElement(this);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 	

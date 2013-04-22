@@ -52,6 +52,7 @@ public class Exterminator extends Spray {
 			ExterminatorSmell exterminatorSmell = new ExterminatorSmell();
 			// A mezõre tesz Irtószagot
 			mezo.addSmell(exterminatorSmell);
+//			mezo.addSmellToNeighbours(exterminatorSmell);
 			
 			// A mezõ hangya elemein aktiválja az irtószagot.
 			for (Element e : mezo.getElements()) {
