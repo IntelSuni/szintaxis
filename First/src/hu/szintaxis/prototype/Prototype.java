@@ -47,7 +47,29 @@ public class Prototype {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Prototype.Instance().run();
+		// Ha paramétersekkel hívtuk meg.
+		if (args.length > 0) {
+			Prototype.Instance().run(args);
+		}
+		// Paraméterek nélkül
+		else{
+			Prototype.Instance().run();
+		}
+	}
+	
+	// Paraméteres futtatásra 
+	private void run(String[] args){
+		dictionary = CommandDictionary.Instance();
+		try {
+			StringBuilder parameters = new StringBuilder();
+			for (int i = 0; i < args.length; i++) {
+				parameters.append(args[i].toString());
+				parameters.append(" ");
+			}
+			parseCommand(parameters.toString());
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e.toString());
+		}
 	}
 
 	/**

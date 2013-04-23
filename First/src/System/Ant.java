@@ -181,7 +181,8 @@ public class Ant implements Updatable, Visitor, Element {
 	public void kill() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.field.removeElement(this);
-//		GameField.instanceOf().unregisterUpdatable(this);
+		GameField.instanceOf().unregisterUpdatable(this);
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 

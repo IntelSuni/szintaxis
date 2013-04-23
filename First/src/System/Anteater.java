@@ -36,7 +36,6 @@ public class Anteater implements Updatable, Element, Visitor {
 		currentField=field;
 		direction=Direction.east;
 //		GameField.instanceOf().registerNewUpdatable(this);
-//		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 	}
 	/**
 	 * Az alap irany megvalasztasa lÃ©trehozÃ¡skor
@@ -74,9 +73,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
 	 */
 	public boolean accept(Visitor visiting) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
+		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
 		boolean result=visiting.visit(this);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
 
@@ -165,14 +164,14 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * Nï¿½veli a megevett hangyï¿½k szï¿½mï¿½t, ha mï¿½g ehet ({@code eatenAnts} < 3) 
 	 * ï¿½s megï¿½li a mezï¿½n szereplï¿½ hangyï¿½t
 	 * @param ant 
-	 * @return 
-	 * @return 
+
 	 */
 	public void eat(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		if (this.eatenAnts < 3) {
 			this.eatenAnts++;
 			ant.kill();
+			ant = null;
 			System.out.println("\tAnt killed by Anteater.");
 			System.out.println("\tAnteater ate an Ant.");
 		}
@@ -210,27 +209,41 @@ public class Anteater implements Updatable, Element, Visitor {
 		ArrayList<Field> neighbours = currentField.getNeighbours();
 		Field target = decideDirection(neighbours);
 		
-		Field prev=currentField;
-		
-		System.out.println("\tAnteater moved from " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
+		if (target != null) {
+			Field prev=currentField;
+			
+			System.out.println("\tAnteater moved from " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 
-		currentField.removeElement(this);
-		target.addElement(this);
-		this.setField(target);
+			currentField.removeElement(this);
+			target.addElement(this);
+			this.setField(target);
 
-		System.out.println("\tAnteater moved to " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
-		
-		ArrayList<Element> elements = target.getElements();
+			System.out.println("\tAnteater moved to " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
+			
+			ArrayList<Element> elements = target.getElements();
 
-		for (Element element : elements) {
-			if(!element.accept(this)){
-				currentField=prev;
-				target.removeElement(this);
-				currentField.addElement(this);
-				direction=direction.negate();
+			// ConcurentModificationException megszüntetése
+//			for (Element element : elements) {
+//				if(!element.accept(this)){
+//					currentField=prev;
+//					target.removeElement(this);
+//					currentField.addElement(this);
+//					direction=direction.negate();
+//				}
+//			}
+			
+			int eSize = elements.size();
+			for (int i = 0; i < eSize - 1; i++) {
+				Element element = elements.get(i);
+				if (!element.accept(this)) {
+					currentField = prev;
+					target.removeElement(this);
+					currentField.addElement(this);
+					direction = direction.negate();
+				}
 			}
 		}
-
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -240,8 +253,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param antlion visitï¿½lï¿½ objektum
 	 */
 	public boolean visit(Antlion antlion) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -252,9 +265,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @return 
 	 */
 	public boolean visit(Ant ant) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, ant);
+		Tracer.Instance().Trace(TracerDirection.Enter, ant);
 		eat(ant);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -276,8 +289,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param foodstore visitï¿½lï¿½ objektum
 	 */
 	public boolean visit(FoodStore foodstore) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -287,8 +300,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 * @param anteater visitï¿½lï¿½ objektum
 	 */
 	public boolean visit(Anteater anteater) {
-//		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
+		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
 	}
 
@@ -313,7 +326,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 	@Override
 	public boolean visit(AntHill antHill) {
-		// TODO Auto-generated method stub nem kell mast csinalni itt.
 		return true;
 	}
 

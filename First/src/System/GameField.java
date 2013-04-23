@@ -96,18 +96,31 @@ public class GameField {
 			}
 		}
 		if (element instanceof Updatable) {
-//			if (this.toUpdate.contains(Anteater.class) && !(element instanceof Ant)) {
+
+//			boolean antAddable = false, anteaterAddable = false;
+//			for (Updatable u : this.toUpdate) {
+//				if (u instanceof Anteater) {
+//					antAddable = true;
+//				}
+//				else{
+//					antAddable = false;
+//				}
+//				if (u instanceof Ant) {
+//					anteaterAddable = true;
+//				} else {
+//					anteaterAddable = false;
+//				}
+//			}
+			
+//			if (antAddable == true && element instanceof Ant) {
 //				Updatable updatable = (Updatable) element;
 //				toUpdate.add(updatable);
 //			}
-//			if (!(element instanceof Ant)) {
+//			if (anteaterAddable == true && element instanceof Anteater) {
 //				Updatable updatable = (Updatable) element;
 //				toUpdate.add(updatable);
 //			}
-//			if (this.toUpdate.contains(Antlion.class) && (element instanceof Ant)) {
-//				Updatable updatable = (Updatable) element;
-//				toUpdate.add(updatable);
-//			}
+			
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
@@ -254,6 +267,18 @@ public class GameField {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 //		if (this.toUpdate.contains(element)) {
 			this.toUpdate.remove(element);
+			
+			int fSize = this.fields.size();
+			for (int i = 0; i < fSize; i++) {
+				Field field = this.fields.get(i);
+				ArrayList<Element> elements = field.getElements();
+				int eSize = elements.size();
+				for (int j = 0; j < eSize; j++) {
+					if (elements.get(j).equals(element)) {
+						elements.remove(element);
+					}
+				}
+			}
 //		}
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -262,8 +287,10 @@ public class GameField {
 	 * Friss�ti a p�lya friss�tend� objektumait.
 	 */
 	public void updateUpdatables() {
-		for (int i = 0; i < toUpdate.size(); i++) {
-			toUpdate.get(i).update();			
+		int tUS = this.toUpdate.size();
+		for (int i = 0; i < tUS; i++) {
+			Updatable updatable = this.toUpdate.get(i);
+			updatable.update();			
 		}
 //		for (Updatable updatables : this.toUpdate) {
 //			updatables.update();
