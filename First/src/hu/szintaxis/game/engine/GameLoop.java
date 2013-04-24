@@ -49,10 +49,10 @@ public class GameLoop extends Thread {
             long sleepTime = (singleUpdateTime - updateTime) / 1000000;
 			try {
 				Thread.sleep(Math.max(sleepTime, 0));
-				java.io.File f = null;
-				f.canExecute();
 			} catch (Exception ex) {
 			}
 		}
+		
+		System.exit(0);
 	}
 }

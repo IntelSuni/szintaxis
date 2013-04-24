@@ -4,6 +4,32 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class GameApplication {
+	
+	private static GameLoop gameLoop;
+
+	/**
+	 * 
+	 * @see hu.szintaxis.game.engine.GameLoop#pauseGame()
+	 */
+	public static void pauseGame() {
+		gameLoop.pauseGame();
+	}
+
+	/**
+	 * 
+	 * @see hu.szintaxis.game.engine.GameLoop#resumeGame()
+	 */
+	public static void resumeGame() {
+		gameLoop.resumeGame();
+	}
+
+	/**
+	 * 
+	 * @see hu.szintaxis.game.engine.GameLoop#stopGame()
+	 */
+	public static void stopGame() {
+		gameLoop.stopGame();
+	}
 
 	public static void start(final Game game) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -17,7 +43,8 @@ public class GameApplication {
 				frame.add(canvas);
 				frame.setVisible(true);
 				canvas.requestFocus();
-				new GameLoop(game, canvas).start();
+				gameLoop = new GameLoop(game, canvas);
+				gameLoop.start();
 			}
 		});
 	}

@@ -50,7 +50,6 @@ public class GameCanvas extends JComponent implements ComponentListener {
 
 	@Override
 	public void componentShown(ComponentEvent ce) {
-		//game.resize(ce.getComponent().getWidth(), ce.getComponent().getHeight());
 	}
 
 	@Override
