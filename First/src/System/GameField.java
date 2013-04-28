@@ -62,6 +62,20 @@ public class GameField {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
+	
+	/*
+	 * Ez indítja el a teljes view updatet.
+	 */
+	public void draw() {
+		for (Field field : fields) {
+			// field.update();
+			/*
+			 * for (Element e : field.getElements()) {
+				(View) e.notify();
+			}
+			*/
+		}
+	}
 
 	// csak a tesztek miatt public, eredetileg private !
 	public GameField() {
