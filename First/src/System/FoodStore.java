@@ -18,6 +18,8 @@ public class FoodStore implements Element {
 	 * Az �telRakt�rban lev� �telmennyis�g.
 	 */
 	private int food;
+	
+	private View views;
 
 	public FoodStore() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -145,6 +147,24 @@ public class FoodStore implements Element {
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

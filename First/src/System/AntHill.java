@@ -15,6 +15,8 @@ public class AntHill implements Updatable, Element {
 	 * A HangyaBoly ezen a mez�n van.
 	 */
 	private Field field;
+	
+	private View views;
 
 	public AntHill() {
 		super();
@@ -107,5 +109,23 @@ public class AntHill implements Updatable, Element {
 		this.field.gameField.registerNewUpdatable(ant);
 
 		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 }

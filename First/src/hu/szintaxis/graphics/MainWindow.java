@@ -9,11 +9,8 @@ import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MainWindow extends JPanel {
 

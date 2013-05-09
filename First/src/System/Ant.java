@@ -35,6 +35,8 @@ public class Ant implements Updatable, Visitor, Element {
 	 * l�pett volna.
 	 */
 	private ArrayList<Field> visitedFields;
+	
+	private View views;
 
 	public Ant() {
 		this.HealtPoint = 20;
@@ -326,6 +328,24 @@ public class Ant implements Updatable, Visitor, Element {
 	public boolean visit(AntHill antHill) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

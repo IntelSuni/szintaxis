@@ -17,4 +17,21 @@ public interface Element {
 	 */
 	public abstract void onDraw();
 
+	/**
+	 * 
+	 * @param view
+	 */
+	public void Attach(View view);
+
+	/**
+	 * 
+	 * @param view
+	 */
+	public void Detach(View view);
+
+	/**
+	 * 
+	 */
+	public void NotifyView();
+	
 }

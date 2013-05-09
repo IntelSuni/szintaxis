@@ -32,6 +32,8 @@ public class Field implements Element {
 	 * A mez�n lev� {@code Smell}-ek list�ja.
 	 */
 	private ArrayList<Smell> smells;
+	
+	private View views;
 
 	public Field() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -301,6 +303,24 @@ public class Field implements Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, x, y);
 		points = new Point(x, y);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

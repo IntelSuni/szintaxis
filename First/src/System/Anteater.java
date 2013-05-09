@@ -19,6 +19,8 @@ public class Anteater implements Updatable, Element, Visitor {
 	 */
 	private int eatenAnts;
 	private Direction direction;
+	
+	private View views;
 
 	public Anteater() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -327,6 +329,21 @@ public class Anteater implements Updatable, Element, Visitor {
 	@Override
 	public boolean visit(AntHill antHill) {
 		return true;
+	}
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

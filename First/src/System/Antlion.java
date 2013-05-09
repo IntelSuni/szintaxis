@@ -13,6 +13,8 @@ public class Antlion implements Element {
 	 * A hangyales� ezen a mez�n van.
 	 */
 	private Field currentField;
+	
+	private View views;
 
 	public Antlion() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -76,6 +78,24 @@ public class Antlion implements Element {
 		this.currentField = field;
 //		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave, field);
+	}
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

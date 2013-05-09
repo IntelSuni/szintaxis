@@ -13,6 +13,7 @@ public class Block implements Element {
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
+	private View views;
 
 	/* (non-Javadoc)
 	 * 
@@ -50,6 +51,27 @@ public class Block implements Element {
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
+	}
+
+
+	@Override
+	public void Attach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void Detach(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void NotifyView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
