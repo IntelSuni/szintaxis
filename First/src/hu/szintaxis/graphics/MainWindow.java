@@ -1,56 +1,92 @@
 package hu.szintaxis.graphics;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JSplitPane;
-import java.awt.Canvas;
 
-public class MainWindow extends JFrame {
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	private JPanel contentPane;
+public class MainWindow extends JPanel {
 
 	/**
-	 * Launch the application.
+	 * 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private static final long serialVersionUID = 1L;
+	public JPanel panel;
+	public JRadioButton rdbtnExtermimator, rdbtnNeutralizer;
+	public JLabel lblExterminator, lblNeutralitzer;
+	public JButton btnNewGame, btnPause, btnHelp, btnExit;
+	
 	/**
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(new BorderLayout(0, 0));
 		
-		JSplitPane splitPane = new JSplitPane();
-		contentPane.add(splitPane, BorderLayout.NORTH);
+		panel = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane.setRightComponent(splitPane_1);
+		Component horizontalGlue = Box.createHorizontalGlue();
+		panel.add(horizontalGlue);
 		
-		JSplitPane splitPane_2 = new JSplitPane();
-		splitPane_1.setRightComponent(splitPane_2);
+		btnNewGame = new JButton("New game");
+		panel.add(btnNewGame);
 		
-		Canvas canvas = new Canvas();
-		contentPane.add(canvas, BorderLayout.CENTER);
+		btnPause = new JButton("Pause");
+		panel.add(btnPause);
+		
+		btnHelp = new JButton("Help");
+		panel.add(btnHelp);
+		
+		btnExit = new JButton("Exit");
+		panel.add(btnExit);
+				
+		rdbtnExtermimator = new JRadioButton("Exterminator");
+		panel.add(rdbtnExtermimator);
+		
+		lblExterminator = new JLabel("[ 20 ]");
+		panel.add(lblExterminator);
+		
+		rdbtnNeutralizer = new JRadioButton("Neutralizer");
+		panel.add(rdbtnNeutralizer);
+		
+		lblNeutralitzer = new JLabel("[ 20 ]");
+		panel.add(lblNeutralitzer);
+		
+		ButtonGroup btnGroup = new ButtonGroup();
+		btnGroup.add(rdbtnExtermimator);
+		btnGroup.add(rdbtnNeutralizer);
+				
+		Component horizontalGlue_7 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_7);
+		
+		Component horizontalGlue_6 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_6);
+		
+		Component horizontalGlue_5 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_5);
+		
+		Component horizontalGlue_4 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_4);
+		
+		Component horizontalGlue_3 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_3);
+		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_2);
+		
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		panel.add(horizontalGlue_1);
 	}
-
 }
