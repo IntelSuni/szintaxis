@@ -1,5 +1,7 @@
 package System;
 
+import java.util.Vector;
+
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -14,16 +16,19 @@ public class Antlion implements Element {
 	 */
 	private Field currentField;
 	
-	private View views;
+	private Vector<View> views;
 
 	public Antlion() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
+		this.views = new Vector<View>();
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
 	public Antlion(Field field) {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
+		this.views = new Vector<View>();
+		this.NotifyView();
 //		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -82,20 +87,26 @@ public class Antlion implements Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

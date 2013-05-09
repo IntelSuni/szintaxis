@@ -5,6 +5,7 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Mez�t megval�s�t� oszt�ly
@@ -33,7 +34,7 @@ public class Field implements Element {
 	 */
 	private ArrayList<Smell> smells;
 	
-	private View views;
+	private Vector<View> views;
 
 	public Field() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -41,6 +42,8 @@ public class Field implements Element {
 		neighbours = new ArrayList<Field>();
 		elements = new ArrayList<Element>();
 		smells = new ArrayList<Smell>();
+		
+		this.views = new Vector<View>();
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -57,6 +60,9 @@ public class Field implements Element {
 		neighbours = new ArrayList<Field>();
 		elements = new ArrayList<Element>();
 		smells = new ArrayList<Smell>();
+		
+		this.views = new Vector<View>();
+		this.NotifyView();
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -307,20 +313,27 @@ public class Field implements Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+			this.views.add(view);
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

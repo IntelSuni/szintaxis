@@ -7,6 +7,7 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author Martin
@@ -14,12 +15,16 @@ import java.util.ArrayList;
  */
 public class Stone extends Block {
 
+	private Vector<View> views;
+	
 	public Stone() {
-		
+		this.views = new Vector<View>();
 	}
 	
 	public Stone(Field field) {
 		this.currentField = field;
+		this.views = new Vector<View>();
+		this.NotifyView();
 	}
 	
 	/**
@@ -142,6 +147,30 @@ public class Stone extends Block {
 		currentField.removeElement(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return true;
+	}
+	
+	@Override
+	public void Attach(View view) {
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
+	}
+
+	@Override
+	public void Detach(View view) {
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
+	}
+
+	@Override
+	public void NotifyView() {
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 	
 }

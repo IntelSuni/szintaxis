@@ -4,6 +4,7 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Hangy�szt megval�s�t� oszt�ly.
@@ -20,13 +21,14 @@ public class Anteater implements Updatable, Element, Visitor {
 	private int eatenAnts;
 	private Direction direction;
 	
-	private View views;
+	private Vector<View> views;
 
 	public Anteater() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		eatenAnts=0;
 		currentField=null;
 		direction=Direction.east;
+		this.views = new Vector<View>();
 //		GameField.instanceOf().registerNewUpdatable(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -37,6 +39,8 @@ public class Anteater implements Updatable, Element, Visitor {
 		eatenAnts=0;
 		currentField=field;
 		direction=Direction.east;
+		this.views = new Vector<View>();
+		this.NotifyView();
 //		GameField.instanceOf().registerNewUpdatable(this);
 	}
 	/**
@@ -197,6 +201,7 @@ public class Anteater implements Updatable, Element, Visitor {
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		currentField = field;
+		this.NotifyView();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -330,20 +335,30 @@ public class Anteater implements Updatable, Element, Visitor {
 	public boolean visit(AntHill antHill) {
 		return true;
 	}
+
+
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
+
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
+
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

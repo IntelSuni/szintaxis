@@ -1,5 +1,7 @@
 package System;
 
+import java.util.Vector;
+
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -10,10 +12,11 @@ public class Block implements Element {
 
 	public Block() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
+		this.views = new Vector<View>();
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
-	private View views;
+	private Vector<View> views;
 
 	/* (non-Javadoc)
 	 * 
@@ -56,22 +59,26 @@ public class Block implements Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
-
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
-
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

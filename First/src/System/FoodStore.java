@@ -1,6 +1,7 @@
 package System;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
@@ -19,11 +20,12 @@ public class FoodStore implements Element {
 	 */
 	private int food;
 	
-	private View views;
+	private Vector<View> views;
 
 	public FoodStore() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.food = 30;
+		this.views = new Vector<View>();
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -37,6 +39,9 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.food = 30;
+		
+		this.views = new Vector<View>();
+		this.NotifyView();
 		
 		// Az �telrakt�r mez�j�re 5-er�s�gg� �telszagot tesz.
 		this.field.addSmell(new FoodSmell(5));
@@ -151,20 +156,26 @@ public class FoodStore implements Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

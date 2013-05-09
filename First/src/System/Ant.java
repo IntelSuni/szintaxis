@@ -4,6 +4,7 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Hangyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
@@ -36,11 +37,15 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private ArrayList<Field> visitedFields;
 	
-	private View views;
+	/**
+	 * A felcsatolható nézeteket tárolja.
+	 */
+	private Vector<View> views;
 
 	public Ant() {
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
+		this.views = new Vector<View>();
 	}
 
 	/**
@@ -53,6 +58,8 @@ public class Ant implements Updatable, Visitor, Element {
 		this.field = field;
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
+		this.views = new Vector<View>();
+		this.NotifyView();
 //		System.out.println("Ant successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
 	}
 
@@ -204,7 +211,15 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void setField(Field field) {
 		this.field = field;
-		
+		this.NotifyView();
+	}
+	
+	/**
+	 * Visszaadja melyik mezõn van a hangya.
+	 * @return A mezõ amelyen a hangya van.
+	 */
+	public Field getField(){
+		return this.field;
 	}
 
 	/**
@@ -332,20 +347,26 @@ public class Ant implements Updatable, Visitor, Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 
 }

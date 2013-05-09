@@ -1,6 +1,7 @@
 package hu.szintaxis.game.engine;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -9,6 +10,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import System.GameField;
+
 public abstract class Game implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
 	protected boolean over;
@@ -16,7 +19,10 @@ public abstract class Game implements KeyListener, MouseListener, MouseMotionLis
 	protected int width=400, height=300;
 	protected int fps = 60;
 
-	public void init() {}
+	public void init() {
+		GameField gameField = new GameField(new Point(10, 10));
+		gameField.Initialize();
+	}
 	abstract public void update();
 	abstract public void draw(Graphics2D g);
 

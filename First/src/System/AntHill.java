@@ -2,6 +2,7 @@ package System;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
@@ -15,11 +16,12 @@ public class AntHill implements Updatable, Element {
 	 * A HangyaBoly ezen a mez�n van.
 	 */
 	private Field field;
-	
-	private View views;
+		
+	private Vector<View> views;
 
 	public AntHill() {
 		super();
+		this.views = new Vector<View>();
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -42,6 +44,8 @@ public class AntHill implements Updatable, Element {
 	public AntHill(Field field) {
 //		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
+		this.views = new Vector<View>();
+		this.NotifyView();
 //		System.out.println("Anteater successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -113,19 +117,25 @@ public class AntHill implements Updatable, Element {
 
 	@Override
 	public void Attach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.isEmpty()) {
+			this.views = new Vector<View>();
+		}
+		else{
+			this.views.add(view);
+		}	
 	}
 
 	@Override
 	public void Detach(View view) {
-		// TODO Auto-generated method stub
-		
+		if (this.views.contains(view)) {
+			this.views.remove(view);
+		}
 	}
 
 	@Override
 	public void NotifyView() {
-		// TODO Auto-generated method stub
-		
+		for (View view : this.views) {
+			view.Update();
+		}
 	}
 }

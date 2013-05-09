@@ -1,5 +1,6 @@
 package System;
 
+import hu.szintaxis.graphics.FieldView;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -179,6 +180,12 @@ public class GameField {
 			for (int j = 0; j < m; j++) {
 				Field tempField = new Field(this);
 				tempField.setPoint(i, j);
+				
+				///View létrehozása a Field-nek, és hozzácsatolása
+				FieldView tempFieldView = new FieldView();
+				tempField.Attach(tempFieldView);
+				tempFieldView.m_Field = tempField;
+				///
 				
 				fields.add(tempField);
 			}
