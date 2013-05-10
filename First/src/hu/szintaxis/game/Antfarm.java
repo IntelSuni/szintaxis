@@ -2,20 +2,17 @@ package hu.szintaxis.game;
 
 import hu.szintaxis.game.engine.Game;
 import hu.szintaxis.game.engine.GameApplication;
-import hu.szintaxis.game.engine.GameLoop;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.ImageObserver;
 
 import System.Field;
 import System.GameField;
 import System.Weapon;
 
-public class Antfarm extends Game implements ImageObserver{
+public class Antfarm extends Game{
 
 	public Antfarm() {
 		title = "Antfarm";
@@ -89,13 +86,4 @@ public class Antfarm extends Game implements ImageObserver{
 		
 		Weapon.InstanceOf().Use(field);		
 	}
-
-	@Override
-	public boolean imageUpdate(Image img, int infoflags, int x, int y,
-			int width, int height) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
 }
