@@ -13,7 +13,7 @@ public class AntLionView implements View {
 	public Antlion m_AntLion;
 
 	public AntLionView(){
-
+		
 	}
 
 	public void finalize() throws Throwable {
