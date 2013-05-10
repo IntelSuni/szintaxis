@@ -59,6 +59,10 @@ public class AntHill implements Updatable, Element {
 		super.finalize();
 	}
 
+	public Field getField(){
+		return this.getField();
+	}
+	
 	/**
 	 * Visitor tervez�si mint�nak megfelel� accept, a param�terben megkapott {@code Visitor}-on megh�vja annak visit met�dus�t �nmag�val param�terezve.
 	 * 

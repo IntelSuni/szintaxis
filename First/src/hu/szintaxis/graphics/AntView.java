@@ -1,9 +1,8 @@
 package hu.szintaxis.graphics;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -35,6 +34,11 @@ public class AntView implements View {
 	}
 	
 	public void draw(Graphics2D g){
-		g.drawImage(image, 50, 50, null);
+		Point points = new Point();
+		if (this.m_Ant != null) {
+			points = this.m_Ant.getField().getPoint();
+		}
+		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
+		g.drawImage(image, points.x, points.y, image.getWidth()/8, image.getHeight()/8, null);
 	}
 }

@@ -6,6 +6,7 @@ import hu.szintaxis.game.engine.GameLoop;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
@@ -20,7 +21,7 @@ public class Antfarm extends Game implements ImageObserver{
 		height = 600;
 		width = 600;
 	}
-
+		
 	public static void main(String[] args) {
 		GameApplication.start(new Antfarm());
 	}
@@ -76,7 +77,6 @@ public class Antfarm extends Game implements ImageObserver{
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 	}
 
 	@Override

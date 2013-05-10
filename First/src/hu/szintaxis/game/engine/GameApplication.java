@@ -101,7 +101,7 @@ public class GameApplication {
 
 				mainWindow.btnNewGame.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						GameField.instanceOf().Initialize();
+						//GameField.instanceOf().Initialize();
 						gameLoop.start();
 					}
 				});

@@ -32,6 +32,10 @@ public class Stone extends Block {
 	 */
 	private Field currentField;
 	
+	public Field getField(){
+		return this.currentField;
+	}
+	
 	/* (non-Javadoc)
 	 * @see System.Block#accept(System.Visitor)
 	 */

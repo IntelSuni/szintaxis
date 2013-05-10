@@ -72,6 +72,10 @@ public class Anteater implements Updatable, Element, Visitor {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
+	
+	public Field getField(){
+		return this.currentField;
+	}
 
 	/**
 	 * Visitor tervez�si mint�nak megfelel� accept, a param�terben megkapott {@code Visitor}-on megh�vja annak visit met�dus�t �nmag�val param�terezve.

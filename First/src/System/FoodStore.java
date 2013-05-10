@@ -76,6 +76,10 @@ public class FoodStore implements Element {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
+	public Field getField(){
+		return this.field;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
