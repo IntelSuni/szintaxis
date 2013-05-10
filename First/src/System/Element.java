@@ -1,5 +1,7 @@
 package System;
 
+import java.awt.Graphics2D;
+
 /**
  * Element interf�sz.
  */
@@ -32,6 +34,6 @@ public interface Element {
 	/**
 	 * 
 	 */
-	public void NotifyView();
+	public void NotifyView(Graphics2D g);
 	
 }

@@ -1,5 +1,6 @@
 package System;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
@@ -45,7 +46,6 @@ public class AntHill implements Updatable, Element {
 //		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		this.field = field;
 		this.views = new Vector<View>();
-		this.NotifyView();
 //		System.out.println("Anteater successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -133,9 +133,9 @@ public class AntHill implements Updatable, Element {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 }

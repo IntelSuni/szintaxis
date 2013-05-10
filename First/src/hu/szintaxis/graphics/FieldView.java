@@ -1,5 +1,7 @@
 package hu.szintaxis.graphics;
 
+import java.awt.Graphics2D;
+
 import System.Field;
 import System.View;
 
@@ -19,9 +21,11 @@ public class FieldView implements View {
 	public void finalize() throws Throwable {
 
 	}
-
-	public void Update(){
-
+	
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

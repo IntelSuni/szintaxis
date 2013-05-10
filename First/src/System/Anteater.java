@@ -3,6 +3,7 @@ package System;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -40,7 +41,6 @@ public class Anteater implements Updatable, Element, Visitor {
 		currentField=field;
 		direction=Direction.east;
 		this.views = new Vector<View>();
-		this.NotifyView();
 //		GameField.instanceOf().registerNewUpdatable(this);
 	}
 	/**
@@ -201,7 +201,6 @@ public class Anteater implements Updatable, Element, Visitor {
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
 		currentField = field;
-		this.NotifyView();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -355,9 +354,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 

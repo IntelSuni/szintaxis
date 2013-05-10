@@ -1,5 +1,6 @@
 package System;
 
+import java.awt.Graphics2D;
 import java.util.Vector;
 
 import hu.szintaxis.skeleton.Tracer;
@@ -75,9 +76,9 @@ public class Block implements Element {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 

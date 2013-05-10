@@ -1,5 +1,6 @@
 package System;
 
+import java.awt.Graphics2D;
 import java.util.Vector;
 
 import hu.szintaxis.skeleton.Tracer;
@@ -28,7 +29,6 @@ public class Antlion implements Element {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
 		this.views = new Vector<View>();
-		this.NotifyView();
 //		System.out.println("Anteater successfully added at " + this.currentField.getPoint().x + "," + this.currentField.getPoint().y + ".");
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -103,9 +103,9 @@ public class Antlion implements Element {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 

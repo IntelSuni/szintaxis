@@ -1,5 +1,6 @@
 package System;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -41,7 +42,6 @@ public class FoodStore implements Element {
 		this.food = 30;
 		
 		this.views = new Vector<View>();
-		this.NotifyView();
 		
 		// Az �telrakt�r mez�j�re 5-er�s�gg� �telszagot tesz.
 		this.field.addSmell(new FoodSmell(5));
@@ -172,9 +172,9 @@ public class FoodStore implements Element {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 

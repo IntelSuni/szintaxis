@@ -6,6 +6,7 @@ package System;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -24,7 +25,6 @@ public class Stone extends Block {
 	public Stone(Field field) {
 		this.currentField = field;
 		this.views = new Vector<View>();
-		this.NotifyView();
 	}
 	
 	/**
@@ -167,9 +167,9 @@ public class Stone extends Block {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 	

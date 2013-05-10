@@ -1,21 +1,16 @@
 package hu.szintaxis.game;
 
-import java.awt.Color;
+import hu.szintaxis.game.engine.Game;
+import hu.szintaxis.game.engine.GameApplication;
+import hu.szintaxis.game.engine.GameLoop;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import com.sun.media.sound.Toolkit;
-
-import hu.szintaxis.game.engine.Game;
-import hu.szintaxis.game.engine.GameApplication;
+import System.GameField;
 
 public class Antfarm extends Game implements ImageObserver{
 
@@ -62,7 +57,10 @@ public class Antfarm extends Game implements ImageObserver{
 //		}
 //		g.drawImage(image, 50, 50, image.getWidth(this)/5, image.getHeight(this)/5, this);
 //		g.drawLine(30, 30, 80, 80);
-		
+		if (!GameApplication.isStarted()) {
+			return;
+		}
+		GameField.instanceOf().draw(g);
 	}
 
 	/* (non-Javadoc)
@@ -70,13 +68,7 @@ public class Antfarm extends Game implements ImageObserver{
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyChar() == 'p') {
-			GameApplication.pauseGame();
-		} else if (e.getKeyChar() == 'r') {
-			GameApplication.resumeGame();
-		} else if (e.getKeyChar() == 's') {
-			GameApplication.stopGame();
-		}
+
 	}
 
 	/* (non-Javadoc)

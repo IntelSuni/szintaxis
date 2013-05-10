@@ -1,14 +1,14 @@
 package System;
 
+import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.graphics.FieldView;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.print.attribute.Size2DSyntax;
 
 /**
  * Pï¿½lyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
@@ -67,7 +67,7 @@ public class GameField {
 	/*
 	 * Ez indítja el a teljes view updatet.
 	 */
-	public void draw() {
+	public void draw(Graphics2D g) {
 		for (Field field : fields) {
 			// field.update();
 			/*

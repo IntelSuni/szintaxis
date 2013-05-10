@@ -3,6 +3,7 @@ package System;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -59,7 +60,6 @@ public class Ant implements Updatable, Visitor, Element {
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
 		this.views = new Vector<View>();
-		this.NotifyView();
 //		System.out.println("Ant successfully added at " + this.field.getPoint().x + "," + this.field.getPoint().y + ".");
 	}
 
@@ -211,7 +211,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void setField(Field field) {
 		this.field = field;
-		this.NotifyView();
 	}
 	
 	/**
@@ -349,6 +348,7 @@ public class Ant implements Updatable, Visitor, Element {
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
 			this.views = new Vector<View>();
+			this.views.add(view);
 		}
 		else{
 			this.views.add(view);
@@ -363,9 +363,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	@Override
-	public void NotifyView() {
+	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
-			view.Update();
+			view.draw(g);
 		}
 	}
 

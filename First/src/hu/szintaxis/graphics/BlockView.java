@@ -1,5 +1,7 @@
 package hu.szintaxis.graphics;
 
+import java.awt.Graphics2D;
+
 import System.Block;
 import System.View;
 
@@ -20,8 +22,10 @@ public class BlockView implements View {
 
 	}
 
-	public void Update(){
-
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
