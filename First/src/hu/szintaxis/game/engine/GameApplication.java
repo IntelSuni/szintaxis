@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import System.GameField;
+import System.Weapon;
 
 public class GameApplication {
 
@@ -39,7 +40,7 @@ public class GameApplication {
 	public static void stopGame() {
 		gameLoop.stopGame();
 	}
-	
+
 	public static boolean isStarted() {
 		return gameLoop.isAlive();
 	}
@@ -101,11 +102,28 @@ public class GameApplication {
 
 				mainWindow.btnNewGame.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//GameField.instanceOf().Initialize();
+						// GameField.instanceOf().Initialize();
 						gameLoop.start();
 					}
 				});
 
+				mainWindow.rdbtnExtermimator
+						.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								Weapon.InstanceOf().SelectExterminator();
+							}
+						});
+
+				mainWindow.rdbtnNeutralizer
+						.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								Weapon.InstanceOf().SelectNeutralizer();
+							}
+						});
 			}
 		});
 	}

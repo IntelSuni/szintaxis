@@ -11,7 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 
+import System.Field;
 import System.GameField;
+import System.Weapon;
 
 public class Antfarm extends Game implements ImageObserver{
 
@@ -76,7 +78,16 @@ public class Antfarm extends Game implements ImageObserver{
 	 * @see hu.szintaxis.game.engine.Game#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {		
+		Point locationOnScreen = e.getLocationOnScreen();
+		
+		// valami magic hogy átkonvertáljuk mezõ koordinátákba
+		
+		Point fieldLocation = null;
+		
+		Field field = GameField.instanceOf().getField(fieldLocation);
+		
+		Weapon.InstanceOf().Use(field);		
 	}
 
 	@Override
