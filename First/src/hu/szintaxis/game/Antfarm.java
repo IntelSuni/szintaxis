@@ -33,6 +33,7 @@ public class Antfarm extends Game implements ImageObserver{
 	@Override
 	public void update() {
 		System.out.println("updated");
+		
 	}
 
 	@Override
@@ -60,7 +61,8 @@ public class Antfarm extends Game implements ImageObserver{
 //			}
 //		}
 //		g.drawImage(image, 50, 50, image.getWidth(this)/5, image.getHeight(this)/5, this);
-		g.drawLine(30, 30, 80, 80);
+//		g.drawLine(30, 30, 80, 80);
+		
 	}
 
 	/* (non-Javadoc)
@@ -82,6 +84,7 @@ public class Antfarm extends Game implements ImageObserver{
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 	}
 
 	@Override
