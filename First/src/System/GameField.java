@@ -1,7 +1,10 @@
 package System;
 
+import hu.szintaxis.graphics.AntHillView;
+import hu.szintaxis.graphics.AntLionView;
 import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.graphics.FieldView;
+import hu.szintaxis.graphics.FoodStoreView;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -9,6 +12,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import javax.print.attribute.Size2DSyntax;
+
 
 /**
  * Pï¿½lyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
@@ -63,7 +70,7 @@ public class GameField {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
+
 	/*
 	 * Ez indítja el a teljes view updatet.
 	 */
@@ -71,10 +78,8 @@ public class GameField {
 		for (Field field : fields) {
 			// field.update();
 			/*
-			 * for (Element e : field.getElements()) {
-				(View) e.notify();
-			}
-			*/
+			 * for (Element e : field.getElements()) { (View) e.notify(); }
+			 */
 		}
 	}
 
@@ -83,14 +88,17 @@ public class GameField {
 		fields = new ArrayList<Field>();
 		toUpdate = new ArrayList<Updatable>();
 	}
-	
+
 	public GameField(Point size) {
 		this();
 		this.size = size;
-		System.out.println("Successfully crated gameField of size " + size.x + "," + size.y + ".");
+		System.out.println("Successfully crated gameField of size " + size.x
+				+ "," + size.y + ".");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -100,54 +108,60 @@ public class GameField {
 
 	/**
 	 * Hozzï¿½ad egy {@code element}-et egy {@code field}-hez.
-	 * @param element Hozzï¿½adantï¿½ element.
-	 * @param field Field, amihez hozzï¿½ szeretnï¿½nk adni.
+	 * 
+	 * @param element
+	 *            Hozzï¿½adantï¿½ element.
+	 * @param field
+	 *            Field, amihez hozzï¿½ szeretnï¿½nk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
 		for (Field fields : this.fields) {
 			if (fields.equals(field) == true) {
 				fields.addElement(element);
-				
+
 			}
 		}
 		if (element instanceof Updatable) {
 
-//			boolean antAddable = false, anteaterAddable = false;
-//			for (Updatable u : this.toUpdate) {
-//				if (u instanceof Anteater) {
-//					antAddable = true;
-//				}
-//				else{
-//					antAddable = false;
-//				}
-//				if (u instanceof Ant) {
-//					anteaterAddable = true;
-//				} else {
-//					anteaterAddable = false;
-//				}
-//			}
-			
-//			if (antAddable == true && element instanceof Ant) {
-//				Updatable updatable = (Updatable) element;
-//				toUpdate.add(updatable);
-//			}
-//			if (anteaterAddable == true && element instanceof Anteater) {
-//				Updatable updatable = (Updatable) element;
-//				toUpdate.add(updatable);
-//			}
-			
+			// boolean antAddable = false, anteaterAddable = false;
+			// for (Updatable u : this.toUpdate) {
+			// if (u instanceof Anteater) {
+			// antAddable = true;
+			// }
+			// else{
+			// antAddable = false;
+			// }
+			// if (u instanceof Ant) {
+			// anteaterAddable = true;
+			// } else {
+			// anteaterAddable = false;
+			// }
+			// }
+
+			// if (antAddable == true && element instanceof Ant) {
+			// Updatable updatable = (Updatable) element;
+			// toUpdate.add(updatable);
+			// }
+			// if (anteaterAddable == true && element instanceof Anteater) {
+			// Updatable updatable = (Updatable) element;
+			// toUpdate.add(updatable);
+			// }
+
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
-		
-		System.out.println(element.getClass().getSimpleName() + " successfully added at " + field.getPoint().x + "," + field.getPoint().y + ".");
-		
+
+		System.out.println(element.getClass().getSimpleName()
+				+ " successfully added at " + field.getPoint().x + ","
+				+ field.getPoint().y + ".");
+
 	}
 
 	/**
 	 * Hozzï¿½adja a {@code Field} mezï¿½t a mezï¿½ket tï¿½rolï¿½ listï¿½hoz.
 	 * 
-	 * @param f pï¿½lyï¿½n mezï¿½listï¿½hoz hozzï¿½adandï¿½ mezï¿½
+	 * @param f
+	 *            pï¿½lyï¿½n mezï¿½listï¿½hoz hozzï¿½adandï¿½ mezï¿½
 	 */
 	public void addField(Field f) {
 		fields.add(f);
@@ -156,7 +170,8 @@ public class GameField {
 	/**
 	 * A {@code Points} ï¿½ltal meghatï¿½rozott {@code Field}-et adja meg.
 	 * 
-	 * @param points koordinï¿½tï¿½k, amely meghatï¿½rozza a {@code Field}-et
+	 * @param points
+	 *            koordinï¿½tï¿½k, amely meghatï¿½rozza a {@code Field}-et
 	 * @return {@code Point} ï¿½ltal meghatï¿½rozott {@code Field}
 	 */
 	public Field getField(Point points) {
@@ -169,94 +184,170 @@ public class GameField {
 	}
 
 	/**
-	 * Inicializï¿½lja a jï¿½tï¿½kos mezï¿½t:
-	 * lï¿½trehozza a pï¿½lyï¿½n talï¿½lhatï¿½ elemeket ï¿½s beï¿½llï¿½tja ï¿½ket.
+	 * Inicializï¿½lja a jï¿½tï¿½kos mezï¿½t: lï¿½trehozza a pï¿½lyï¿½n
+	 * talï¿½lhatï¿½ elemeket ï¿½s beï¿½llï¿½tja ï¿½ket.
 	 */
 	public void Initialize() {
-		int n=size.x;
-		int m=size.y;
-		fields = new ArrayList<Field>(n*m);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
+		int column = size.x;
+		int row = size.y;
+		fields = new ArrayList<Field>(column * row);
+		for (int i = 0; i < column; i++) {
+			for (int j = 0; j < row; j++) {
 				Field tempField = new Field(this);
 				tempField.setPoint(i, j);
-				
-				///View létrehozása a Field-nek, és hozzácsatolása
+
+				// /View létrehozása a Field-nek, és hozzácsatolása
 				FieldView tempFieldView = new FieldView();
 				tempField.Attach(tempFieldView);
 				tempFieldView.m_Field = tempField;
-				///
-				
+				// /
+
 				fields.add(tempField);
 			}
 		}
-				
+
 		for (Field field : fields) {
 			Point pos = field.getPoint();
-			
-			if(pos.y % 2 == 0) {
-				field.addNeighbour(getField(new Point(pos.x-1, pos.y-1)));
-				field.addNeighbour(getField(new Point(pos.x, pos.y-1)));
-				field.addNeighbour(getField(new Point(pos.x-1, pos.y)));
-				field.addNeighbour(getField(new Point(pos.x+1, pos.y)));
-				field.addNeighbour(getField(new Point(pos.x-1, pos.y+1)));
-				field.addNeighbour(getField(new Point(pos.x, pos.y+1)));
+
+			if (pos.y % 2 == 0) {
+				field.addNeighbour(getField(new Point(pos.x - 1, pos.y - 1)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y - 1)));
+				field.addNeighbour(getField(new Point(pos.x - 1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x + 1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x - 1, pos.y + 1)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y + 1)));
 			} else {
-				field.addNeighbour(getField(new Point(pos.x, pos.y-1)));
-				field.addNeighbour(getField(new Point(pos.x+1, pos.y-1)));
-				field.addNeighbour(getField(new Point(pos.x-1, pos.y)));
-				field.addNeighbour(getField(new Point(pos.x+1, pos.y)));
-				field.addNeighbour(getField(new Point(pos.x, pos.y+1)));
-				field.addNeighbour(getField(new Point(pos.x+1, pos.y+1)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y - 1)));
+				field.addNeighbour(getField(new Point(pos.x + 1, pos.y - 1)));
+				field.addNeighbour(getField(new Point(pos.x - 1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x + 1, pos.y)));
+				field.addNeighbour(getField(new Point(pos.x, pos.y + 1)));
+				field.addNeighbour(getField(new Point(pos.x + 1, pos.y + 1)));
 			}
 		}
-		
-//		int numOfFields = fields.size();
-//		for (int i = 0; i < numOfFields; i++) {
-//			Field tempField = fields.get(i);
-//			int x=tempField.getPoint().x;
-//			int y=tempField.getPoint().y;
-//			
-//			
-//			
-//			// Nem tï¿½kï¿½letes, tï¿½bb szomszï¿½dot is hozzï¿½ad !!!
-//			for (int j = 0; j < numOfFields ; j++) {
-//				Field tTempField = fields.get(j);
-//				
-//				if (tTempField.getPoint().x==x){
-//					if(tTempField.getPoint().y==y) continue;//ekkor onmaga
-//					if(tTempField.getPoint().y==y+1) tempField.addNeighbour(tTempField);//ekkor egyik szomszed
-//					if(tTempField.getPoint().y==y-1) tempField.addNeighbour(tTempField);//ekkor masik szomszed
-//					
-//				}
-//				if (tTempField.getPoint().y==y){
-//					if(tTempField.getPoint().x==x) continue;//ekkor onmaga
-//					if(tTempField.getPoint().x==x+1) tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
-//					if(tTempField.getPoint().x==x-1) tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
-//					
-//				}
-//				//meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
-//				if ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor otodik szomszed
-//				if ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor hatodik szomszed
-//			}
+
 		/*
-				if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
-						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1) ||
-						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
-						((tTempField.getPoint().y - tempField.getPoint().y) == 0)) ||
-						(((Math.abs((tTempField.getPoint().x - tempField.getPoint().x))) == 1) &&
-						(Math.abs((tTempField.getPoint().y - tempField.getPoint().y)) == 1)) 
-//						 && (((tTempField.getPoint().x - tempField.getPoint().x) != -1) &&
-//						((tTempField.getPoint().y - tempField.getPoint().y) != 1)) &&
-//						(((tTempField.getPoint().x - tempField.getPoint().x) != 1) &&
-//						((tTempField.getPoint().y - tempField.getPoint().y) != -1))
-						) {
-					tempField.addNeighbour(tTempField);
+		 * Az elemek helyének kisorsolása és hozzáadása.
+		 */
+		Random rand = new Random();
+		// Az AntHill kisoroslása, melyik oldalon legyen, majd hozzáadása
+		// (észak,dél,kelet,nyugat)
+		int r = rand.nextInt(4);
+		AntHill hill = new AntHill();
+		switch (r) {
+		// dél
+		case 0:
+			r = rand.nextInt(column);
+			fields.get((column * (row - 1)) + r).addElement(hill);
+			hill.Attach(new AntHillView());
+			break;
+		// észak
+		case 1:
+			r = rand.nextInt(column);
+			fields.get(r).addElement(hill);
+			hill.Attach(new AntHillView());
+			break;
+		// nyugat
+		case 2:
+			r = rand.nextInt(row);
+			fields.get(column * r).addElement(hill);
+			hill.Attach(new AntHillView());
+			break;
+		// kelet
+		case 3:
+			r = rand.nextInt(row);
+			fields.get((column - 1) + column * r).addElement(hill);
+			hill.Attach(new AntHillView());
+			break;
+		}
+
+		// foodStore rátevése a középsõ cellák valamelyikére. (a felsõ, alsó, és
+		// két szélsõ oszlopok kivételével bárhova kerülhet)
+		int q;
+		boolean success = false;
+		while (!success) {
+			// a középsõ sorokból kerül ki a gyõztes
+			r = rand.nextInt(row - 2);
+			// adott soron belül melyik elem lesz a nyerõ
+			q = rand.nextInt(column - 2);
+			int index = (column + 1) * r + q;
+			// csak üres mezõre helyezünk foodstore-t
+			if (fields.get(index).getElements().size() == 0) {
+				FoodStore foodTemp = new FoodStore();
+				foodTemp.Attach(new FoodStoreView());
+				fields.get(index).addElement(foodTemp);
+				success = true;
+			}
+		}
+
+		// 3db hangyalesõt helyezünk a pályára
+		for (int i = 0; i < 3; i++) {
+			success = false;
+			while (!success) {
+				r = rand.nextInt(row*column);
+				//csak akkor helyezzük rá ha üres a kisorsolt mezõ
+				if (fields.get(r).getElements().size()==0) {
+					Antlion spider = new Antlion();
+					spider.Attach(new AntLionView());
+					fields.get(r).addElement(spider);
+					success = true;
 				}
-			}*/
-			
-//			System.out.println(fields.get(i).getNeighbours().toString());			
-//		}
+			}
+		}
+
+		// int numOfFields = fields.size();
+		// for (int i = 0; i < numOfFields; i++) {
+		// Field tempField = fields.get(i);
+		// int x=tempField.getPoint().x;
+		// int y=tempField.getPoint().y;
+		//
+		//
+		//
+		// // Nem tï¿½kï¿½letes, tï¿½bb szomszï¿½dot is hozzï¿½ad !!!
+		// for (int j = 0; j < numOfFields ; j++) {
+		// Field tTempField = fields.get(j);
+		//
+		// if (tTempField.getPoint().x==x){
+		// if(tTempField.getPoint().y==y) continue;//ekkor onmaga
+		// if(tTempField.getPoint().y==y+1)
+		// tempField.addNeighbour(tTempField);//ekkor egyik szomszed
+		// if(tTempField.getPoint().y==y-1)
+		// tempField.addNeighbour(tTempField);//ekkor masik szomszed
+		//
+		// }
+		// if (tTempField.getPoint().y==y){
+		// if(tTempField.getPoint().x==x) continue;//ekkor onmaga
+		// if(tTempField.getPoint().x==x+1)
+		// tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
+		// if(tTempField.getPoint().x==x-1)
+		// tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
+		//
+		// }
+		// //meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
+		// if
+		// ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor
+		// otodik szomszed
+		// if
+		// ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor
+		// hatodik szomszed
+		// }
+		/*
+		 * if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
+		 * (Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1)
+		 * || (((Math.abs((tTempField.getPoint().x - tempField.getPoint().x)))
+		 * == 1) && ((tTempField.getPoint().y - tempField.getPoint().y) == 0))
+		 * || (((Math.abs((tTempField.getPoint().x - tempField.getPoint().x)))
+		 * == 1) && (Math.abs((tTempField.getPoint().y -
+		 * tempField.getPoint().y)) == 1)) // && (((tTempField.getPoint().x -
+		 * tempField.getPoint().x) != -1) && // ((tTempField.getPoint().y -
+		 * tempField.getPoint().y) != 1)) && // (((tTempField.getPoint().x -
+		 * tempField.getPoint().x) != 1) && // ((tTempField.getPoint().y -
+		 * tempField.getPoint().y) != -1)) ) {
+		 * tempField.addNeighbour(tTempField); } }
+		 */
+
+		// System.out.println(fields.get(i).getNeighbours().toString());
+		// }
 	}
 
 	/**
@@ -271,36 +362,38 @@ public class GameField {
 	}
 
 	/**
-	 * Beregisztrï¿½lja a pï¿½lyï¿½ra a {@code Updatable} frissï¿½tendï¿½ objektumot.
+	 * Beregisztrï¿½lja a pï¿½lyï¿½ra a {@code Updatable} frissï¿½tendï¿½
+	 * objektumot.
 	 * 
-	 * @param element frissï¿½tendï¿½ objektum
+	 * @param element
+	 *            frissï¿½tendï¿½ objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		this.toUpdate.add(element);
 	}
-	
+
 	/**
 	 * Eltávolítja az elementet a frissítendõ objektumok közül.
 	 * 
 	 * @param element
 	 */
-	public void unregisterUpdatable(Updatable element){
+	public void unregisterUpdatable(Updatable element) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
-//		if (this.toUpdate.contains(element)) {
-			this.toUpdate.remove(element);
-			
-			int fSize = this.fields.size();
-			for (int i = 0; i < fSize; i++) {
-				Field field = this.fields.get(i);
-				ArrayList<Element> elements = field.getElements();
-				int eSize = elements.size();
-				for (int j = 0; j < eSize; j++) {
-					if (elements.get(j).equals(element)) {
-						elements.remove(element);
-					}
+		// if (this.toUpdate.contains(element)) {
+		this.toUpdate.remove(element);
+
+		int fSize = this.fields.size();
+		for (int i = 0; i < fSize; i++) {
+			Field field = this.fields.get(i);
+			ArrayList<Element> elements = field.getElements();
+			int eSize = elements.size();
+			for (int j = 0; j < eSize; j++) {
+				if (elements.get(j).equals(element)) {
+					elements.remove(element);
 				}
 			}
-//		}
+		}
+		// }
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
@@ -311,11 +404,11 @@ public class GameField {
 		int tUS = this.toUpdate.size();
 		for (int i = 0; i < tUS; i++) {
 			Updatable updatable = this.toUpdate.get(i);
-			updatable.update();			
+			updatable.update();
 		}
-//		for (Updatable updatables : this.toUpdate) {
-//			updatables.update();
-//		}
+		// for (Updatable updatables : this.toUpdate) {
+		// updatables.update();
+		// }
 	}
 
 }
