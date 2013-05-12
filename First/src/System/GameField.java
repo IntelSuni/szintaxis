@@ -236,31 +236,49 @@ public class GameField {
 		// Az AntHill kisoroslása, melyik oldalon legyen, majd hozzáadása
 		// (észak,dél,kelet,nyugat)
 		int r = rand.nextInt(4);
-		AntHill hill = new AntHill();
+		AntHill hill;
+		AntHillView hillView;
+		Field actual;
 		switch (r) {
 		// dél
 		case 0:
 			r = rand.nextInt(column);
-			fields.get((column * (row - 1)) + r).addElement(hill);
-			hill.Attach(new AntHillView());
+			actual = fields.get((column * (row - 1)) + r);
+			hill = new AntHill(actual);
+			hillView = new AntHillView();
+			hillView.m_AntHill = hill;
+			actual.addElement(hill);
+			hill.Attach(hillView);
 			break;
 		// észak
 		case 1:
 			r = rand.nextInt(column);
-			fields.get(r).addElement(hill);
-			hill.Attach(new AntHillView());
+			actual = fields.get(r);
+			hill = new AntHill(actual);
+			hillView = new AntHillView();
+			hillView.m_AntHill = hill;
+			actual.addElement(hill);
+			hill.Attach(hillView);
 			break;
 		// nyugat
 		case 2:
 			r = rand.nextInt(row);
-			fields.get(column * r).addElement(hill);
-			hill.Attach(new AntHillView());
+			actual = fields.get(column * r);
+			hill = new AntHill(actual);
+			hillView = new AntHillView();
+			hillView.m_AntHill = hill;
+			actual.addElement(hill);
+			hill.Attach(hillView);
 			break;
 		// kelet
 		case 3:
 			r = rand.nextInt(row);
-			fields.get((column - 1) + column * r).addElement(hill);
-			hill.Attach(new AntHillView());
+			actual = fields.get((column - 1) + column * r);
+			hill = new AntHill(actual);
+			hillView = new AntHillView();
+			hillView.m_AntHill = hill;
+			actual.addElement(hill);
+			hill.Attach(hillView);
 			break;
 		}
 
@@ -276,8 +294,9 @@ public class GameField {
 			int index = (column + 1) * r + q;
 			// csak üres mezõre helyezünk foodstore-t
 			if (fields.get(index).getElements().size() == 0) {
+				actual = fields.get(index);
 				FoodStore foodTemp = new FoodStore();
-				foodTemp.setField(fields.get(index));
+				foodTemp.setField(actual);
 				
 				FoodStoreView fsv = new FoodStoreView();
 				fsv.m_FoodStore=foodTemp;
@@ -296,9 +315,12 @@ public class GameField {
 				r = rand.nextInt(row*column);
 				//csak akkor helyezzük rá ha üres a kisorsolt mezõ
 				if (fields.get(r).getElements().size()==0) {
-					Antlion spider = new Antlion();
-					spider.Attach(new AntLionView());
-					fields.get(r).addElement(spider);
+					actual = fields.get(r);
+					Antlion spider = new Antlion(actual);
+					AntLionView antLionView = new AntLionView();
+					antLionView.m_AntLion = spider;
+					spider.Attach(antLionView);
+					actual.addElement(spider);
 					success = true;
 				}
 			}
