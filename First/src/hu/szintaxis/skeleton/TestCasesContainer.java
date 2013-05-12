@@ -151,7 +151,7 @@ public class TestCasesContainer {
 		GameField p = new GameField();
 		Field currentField = new Field(p); // aktuális Field a GameField-en
 		Field f1 = new Field(p); // másik Field a GameField-en
-		ExterminatorSmell smell = new ExterminatorSmell(); // méreg
+		ExterminatorSmell smell = new ExterminatorSmell(f1); // méreg
 		Ant h1 = new Ant(currentField); //hangya az aktuális Field-en
 		
 		currentField.addNeighbour(f1); //aktuális mezõ szomszédja a másik mezõ

@@ -14,7 +14,8 @@ public class Exterminator extends Spray {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
@@ -41,32 +42,38 @@ public class Exterminator extends Spray {
 	}
 
 	/**
-	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell} szagot rak.
+	 * A {@code Field} paraméterre és szomszédjaira {@code ExterminatorSmell}
+	 * szagot rak.
 	 * 
-	 * @param mezo rá helyezei el az {@code ExterminatorSmell} szagot
+	 * @param mezo
+	 *            rá helyezei el az {@code ExterminatorSmell} szagot
 	 */
 	public void use(Field mezo) {
-		Tracer.Instance().Trace(TracerDirection.Enter,mezo);
-		
-		if(this.capacity > 0){
-			ExterminatorSmell exterminatorSmell = new ExterminatorSmell();
+		Tracer.Instance().Trace(TracerDirection.Enter, mezo);
+
+		if (this.capacity > 0) {
+			ExterminatorSmell exterminatorSmell = new ExterminatorSmell(mezo);
 			// A mezõre tesz Irtószagot
 			mezo.addSmell(exterminatorSmell);
-//			mezo.addSmellToNeighbours(exterminatorSmell);
-			
+			GameField.instanceOf().registerNewUpdatable(exterminatorSmell);
+			// mezo.addSmellToNeighbours(exterminatorSmell);
+
 			// A mezõ hangya elemein aktiválja az irtószagot.
 			for (Element e : mezo.getElements()) {
 				if (e instanceof Ant) {
 					exterminatorSmell.activate((Ant) e);
 				}
 			}
-			
+
 			// A mezõ szomszédjaira tesz irtószagot
 			for (Field neighbours : mezo.getNeighbours()) {
 				if (neighbours == null) {
 					break;
 				}
-				neighbours.addSmell(exterminatorSmell);
+				ExterminatorSmell nExterminatorSmell = new ExterminatorSmell(
+						neighbours);
+				neighbours.addSmell(nExterminatorSmell);
+				GameField.instanceOf().registerNewUpdatable(nExterminatorSmell);
 				for (Element e : neighbours.getElements()) {
 					if (e instanceof Ant) {
 						exterminatorSmell.activate((Ant) e);
@@ -74,9 +81,11 @@ public class Exterminator extends Spray {
 				}
 			}
 			this.capacity--;
-			System.out.println(this.getClass().getSimpleName() + " used successfully on " + mezo.getPoint().x + "," + mezo.getPoint().y + " and its neighbours.");
+			System.out.println(this.getClass().getSimpleName()
+					+ " used successfully on " + mezo.getPoint().x + ","
+					+ mezo.getPoint().y + " and its neighbours.");
 		}
-		
+
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 

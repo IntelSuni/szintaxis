@@ -403,8 +403,10 @@ public class GameField {
 	 * Frissíti a pálya frissítendõ objektumait.
 	 */
 	public void updateUpdatables() {
-		int tUS = this.toUpdate.size();
-		for (int i = 0; i < tUS; i++) {
+		for (int i = 0; i < this.toUpdate.size(); i++) {
+			if (i >= this.toUpdate.size()) {
+				break;
+			}
 			Updatable updatable = this.toUpdate.get(i);
 			updatable.update();
 		}

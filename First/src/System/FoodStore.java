@@ -51,7 +51,7 @@ public class FoodStore implements Element {
 		ArrayList<Field> neighbours = this.field.getNeighbours();
 		// A mez� szomsz�djaira 4-er�s�gg� �teszagot tesz.
 		for (Field fields : neighbours) {
-			if (field == null) {
+			if (fields == null) {
 				break;
 			}
 			fields.addSmell(new FoodSmell(4));

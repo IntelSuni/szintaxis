@@ -258,10 +258,13 @@ public class Ant implements Updatable, Visitor, Element {
 		
 		// m�regszint alapj�n az �letpontok friss�t�se
 		ArrayList<Smell> smells = this.field.getSmells();
-		for (Smell s : smells) {
-			s.activate(this);
+		for (int i = 0; i < smells.size(); i++) {
+			if (i >= smells.size()) {
+				break;
+			}
+			smells.get(i).activate(this);
 		}
-		
+				
 		this.decreaseHealtPoint();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		
