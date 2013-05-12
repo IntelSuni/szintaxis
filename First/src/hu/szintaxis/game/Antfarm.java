@@ -29,7 +29,7 @@ public class Antfarm extends Game {
 	@Override
 	public void update() {
 		// this.gameField.updateUpdatables();
-		System.out.println("updated");
+		gameField.updateUpdatables();
 
 	}
 

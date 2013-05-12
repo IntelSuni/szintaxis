@@ -47,7 +47,6 @@ public class FoodStoreView implements View {
 				- (image.getHeight() / 16), image.getWidth() / 8,
 				image.getHeight() / 8, null);
 
-		System.out.println("FoodStore draw at: " + points.x + " - " + points.y);
 	}
 
 }

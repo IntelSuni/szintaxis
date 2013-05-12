@@ -301,8 +301,7 @@ public class GameField {
 			// csak üres mezõre helyezünk foodstore-t
 			if (fields.get(index).getElements().size() == 0) {
 				actual = fields.get(index);
-				FoodStore foodTemp = new FoodStore();
-				foodTemp.setField(actual);
+				FoodStore foodTemp = new FoodStore(actual);
 
 				FoodStoreView fsv = new FoodStoreView();
 				fsv.m_FoodStore = foodTemp;

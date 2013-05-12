@@ -43,7 +43,6 @@ public class AntLionView implements View {
 		g.drawImage(image, points.x - (image.getWidth() / 12), points.y
 				- (image.getHeight() / 12), image.getWidth() / 6,
 				image.getHeight() / 6, null);
-		System.out.println("Antlion draw at: " + points.x + " - " + points.y);
 	}
 
 }

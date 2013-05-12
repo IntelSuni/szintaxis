@@ -46,7 +46,6 @@ public class AntHillView implements View {
 				- (image.getHeight() / 10), image.getWidth() / 5,
 				image.getHeight() / 5, null);
 
-		System.out.println("AntHill draw at: " + points.x + " - " + points.y);
 	}
 
 }

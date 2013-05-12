@@ -46,6 +46,5 @@ public class AntView implements View {
 				- (image.getHeight() / 20), image.getWidth() / 10,
 				image.getHeight() / 10, null);
 
-		System.out.println("Ant draw at: " + points.x + " - " + points.y);
 	}
 }
