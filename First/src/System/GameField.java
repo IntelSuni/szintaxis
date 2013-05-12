@@ -2,7 +2,6 @@ package System;
 
 import hu.szintaxis.graphics.AntHillView;
 import hu.szintaxis.graphics.AntLionView;
-import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.graphics.FieldView;
 import hu.szintaxis.graphics.FoodStoreView;
 import hu.szintaxis.skeleton.Tracer;
@@ -14,53 +13,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.print.attribute.Size2DSyntax;
-
 
 /**
- * Pï¿½lyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * Pályát megvalósító osztály.
  */
 public class GameField {
 	/**
-	 * Pï¿½lyï¿½n levï¿½ hangyï¿½szok szï¿½ma.
+	 * Pályán levõ hangyászok száma.
 	 */
 	private int anteaterNo;
 	/**
-	 * Pï¿½lyï¿½n levï¿½ hangyabolyok szï¿½ma.
+	 * Pályán levõ hangyabolyok száma.
 	 */
 	private int antHillNo;
 	/**
-	 * Pï¿½lyï¿½n levï¿½ akadï¿½lyok szï¿½ma.
+	 * Pályán levõ akadályok száma.
 	 */
 	private int blockNo;
 	/**
-	 * Pï¿½lyï¿½n levï¿½ ï¿½telraktï¿½rak szï¿½ma.
+	 * Pályán levõ ételraktárak száma.
 	 */
 	private int foodStoreNo;
 	/**
-	 * Pï¿½lyï¿½t tï¿½rolï¿½ statikus objektum (singleton).
+	 * Pályát tároló statikus objektum (singleton).
 	 */
 	private static GameField instance;
 	/**
-	 * Pï¿½lya mï¿½retkoordinï¿½tï¿½i.
+	 * Pálya mezõkoordinátái.
 	 */
 	private Point size;
 	/**
-	 * Pï¿½lyï¿½n levï¿½ kavicsok szï¿½ma.
+	 * Pályán levõ kavicsok száma.
 	 */
 	private int stoneNo;
 	/**
-	 * Pï¿½lyï¿½n levï¿½ frissï¿½tendï¿½ objektumok.
+	 * Pályán levõ frissítendõ objektumok.
 	 */
 	private ArrayList<Updatable> toUpdate;
 	/**
-	 * Mezï¿½ket tï¿½rolï¿½ lista.
+	 * Mezõket tároló lista.
 	 */
 	public List<Field> fields;
 	/**
 	 * 
 	 */
-	public Game game;
+//	public Game game;
 
 	/*
 	 * (non-Javadoc)
@@ -75,20 +72,52 @@ public class GameField {
 	 * Ez indítja el a teljes view updatet.
 	 */
 	public void draw(Graphics2D g) {
-		for (Field field : fields) {
-			// field.update();
-			/*
-			 * for (Element e : field.getElements()) { (View) e.notify(); }
-			 */
+//		for (Field field : fields) {
+//			// field.update();
+//			/*
+//			 * for (Element e : field.getElements()) { (View) e.notify(); }
+//			 */
+//		}
+				
+		int fieldSize = this.size.x * 40;
+		
+		for (int i = 0; i < fieldSize; i += 40) {
+			for (int j = 0, rowCount = 0; j < fieldSize; j += 40, rowCount++) {
+				if(rowCount % 2 == 0){
+					int[] x = new int[]{i, i+20, i+40, i+40, i+20, i};
+					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
+					g.drawPolygon(x, y, x.length);
+				}
+				else{
+					int[] x = new int[]{i+20, i+40, i+60, i+60, i+40, i+20};
+					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
+					g.drawPolygon(x, y, x.length);
+				}
+			}
 		}
+		
+		
+		for (Field field : this.fields) {
+			ArrayList<Element> elements = field.getElements();
+			for (Element element : elements) {
+				element.NotifyView(g);
+			}
+		}
+		
 	}
 
-	// csak a tesztek miatt public, eredetileg private !
+	/**
+	 * Létrehoz egy üres pályát.
+	 */
 	public GameField() {
 		fields = new ArrayList<Field>();
 		toUpdate = new ArrayList<Updatable>();
 	}
 
+	/**
+	 * Létrehoz egy {@code Point} méretû pályát.
+	 * @param size a létrehozandó pálya mérete.
+	 */
 	public GameField(Point size) {
 		this();
 		this.size = size;
@@ -107,12 +136,12 @@ public class GameField {
 	}
 
 	/**
-	 * Hozzï¿½ad egy {@code element}-et egy {@code field}-hez.
+	 * Hozzáad egy {@code element}-et egy {@code field}-hez.
 	 * 
 	 * @param element
-	 *            Hozzï¿½adantï¿½ element.
+	 *            Hozzáadandó element.
 	 * @param field
-	 *            Field, amihez hozzï¿½ szeretnï¿½nk adni.
+	 *            Field, amihez hozzá szeretnénk adni.
 	 */
 	public void addElementToField(Element element, Field field) {
 		for (Field fields : this.fields) {
@@ -122,31 +151,6 @@ public class GameField {
 			}
 		}
 		if (element instanceof Updatable) {
-
-			// boolean antAddable = false, anteaterAddable = false;
-			// for (Updatable u : this.toUpdate) {
-			// if (u instanceof Anteater) {
-			// antAddable = true;
-			// }
-			// else{
-			// antAddable = false;
-			// }
-			// if (u instanceof Ant) {
-			// anteaterAddable = true;
-			// } else {
-			// anteaterAddable = false;
-			// }
-			// }
-
-			// if (antAddable == true && element instanceof Ant) {
-			// Updatable updatable = (Updatable) element;
-			// toUpdate.add(updatable);
-			// }
-			// if (anteaterAddable == true && element instanceof Anteater) {
-			// Updatable updatable = (Updatable) element;
-			// toUpdate.add(updatable);
-			// }
-
 			Updatable updatable = (Updatable) element;
 			toUpdate.add(updatable);
 		}
@@ -154,25 +158,24 @@ public class GameField {
 		System.out.println(element.getClass().getSimpleName()
 				+ " successfully added at " + field.getPoint().x + ","
 				+ field.getPoint().y + ".");
-
 	}
 
 	/**
-	 * Hozzï¿½adja a {@code Field} mezï¿½t a mezï¿½ket tï¿½rolï¿½ listï¿½hoz.
+	 * Hozzáadja a {@code Field} mezõt a mezõket tároló listához.
 	 * 
 	 * @param f
-	 *            pï¿½lyï¿½n mezï¿½listï¿½hoz hozzï¿½adandï¿½ mezï¿½
+	 *            pálya mezõlistájához hozzáadandó mezõ
 	 */
 	public void addField(Field f) {
 		fields.add(f);
 	}
 
 	/**
-	 * A {@code Points} ï¿½ltal meghatï¿½rozott {@code Field}-et adja meg.
+	 * A {@code Points} által meghatározott {@code Field}-et adja meg.
 	 * 
 	 * @param points
-	 *            koordinï¿½tï¿½k, amely meghatï¿½rozza a {@code Field}-et
-	 * @return {@code Point} ï¿½ltal meghatï¿½rozott {@code Field}
+	 *            koordinináták, amely meghatározzák a {@code Field}-et
+	 * @return {@code Point} által meghatározott {@code Field}
 	 */
 	public Field getField(Point points) {
 		for (Field field : fields) {
@@ -184,8 +187,8 @@ public class GameField {
 	}
 
 	/**
-	 * Inicializï¿½lja a jï¿½tï¿½kos mezï¿½t: lï¿½trehozza a pï¿½lyï¿½n
-	 * talï¿½lhatï¿½ elemeket ï¿½s beï¿½llï¿½tja ï¿½ket.
+	 * Inicializálja a játékos mezõt: létrehozza a pályán
+	 * található elemeket és beállítja.
 	 */
 	public void Initialize() {
 		int column = size.x;
@@ -274,7 +277,13 @@ public class GameField {
 			// csak üres mezõre helyezünk foodstore-t
 			if (fields.get(index).getElements().size() == 0) {
 				FoodStore foodTemp = new FoodStore();
-				foodTemp.Attach(new FoodStoreView());
+				foodTemp.setField(fields.get(index));
+				
+				FoodStoreView fsv = new FoodStoreView();
+				fsv.m_FoodStore=foodTemp;
+				foodTemp.Attach(fsv);
+				
+				//foodTemp.Attach(new FoodStoreView());
 				fields.get(index).addElement(foodTemp);
 				success = true;
 			}
@@ -294,66 +303,12 @@ public class GameField {
 				}
 			}
 		}
-
-		// int numOfFields = fields.size();
-		// for (int i = 0; i < numOfFields; i++) {
-		// Field tempField = fields.get(i);
-		// int x=tempField.getPoint().x;
-		// int y=tempField.getPoint().y;
-		//
-		//
-		//
-		// // Nem tï¿½kï¿½letes, tï¿½bb szomszï¿½dot is hozzï¿½ad !!!
-		// for (int j = 0; j < numOfFields ; j++) {
-		// Field tTempField = fields.get(j);
-		//
-		// if (tTempField.getPoint().x==x){
-		// if(tTempField.getPoint().y==y) continue;//ekkor onmaga
-		// if(tTempField.getPoint().y==y+1)
-		// tempField.addNeighbour(tTempField);//ekkor egyik szomszed
-		// if(tTempField.getPoint().y==y-1)
-		// tempField.addNeighbour(tTempField);//ekkor masik szomszed
-		//
-		// }
-		// if (tTempField.getPoint().y==y){
-		// if(tTempField.getPoint().x==x) continue;//ekkor onmaga
-		// if(tTempField.getPoint().x==x+1)
-		// tempField.addNeighbour(tTempField);//ekkor harmadik szomszed
-		// if(tTempField.getPoint().x==x-1)
-		// tempField.addNeighbour(tTempField);//ekkor negyedik szomszed
-		//
-		// }
-		// //meg hianyzik a +1,+1 es a -1,-1 modositoju szomszed
-		// if
-		// ((tTempField.getPoint().y==y-1)&&(tTempField.getPoint().x==x-1))tempField.addNeighbour(tTempField);//ekkor
-		// otodik szomszed
-		// if
-		// ((tTempField.getPoint().y==y+1)&&(tTempField.getPoint().x==x+1))tempField.addNeighbour(tTempField);//ekkor
-		// hatodik szomszed
-		// }
-		/*
-		 * if ((((tTempField.getPoint().x - tempField.getPoint().x) == 0) &&
-		 * (Math.abs((tTempField.getPoint().y - tempField.getPoint().y))) == 1)
-		 * || (((Math.abs((tTempField.getPoint().x - tempField.getPoint().x)))
-		 * == 1) && ((tTempField.getPoint().y - tempField.getPoint().y) == 0))
-		 * || (((Math.abs((tTempField.getPoint().x - tempField.getPoint().x)))
-		 * == 1) && (Math.abs((tTempField.getPoint().y -
-		 * tempField.getPoint().y)) == 1)) // && (((tTempField.getPoint().x -
-		 * tempField.getPoint().x) != -1) && // ((tTempField.getPoint().y -
-		 * tempField.getPoint().y) != 1)) && // (((tTempField.getPoint().x -
-		 * tempField.getPoint().x) != 1) && // ((tTempField.getPoint().y -
-		 * tempField.getPoint().y) != -1)) ) {
-		 * tempField.addNeighbour(tTempField); } }
-		 */
-
-		// System.out.println(fields.get(i).getNeighbours().toString());
-		// }
 	}
 
 	/**
-	 * Magï¿½t a pï¿½lyï¿½t adja meg.
+	 * Magát a pályát adja meg.
 	 * 
-	 * @return {@code GameField} osztï¿½lypï¿½ldï¿½ny
+	 * @return {@code GameField} osztálypéldány
 	 */
 	public static GameField instanceOf() {
 		if (instance == null)
@@ -362,11 +317,11 @@ public class GameField {
 	}
 
 	/**
-	 * Beregisztrï¿½lja a pï¿½lyï¿½ra a {@code Updatable} frissï¿½tendï¿½
+	 * Beregisztrálja a pályára a {@code Updatable} frissítendõ
 	 * objektumot.
 	 * 
 	 * @param element
-	 *            frissï¿½tendï¿½ objektum
+	 *            frissítendõ objektum
 	 */
 	public void registerNewUpdatable(Updatable element) {
 		this.toUpdate.add(element);
@@ -398,7 +353,7 @@ public class GameField {
 	}
 
 	/**
-	 * Frissï¿½ti a pï¿½lya frissï¿½tendï¿½ objektumait.
+	 * Frissíti a pálya frissítendõ objektumait.
 	 */
 	public void updateUpdatables() {
 		int tUS = this.toUpdate.size();

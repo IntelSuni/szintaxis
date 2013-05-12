@@ -40,7 +40,8 @@ public class FoodStoreView implements View {
 			points = this.m_FoodStore.getField().getPoint();
 		}
 		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		g.drawImage(image, points.x, points.y, image.getWidth()/8, image.getHeight()/8, null);
+		g.drawImage(image, points.x * 40, points.y * 40, image.getWidth()/8, image.getHeight()/8, null);
+		System.out.println("FoodStore draw at: " + points.x + " - " + points.y);
 	}
 
 }

@@ -18,9 +18,10 @@ public abstract class Game implements KeyListener, MouseListener, MouseMotionLis
 	protected String title = "My Game";
 	protected int width=400, height=300;
 	protected int fps = 60;
-
+	
+	protected GameField gameField = new GameField(new Point(10, 10));
+	
 	public void init() {
-		GameField gameField = new GameField(new Point(10, 10));
 		gameField.Initialize();
 	}
 	abstract public void update();

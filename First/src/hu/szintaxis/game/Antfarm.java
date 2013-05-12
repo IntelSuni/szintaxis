@@ -60,7 +60,8 @@ public class Antfarm extends Game{
 		if (!GameApplication.isStarted()) {
 			return;
 		}
-		GameField.instanceOf().draw(g);
+		//GameField.instanceOf().draw(g);
+		this.gameField.draw(g);
 	}
 
 	/* (non-Javadoc)
