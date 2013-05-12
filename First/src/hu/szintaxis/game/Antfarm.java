@@ -83,8 +83,8 @@ public class Antfarm extends Game {
 
 		// függõleges hely meghatározása:
 		int row = Math.round((mouseY - 50) / 38.0f);
-		int column = Math.round((row % 2 == 0 ? (mouseX - 50) / 43
-				: (mouseX - 71.5f) / 43));
+		int column = Math.round((row % 2 == 0 ? (mouseX - 50) / 43.0f
+				: (mouseX - 71.5f) / 43.0f));
 
 		return new Point(column, row);
 	}
