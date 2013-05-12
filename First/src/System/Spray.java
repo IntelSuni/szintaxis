@@ -47,6 +47,8 @@ public class Spray {
 //		if(this.capacity > 0){
 //			mezo.addSmell(new ExterminatorSmell());
 //		}
+//		
+//		this.capacity--;
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}

@@ -63,6 +63,9 @@ public class Exterminator extends Spray {
 			
 			// A mezõ szomszédjaira tesz irtószagot
 			for (Field neighbours : mezo.getNeighbours()) {
+				if (neighbours == null) {
+					break;
+				}
 				neighbours.addSmell(exterminatorSmell);
 				for (Element e : neighbours.getElements()) {
 					if (e instanceof Ant) {

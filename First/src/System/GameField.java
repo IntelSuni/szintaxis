@@ -208,7 +208,6 @@ public class GameField {
 			}
 		}
 
-
 		for (Field field : fields) {
 			Point pos = field.getPoint();
 			FieldView fieldView = new FieldView(field);
@@ -362,7 +361,7 @@ public class GameField {
 	 */
 	public static GameField instanceOf() {
 		if (instance == null)
-			instance = new GameField();
+			instance = new GameField(new Point(10, 10));
 		return instance;
 	}
 

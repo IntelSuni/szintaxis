@@ -63,21 +63,11 @@ public class Weapon {
 	public void Use(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter,field);
 		
-		GameField.instanceOf().getField(new Point());
-		Spray current = new Spray();
-		try {
-			Spray cureent = this.m_Spray.getClass().newInstance();
-			cureent.use(field);
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (m_Spray == null) {
+			SelectExterminator();
 		}
-//		current.use(field);
 		
-//		System.out.println(" used successfully on " + field.getPoint().x + "," + field.getPoint().y + " and its neighbours.");
+		m_Spray.use(field);
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}

@@ -1,5 +1,7 @@
 package hu.szintaxis.graphics;
 
+import hu.szintaxis.game.Antfarm;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -20,8 +22,8 @@ public class StoneView implements View {
 
 	public Stone m_Stone;
 	private BufferedImage image = null;
-	
-	public StoneView(){
+
+	public StoneView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/Stone.gif"));
 		} catch (IOException e) {
@@ -37,19 +39,13 @@ public class StoneView implements View {
 	public void draw(Graphics2D g) {
 		Point points = new Point();
 		if (this.m_Stone != null) {
-			points = this.m_Stone.getField().getPoint();
+			points = Antfarm.fieldToMouse(m_Stone.getField().getPoint());
 		}
-	
-		int radius = (int) (20 * Math.sqrt(3));
-		
-		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		if (points.x % 2 == 0) {
-			g.drawImage(image, points.x * radius, points.y * radius, image.getWidth()/5, image.getHeight()/5, null);
-		}
-		else{
-			g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/5, image.getHeight()/5, null);
-		}
-		
+
+		g.drawImage(image, points.x - (image.getWidth() / 10), points.y
+				- (image.getHeight() / 10), image.getWidth() / 5,
+				image.getHeight() / 5, null);
+
 		System.out.println("Stone draw at: " + points.x + " - " + points.y);
 	}
 

@@ -1,5 +1,7 @@
 package hu.szintaxis.graphics;
 
+import hu.szintaxis.game.Antfarm;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -21,7 +23,7 @@ public class AntLionView implements View {
 	public Antlion m_AntLion;
 	private BufferedImage image = null;
 
-	public AntLionView(){
+	public AntLionView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/antlion.gif"));
 		} catch (IOException e) {
@@ -36,14 +38,11 @@ public class AntLionView implements View {
 	@Override
 	public void draw(Graphics2D g) {
 		Point points = new Point();
-		if (this.m_AntLion != null) {
-			points = this.m_AntLion.getField().getPoint();
-		}
-		
-		int radius = (int) (20 * Math.sqrt(3));
-		
-		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/6, image.getHeight()/6, null);
+		points = Antfarm.fieldToMouse(m_AntLion.getField().getPoint());
+		// Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
+		g.drawImage(image, points.x - (image.getWidth() / 12), points.y
+				- (image.getHeight() / 12), image.getWidth() / 6,
+				image.getHeight() / 6, null);
 		System.out.println("Antlion draw at: " + points.x + " - " + points.y);
 	}
 

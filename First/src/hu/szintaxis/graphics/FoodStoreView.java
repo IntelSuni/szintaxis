@@ -1,5 +1,7 @@
 package hu.szintaxis.graphics;
 
+import hu.szintaxis.game.Antfarm;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -21,7 +23,7 @@ public class FoodStoreView implements View {
 	public FoodStore m_FoodStore;
 	private BufferedImage image = null;
 
-	public FoodStoreView(){
+	public FoodStoreView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/foodstore.jpg"));
 		} catch (IOException e) {
@@ -37,19 +39,14 @@ public class FoodStoreView implements View {
 	public void draw(Graphics2D g) {
 		Point points = new Point();
 		if (this.m_FoodStore != null) {
-			points = this.m_FoodStore.getField().getPoint();
+			points = Antfarm.fieldToMouse(m_FoodStore.getField().getPoint());
 		}
-		
-		int radius = (int) (20 * Math.sqrt(3));
-		
-		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		if (points.x % 2 == 0) {
-			g.drawImage(image, points.x * radius, points.y * radius, image.getWidth()/8, image.getHeight()/8, null);
-		}
-		else{
-			g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/8, image.getHeight()/8, null);
-		}
-		
+
+		// Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
+		g.drawImage(image, points.x - (image.getWidth() / 16), points.y
+				- (image.getHeight() / 16), image.getWidth() / 8,
+				image.getHeight() / 8, null);
+
 		System.out.println("FoodStore draw at: " + points.x + " - " + points.y);
 	}
 
