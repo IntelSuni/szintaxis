@@ -2,7 +2,6 @@ package System;
 
 import hu.szintaxis.graphics.AntHillView;
 import hu.szintaxis.graphics.AntLionView;
-import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.graphics.FieldView;
 import hu.szintaxis.graphics.FoodStoreView;
 import hu.szintaxis.graphics.StoneView;
@@ -81,26 +80,27 @@ public class GameField {
 		// */
 		// }
 
-		int fieldSize = this.size.x * 40;
-
-		for (int i = 0; i < fieldSize; i += 40) {
-			for (int j = 0, rowCount = 0; j < fieldSize; j += 40, rowCount++) {
-				if (rowCount % 2 == 0) {
-					int[] x = new int[] { i, i + 20, i + 40, i + 40, i + 20, i };
-					int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
-							j + 40 };
-					g.drawPolygon(x, y, x.length);
-				} else {
-					int[] x = new int[] { i + 20, i + 40, i + 60, i + 60,
-							i + 40, i + 20 };
-					int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
-							j + 40 };
-					g.drawPolygon(x, y, x.length);
-				}
-			}
-		}
+		// int fieldSize = this.size.x * 40;
+		//
+		// for (int i = 0; i < fieldSize; i += 40) {
+		// for (int j = 0, rowCount = 0; j < fieldSize; j += 40, rowCount++) {
+		// if (rowCount % 2 == 0) {
+		// int[] x = new int[] { i, i + 20, i + 40, i + 40, i + 20, i };
+		// int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
+		// j + 40 };
+		// g.drawPolygon(x, y, x.length);
+		// } else {
+		// int[] x = new int[] { i + 20, i + 40, i + 60, i + 60,
+		// i + 40, i + 20 };
+		// int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
+		// j + 40 };
+		// g.drawPolygon(x, y, x.length);
+		// }
+		// }
+		// }
 
 		for (Field field : this.fields) {
+			field.NotifyView(g);
 			ArrayList<Element> elements = field.getElements();
 			for (Element element : elements) {
 				element.NotifyView(g);
@@ -208,8 +208,12 @@ public class GameField {
 			}
 		}
 
+
 		for (Field field : fields) {
 			Point pos = field.getPoint();
+			FieldView fieldView = new FieldView(field);
+
+			field.Attach(fieldView);
 
 			if (pos.y % 2 == 0) {
 				field.addNeighbour(getField(new Point(pos.x - 1, pos.y - 1)));
@@ -401,15 +405,15 @@ public class GameField {
 	 * Frissíti a pálya frissítendõ objektumait.
 	 */
 	public void updateUpdatables() {
-		 int tUS = this.toUpdate.size();
-		 for (int i = 0; i < tUS; i++) {
-		 Updatable updatable = this.toUpdate.get(i);
-		 updatable.update();
-		 }
-//		System.out.println(this.toUpdate.toString());
-//		for (Updatable updatables : this.toUpdate) {
-//			updatables.update();
-//		}
+		int tUS = this.toUpdate.size();
+		for (int i = 0; i < tUS; i++) {
+			Updatable updatable = this.toUpdate.get(i);
+			updatable.update();
+		}
+		// System.out.println(this.toUpdate.toString());
+		// for (Updatable updatables : this.toUpdate) {
+		// updatables.update();
+		// }
 	}
 
 }

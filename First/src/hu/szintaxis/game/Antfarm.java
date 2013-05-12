@@ -5,6 +5,7 @@ import hu.szintaxis.game.engine.GameApplication;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -38,6 +39,7 @@ public class Antfarm extends Game{
 		if (!GameApplication.isStarted()) {
 			return;
 		}
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		//GameField.instanceOf().draw(g);
 		this.gameField.draw(g);
 	}
