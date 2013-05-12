@@ -2,8 +2,10 @@ package System;
 
 import hu.szintaxis.graphics.AntHillView;
 import hu.szintaxis.graphics.AntLionView;
+import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.graphics.FieldView;
 import hu.szintaxis.graphics.FoodStoreView;
+import hu.szintaxis.graphics.StoneView;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -12,7 +14,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 /**
  * Pályát megvalósító osztály.
@@ -54,10 +55,11 @@ public class GameField {
 	 * Mezõket tároló lista.
 	 */
 	public List<Field> fields;
+
 	/**
 	 * 
 	 */
-//	public Game game;
+	// public Game game;
 
 	/*
 	 * (non-Javadoc)
@@ -72,38 +74,40 @@ public class GameField {
 	 * Ez indítja el a teljes view updatet.
 	 */
 	public void draw(Graphics2D g) {
-//		for (Field field : fields) {
-//			// field.update();
-//			/*
-//			 * for (Element e : field.getElements()) { (View) e.notify(); }
-//			 */
-//		}
-				
+		// for (Field field : fields) {
+		// // field.update();
+		// /*
+		// * for (Element e : field.getElements()) { (View) e.notify(); }
+		// */
+		// }
+
 		int fieldSize = this.size.x * 40;
-		
+
 		for (int i = 0; i < fieldSize; i += 40) {
 			for (int j = 0, rowCount = 0; j < fieldSize; j += 40, rowCount++) {
-				if(rowCount % 2 == 0){
-					int[] x = new int[]{i, i+20, i+40, i+40, i+20, i};
-					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
+				if (rowCount % 2 == 0) {
+					int[] x = new int[] { i, i + 20, i + 40, i + 40, i + 20, i };
+					int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
+							j + 40 };
 					g.drawPolygon(x, y, x.length);
-				}
-				else{
-					int[] x = new int[]{i+20, i+40, i+60, i+60, i+40, i+20};
-					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
+				} else {
+					int[] x = new int[] { i + 20, i + 40, i + 60, i + 60,
+							i + 40, i + 20 };
+					int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
+							j + 40 };
 					g.drawPolygon(x, y, x.length);
 				}
 			}
 		}
-		
-		
+
 		for (Field field : this.fields) {
 			ArrayList<Element> elements = field.getElements();
 			for (Element element : elements) {
 				element.NotifyView(g);
+				// System.out.println(element.toString());
 			}
 		}
-		
+
 	}
 
 	/**
@@ -116,7 +120,9 @@ public class GameField {
 
 	/**
 	 * Létrehoz egy {@code Point} méretû pályát.
-	 * @param size a létrehozandó pálya mérete.
+	 * 
+	 * @param size
+	 *            a létrehozandó pálya mérete.
 	 */
 	public GameField(Point size) {
 		this();
@@ -187,8 +193,8 @@ public class GameField {
 	}
 
 	/**
-	 * Inicializálja a játékos mezõt: létrehozza a pályán
-	 * található elemeket és beállítja.
+	 * Inicializálja a játékos mezõt: létrehozza a pályán található elemeket és
+	 * beállítja.
 	 */
 	public void Initialize() {
 		int column = size.x;
@@ -198,13 +204,6 @@ public class GameField {
 			for (int j = 0; j < row; j++) {
 				Field tempField = new Field(this);
 				tempField.setPoint(i, j);
-
-				// /View létrehozása a Field-nek, és hozzácsatolása
-				FieldView tempFieldView = new FieldView();
-				tempField.Attach(tempFieldView);
-				tempFieldView.m_Field = tempField;
-				// /
-
 				fields.add(tempField);
 			}
 		}
@@ -249,6 +248,7 @@ public class GameField {
 			hillView.m_AntHill = hill;
 			actual.addElement(hill);
 			hill.Attach(hillView);
+			this.registerNewUpdatable(hill);
 			break;
 		// észak
 		case 1:
@@ -259,6 +259,7 @@ public class GameField {
 			hillView.m_AntHill = hill;
 			actual.addElement(hill);
 			hill.Attach(hillView);
+			this.registerNewUpdatable(hill);
 			break;
 		// nyugat
 		case 2:
@@ -269,6 +270,7 @@ public class GameField {
 			hillView.m_AntHill = hill;
 			actual.addElement(hill);
 			hill.Attach(hillView);
+			this.registerNewUpdatable(hill);
 			break;
 		// kelet
 		case 3:
@@ -279,6 +281,7 @@ public class GameField {
 			hillView.m_AntHill = hill;
 			actual.addElement(hill);
 			hill.Attach(hillView);
+			this.registerNewUpdatable(hill);
 			break;
 		}
 
@@ -297,12 +300,12 @@ public class GameField {
 				actual = fields.get(index);
 				FoodStore foodTemp = new FoodStore();
 				foodTemp.setField(actual);
-				
+
 				FoodStoreView fsv = new FoodStoreView();
-				fsv.m_FoodStore=foodTemp;
+				fsv.m_FoodStore = foodTemp;
 				foodTemp.Attach(fsv);
-				
-				//foodTemp.Attach(new FoodStoreView());
+
+				// foodTemp.Attach(new FoodStoreView());
 				fields.get(index).addElement(foodTemp);
 				success = true;
 			}
@@ -312,15 +315,36 @@ public class GameField {
 		for (int i = 0; i < 3; i++) {
 			success = false;
 			while (!success) {
-				r = rand.nextInt(row*column);
-				//csak akkor helyezzük rá ha üres a kisorsolt mezõ
-				if (fields.get(r).getElements().size()==0) {
+				r = rand.nextInt(row * column);
+				// csak akkor helyezzük rá ha üres a kisorsolt mezõ
+				if (fields.get(r).getElements().size() == 0) {
 					actual = fields.get(r);
 					Antlion spider = new Antlion(actual);
+					spider.setField(actual);
+
 					AntLionView antLionView = new AntLionView();
 					antLionView.m_AntLion = spider;
 					spider.Attach(antLionView);
 					actual.addElement(spider);
+					success = true;
+				}
+			}
+		}
+
+		// 5db kavicsot helyezünk a pályára
+		for (int i = 0; i < 5; i++) {
+			success = false;
+			while (!success) {
+				r = rand.nextInt(row * column);
+				// csak akkor helyezzük rá ha üres a kisorsolt mezõ
+				if (fields.get(r).getElements().size() == 0) {
+					actual = fields.get(r);
+
+					Stone stone = new Stone(actual);
+					StoneView stoneView = new StoneView();
+					stoneView.m_Stone = stone;
+					stone.Attach(stoneView);
+					actual.addElement(stone);
 					success = true;
 				}
 			}
@@ -339,8 +363,7 @@ public class GameField {
 	}
 
 	/**
-	 * Beregisztrálja a pályára a {@code Updatable} frissítendõ
-	 * objektumot.
+	 * Beregisztrálja a pályára a {@code Updatable} frissítendõ objektumot.
 	 * 
 	 * @param element
 	 *            frissítendõ objektum
@@ -378,14 +401,15 @@ public class GameField {
 	 * Frissíti a pálya frissítendõ objektumait.
 	 */
 	public void updateUpdatables() {
-		int tUS = this.toUpdate.size();
-		for (int i = 0; i < tUS; i++) {
-			Updatable updatable = this.toUpdate.get(i);
-			updatable.update();
-		}
-		// for (Updatable updatables : this.toUpdate) {
-		// updatables.update();
-		// }
+		 int tUS = this.toUpdate.size();
+		 for (int i = 0; i < tUS; i++) {
+		 Updatable updatable = this.toUpdate.get(i);
+		 updatable.update();
+		 }
+//		System.out.println(this.toUpdate.toString());
+//		for (Updatable updatables : this.toUpdate) {
+//			updatables.update();
+//		}
 	}
 
 }

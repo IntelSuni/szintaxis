@@ -200,7 +200,6 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	public void onDraw() {
 		
-		
 	}
 
 	/**

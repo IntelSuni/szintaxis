@@ -27,6 +27,7 @@ public class Antfarm extends Game{
 	
 	@Override
 	public void update() {
+		//this.gameField.updateUpdatables();
 		System.out.println("updated");
 		
 	}
@@ -34,29 +35,6 @@ public class Antfarm extends Game{
 	@Override
 	public void draw(Graphics2D g) {
 		
-//		Image image = null;
-//		try {
-//			image = ImageIO.read(new FileInputStream("bin/anteater.png"));
-//		} catch (IOException e) {
-//			System.out.println("An error occured");
-//		}
-//		
-//		for (int i = 0; i < 400; i += 40) {
-//			for (int j = 0, rowCount = 0; j < 400; j += 40, rowCount++) {
-//				if(rowCount % 2 == 0){
-//					int[] x = new int[]{i, i+20, i+40, i+40, i+20, i};
-//					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
-//					g.drawPolygon(x, y, x.length);
-//				}
-//				else{
-//					int[] x = new int[]{i+20, i+40, i+60, i+60, i+40, i+20};
-//					int[] y = new int[]{j+20, j, j+20, j+40, j+60, j+40};
-//					g.drawPolygon(x, y, x.length);
-//				}
-//			}
-//		}
-//		g.drawImage(image, 50, 50, image.getWidth(this)/5, image.getHeight(this)/5, this);
-//		g.drawLine(30, 30, 80, 80);
 		if (!GameApplication.isStarted()) {
 			return;
 		}
@@ -82,6 +60,7 @@ public class Antfarm extends Game{
 		// valami magic hogy átkonvertáljuk mezõ koordinátákba
 		
 		Point fieldLocation = null;
+		System.out.println(locationOnScreen);
 		
 		Field field = GameField.instanceOf().getField(fieldLocation);
 		

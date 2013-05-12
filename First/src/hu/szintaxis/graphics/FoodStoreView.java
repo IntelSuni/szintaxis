@@ -39,8 +39,17 @@ public class FoodStoreView implements View {
 		if (this.m_FoodStore != null) {
 			points = this.m_FoodStore.getField().getPoint();
 		}
+		
+		int radius = (int) (20 * Math.sqrt(3));
+		
 		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		g.drawImage(image, points.x * 40, points.y * 40, image.getWidth()/8, image.getHeight()/8, null);
+		if (points.x % 2 == 0) {
+			g.drawImage(image, points.x * radius, points.y * radius, image.getWidth()/8, image.getHeight()/8, null);
+		}
+		else{
+			g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/8, image.getHeight()/8, null);
+		}
+		
 		System.out.println("FoodStore draw at: " + points.x + " - " + points.y);
 	}
 

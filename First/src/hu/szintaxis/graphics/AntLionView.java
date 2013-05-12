@@ -39,8 +39,12 @@ public class AntLionView implements View {
 		if (this.m_AntLion != null) {
 			points = this.m_AntLion.getField().getPoint();
 		}
+		
+		int radius = (int) (20 * Math.sqrt(3));
+		
 		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		g.drawImage(image, points.x, points.y, image.getWidth()/8, image.getHeight()/8, null);
+		g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/6, image.getHeight()/6, null);
+		System.out.println("Antlion draw at: " + points.x + " - " + points.y);
 	}
 
 }

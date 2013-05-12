@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
+import hu.szintaxis.graphics.AntView;
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -60,7 +61,11 @@ public class AntHill implements Updatable, Element {
 	}
 
 	public Field getField(){
-		return this.getField();
+		return this.field;
+	}
+	
+	public void setField(Field field){
+		this.field = field;
 	}
 	
 	/**
@@ -90,31 +95,20 @@ public class AntHill implements Updatable, Element {
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		
-		// 1-6 k�z�tti random sz�mot gener�l
-//		int randomFieldNum = new Random().nextInt(6 - 1 + 1) + 1;
-//		
-//		// A mez� szomsz�djai alapj�n kiv�lasztja az �j hangya mez�j�t
-//		ArrayList<Field> neighbours = this.field.getNeighbours();
-//		if (neighbours.size() >= randomFieldNum) {
-//			Field randomField = neighbours.get(randomFieldNum - 1);
-//			
-//			Ant ant = new Ant(randomField);
-//			randomField.addElement(ant);
-//			
-//			AntSmell antSmell = new AntSmell();
-//			randomField.addSmell(antSmell);
-//			
-//			this.field.gameField.registerNewUpdatable(ant);
-//		}
+		 
 		
 		// Ha nem siker�l szomsz�dra elhelyezni, akkor a saj�t mez�j�re rakja
 		Ant ant = new Ant(field);
 		AntSmell antSmell = new AntSmell();
+		AntView antView = new AntView();
+		antView.m_Ant = ant;
+		ant.Attach(antView);
 
 		field.addElement(ant);
 		field.addSmell(antSmell);
 
 		this.field.gameField.registerNewUpdatable(ant);
+		System.out.println("Ant created.");
 
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
@@ -123,6 +117,7 @@ public class AntHill implements Updatable, Element {
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
 			this.views = new Vector<View>();
+			this.views.add(view);
 		}
 		else{
 			this.views.add(view);

@@ -38,7 +38,17 @@ public class AntView implements View {
 		if (this.m_Ant != null) {
 			points = this.m_Ant.getField().getPoint();
 		}
+
+		int radius = (int) (20 * Math.sqrt(3));
+		
 		//Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
-		g.drawImage(image, points.x, points.y, image.getWidth()/8, image.getHeight()/8, null);
+		if (points.x % 2 == 0) {
+			g.drawImage(image, points.x * radius, points.y * radius, image.getWidth()/10, image.getHeight()/10, null);
+		}
+		else{
+			g.drawImage(image, 10 + points.x * radius, 10 + points.y * radius, image.getWidth()/10, image.getHeight()/10, null);
+		}
+		
+		System.out.println("Ant draw at: " + points.x + " - " + points.y);
 	}
 }

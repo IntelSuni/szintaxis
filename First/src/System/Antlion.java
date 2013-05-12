@@ -93,6 +93,7 @@ public class Antlion implements Element {
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
 			this.views = new Vector<View>();
+			this.views.add(view);
 		}
 		else{
 			this.views.add(view);
