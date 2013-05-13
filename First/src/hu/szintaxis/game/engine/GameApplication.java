@@ -10,9 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import System.GameField;
 import System.Weapon;
 
+/**
+ * A játék grafikus változatának alkalmazás osztálya.
+ *
+ */
 public class GameApplication {
 
 	private static GameLoop gameLoop;
@@ -41,6 +44,10 @@ public class GameApplication {
 		gameLoop.stopGame();
 	}
 
+	/**
+	 * Visszaadja, hogy az játék fut e.
+	 * @return <code>true</code>, ha a játék fut
+	 */
 	public static boolean isStarted() {
 		return gameLoop.isAlive();
 	}
@@ -48,6 +55,12 @@ public class GameApplication {
 	private static boolean isPaused = false;
 	private static Object helpString = "Here comes the help instructions.";
 
+	public final static MainWindow mainWindow = new MainWindow();
+	
+	/**
+	 * létrehozza, felépíti, inicializálja az alkalmazást.
+	 * @param game a játék, amelyet létrehoz
+	 */
 	public static void start(final Game game) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -55,8 +68,6 @@ public class GameApplication {
 				JFrame frame = new JFrame(game.getTitle());
 				frame.setSize(game.getWidth(), game.getHeight());
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				final MainWindow mainWindow = new MainWindow();
 
 				GameCanvas canvas = new GameCanvas();
 				mainWindow.add(canvas, BorderLayout.CENTER);

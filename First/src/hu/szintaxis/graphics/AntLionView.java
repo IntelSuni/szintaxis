@@ -14,15 +14,16 @@ import System.Antlion;
 import System.View;
 
 /**
- * @author Lipák
- * @version 1.0
- * @created 09-máj.-2013 20:58:33
+ * A hangyász kirajzolásáért felelõs osztály.
  */
 public class AntLionView implements View {
 
 	public Antlion m_AntLion;
 	private BufferedImage image = null;
 
+	/**
+	 * Létrehozza a nézetet.
+	 */
 	public AntLionView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/antlion.gif"));
@@ -31,10 +32,18 @@ public class AntLionView implements View {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.View#draw(java.awt.Graphics2D)
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		Point points = new Point();

@@ -12,19 +12,29 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 
+/**
+ * Az játék grafikus változatának alkalmazás ablakát megvalósító osztály.
+ *
+ */
 public class MainWindow extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public JPanel panel;
+	/*
+	 * Hangyairtó és hangyaszag semlegesítõ radio gombok.
+	 */
 	public JRadioButton rdbtnExtermimator, rdbtnNeutralizer;
+	/*
+	 * Hangyairtó és hangyaszag semlegesítõ címkék.
+	 */
 	public JLabel lblExterminator, lblNeutralitzer;
+	/*
+	 * Új játék, Szünet, Segítség és Kilépés gombok.
+	 */
 	public JButton btnNewGame, btnPause, btnHelp, btnExit;
 	
 	/**
-	 * Create the frame.
+	 * Létrehozza és inicializálja az alkalmazás ablakot.
 	 */
 	public MainWindow() {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,6 +61,8 @@ public class MainWindow extends JPanel {
 				
 		rdbtnExtermimator = new JRadioButton("Exterminator");
 		panel.add(rdbtnExtermimator);
+		// Alapértelmezetten a hangyairtó spray van kiválasztva.
+		rdbtnExtermimator.setSelected(true);
 		
 		lblExterminator = new JLabel("[ 20 ]");
 		panel.add(lblExterminator);

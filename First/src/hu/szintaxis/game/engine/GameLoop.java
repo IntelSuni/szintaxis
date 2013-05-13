@@ -1,6 +1,9 @@
 package hu.szintaxis.game.engine;
 
-
+/**
+ * A játék grafikus változatát futtató szál.
+ * 
+ */
 public class GameLoop extends Thread {
 
 	private final Game game;
@@ -9,6 +12,11 @@ public class GameLoop extends Thread {
     private boolean paused;
     private long singleUpdateTime;
 
+    /**
+     * Létrehozza a futtató szál objektumot.
+     * @param game a játék, amelyen létrehozza
+     * @param canvas a vászon, amelyre rajzol
+     */
 	public GameLoop(Game game, GameCanvas canvas) {
 		this.game = game;
 		this.canvas = canvas;
@@ -17,18 +25,31 @@ public class GameLoop extends Thread {
         singleUpdateTime = 1000000000 / game.getFps();
 	}
 
+	/**
+	 * Szünetelteti a játékot.
+	 */
     public void pauseGame() {
         this.paused = true;
     }
 
+    /**
+     * Folytatja a játékot.
+     */
     public void resumeGame() {
         this.paused = false;
     }
 
+    /**
+     * Megállítja a játékot.
+     */
     public void stopGame() {
         stopped = true;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Thread#run()
+     */
 	@Override
 	public void run() {
 		game.init();

@@ -52,5 +52,13 @@ public class Spray {
 		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
+	
+	/**
+	 * Visszaadja a spray kapacitását.
+	 * @return a spray kapacitása
+	 */
+	public int getCapacity(){
+		return this.capacity;
+	}
 
 }

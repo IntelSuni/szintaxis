@@ -14,15 +14,16 @@ import System.Stone;
 import System.View;
 
 /**
- * @author Lipák
- * @version 1.0
- * @created 09-máj.-2013 20:58:34
+ * A kavics kirajzolásárt felelõs osztály.
  */
 public class StoneView implements View {
 
 	public Stone m_Stone;
 	private BufferedImage image = null;
 
+	/**
+	 * Létrehozza a nézetet.
+	 */
 	public StoneView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/Stone.gif"));
@@ -31,10 +32,18 @@ public class StoneView implements View {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.View#draw(java.awt.Graphics2D)
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		Point points = new Point();

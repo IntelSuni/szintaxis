@@ -13,8 +13,16 @@ import System.Field;
 import System.GameField;
 import System.Weapon;
 
+/**
+ * A játék grafikus változatát megvalósító osztálya.
+ *
+ */
 public class Antfarm extends Game {
 
+	/**
+	 * Beállítja a játékos pálya szélességét, magasságát 
+	 * és a frissítési gyakoriságát (FPS).
+	 */
 	public Antfarm() {
 		title = "Antfarm";
 		fps = 1;
@@ -22,10 +30,18 @@ public class Antfarm extends Game {
 		width = 600;
 	}
 
+	/**
+	 * A játék grafikus változatának belépési pontja. 
+	 * @param args parancssori argumentum
+	 */
 	public static void main(String[] args) {
 		GameApplication.start(new Antfarm());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see hu.szintaxis.game.engine.Game#update()
+	 */
 	@Override
 	public void update() {
 		// this.gameField.updateUpdatables();
@@ -33,6 +49,10 @@ public class Antfarm extends Game {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see hu.szintaxis.game.engine.Game#draw(java.awt.Graphics2D)
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 
@@ -65,7 +85,7 @@ public class Antfarm extends Game {
 	public void mouseClicked(MouseEvent e) {
 		Point clickLocation = e.getPoint();
 
-		// valami magic hogy �tkonvert�ljuk mez� koordin�t�kba
+		// valami magic hogy �tkonvert�ljuk mez� koordin�t�kba
 
 		Point fieldLocation = mouseToField(clickLocation);
 
@@ -74,14 +94,22 @@ public class Antfarm extends Game {
 		Field field = GameField.instanceOf().getField(fieldLocation);
 
 		Weapon.InstanceOf().Use(field);
+		
+		//GameApplication.mainWindow.lblExterminator.setText("[ " + Weapon.InstanceOf().extSpray.getCapacity() + " ]");
+		//GameApplication.mainWindow.lblNeutralitzer.setText("[ " + Weapon.InstanceOf().neutSpray.getCapacity() + " ]");
 	}
 
+	/**
+	 * Az egér koordinátáit mezőkoordinátákká alakítja
+	 * @param mouseCoords egérkoordináták
+	 * @return <code>Point</code> mezőkoordináták
+	 */
 	public static Point mouseToField(Point mouseCoords) {
 
 		int mouseX = mouseCoords.x;
 		int mouseY = mouseCoords.y;
 
-		// f�gg�leges hely meghat�roz�sa:
+		// f�gg�leges hely meghat�roz�sa:
 		int row = Math.round((mouseY - 50) / 38.0f);
 		int column = Math.round((row % 2 == 0 ? (mouseX - 50) / 43.0f
 				: (mouseX - 71.5f) / 43.0f));
@@ -89,6 +117,11 @@ public class Antfarm extends Game {
 		return new Point(column, row);
 	}
 
+	/**
+	 * A mezőkkordinátákat egérkoordinátákká alakítja.
+	 * @param fieldCoords mezőkoordináták
+	 * @return <code>Point</code> egérkoordináták
+	 */
 	public static Point fieldToMouse(Point fieldCoords) {
 
 		int mouseY = (int) ((fieldCoords.y * 38.0f) + 50);

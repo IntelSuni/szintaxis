@@ -14,15 +14,16 @@ import System.AntHill;
 import System.View;
 
 /**
- * @author Lipák
- * @version 1.0
- * @created 09-máj.-2013 20:58:33
+ * A hangyaboly kirajzolásáért felelõs osztály.
  */
 public class AntHillView implements View {
 
 	public AntHill m_AntHill;
 	private BufferedImage image = null;
 
+	/**
+	 * Létrehozza a nézetet.
+	 */
 	public AntHillView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/ant_hill.png"));
@@ -31,16 +32,25 @@ public class AntHillView implements View {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.View#draw(java.awt.Graphics2D)
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		Point points = new Point();
-		// if (this.m_AntHill != null) {
-		points = Antfarm.fieldToMouse(m_AntHill.getField().getPoint());
-		// }
+		if (this.m_AntHill != null) {
+			points = Antfarm.fieldToMouse(m_AntHill.getField().getPoint());
+		}
+		
 		// Az méret annak megfelelõen, ha a Field kirajzolása már készen van.
 		g.drawImage(image, points.x - (image.getWidth() / 10), points.y
 				- (image.getHeight() / 10), image.getWidth() / 5,

@@ -14,15 +14,16 @@ import System.Ant;
 import System.View;
 
 /**
- * @author Lipák
- * @version 1.0
- * @created 09-máj.-2013 20:58:33
+ * A hangya kirazolásáért felelõs osztály.
  */
 public class AntView implements View {
 
 	public Ant m_Ant;
 	private BufferedImage image = null;
 
+	/**
+	 * Létrehozza a nézetet.
+	 */
 	public AntView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/ant.gif"));
@@ -31,10 +32,18 @@ public class AntView implements View {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.View#draw(java.awt.Graphics2D)
+	 */
 	public void draw(Graphics2D g) {
 		Point points = new Point();
 		if (this.m_Ant != null) {

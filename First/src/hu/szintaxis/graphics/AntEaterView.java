@@ -14,15 +14,16 @@ import System.Anteater;
 import System.View;
 
 /**
- * @author Lipák
- * @version 1.0
- * @created 09-máj.-2013 20:58:32
+ *  A hangya kirajzolásáért felelõs osztály.
  */
 public class AntEaterView implements View {
 
 	public Anteater m_AntEater;
 	private BufferedImage image = null;
 
+	/**
+	 * Létrehozza a nézetet.
+	 */
 	public AntEaterView() {
 		try {
 			image = ImageIO.read(new FileInputStream("pics/anteater.png"));
@@ -31,10 +32,18 @@ public class AntEaterView implements View {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.View#draw(java.awt.Graphics2D)
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		Point points = new Point();
