@@ -7,16 +7,22 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Akadï¿½lyt megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * Akadályt megvalósító osztály..
  */
 public class Block implements Element {
 
+	/**
+	 * Létrehoz egy akadály objektumot.	
+	 */
 	public Block() {
-//		Tracer.Instance().Trace(TracerDirection.Enter);
+		//Tracer.Instance().Trace(TracerDirection.Enter);
 		this.views = new Vector<View>();
-//		Tracer.Instance().Trace(TracerDirection.Leave);
+		//Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
+	/**
+	 * Az akadályra felcsatolt megjelenítõ nézetek.
+	 */
 	private Vector<View> views;
 
 	/* (non-Javadoc)
@@ -37,10 +43,9 @@ public class Block implements Element {
 		super.finalize();
 	}
 
-	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
-	 * 
-	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#accept(System.Visitor)
 	 */
 	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter,visitor);
@@ -49,15 +54,19 @@ public class Block implements Element {
 		return result;
 	}
 
-	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -68,6 +77,10 @@ public class Block implements Element {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -75,11 +88,26 @@ public class Block implements Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
+	}
+
 
 }

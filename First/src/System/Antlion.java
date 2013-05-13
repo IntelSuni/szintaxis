@@ -7,24 +7,33 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Hangyalesï¿½t megvalï¿½sï¿½tï¿½ objektum.
+ * Hangyalesõt megvalósító osztály.
  
  */
 public class Antlion implements Element {
 
 	/**
-	 * A hangyalesï¿½ ezen a mezï¿½n van.
+	 * A hangyalesõ ezen a mezõn van.
 	 */
 	private Field currentField;
-	
+	/**
+	 * A hangyalesõre felcsatolt megjelenítõ nézetek.
+	 */
 	private Vector<View> views;
 
+	/**
+	 * Létrehoz egy hangyalesõt.
+	 */
 	public Antlion() {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.views = new Vector<View>();
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
+	/**
+	 * Létrehoz egy hangyalesõt, a megadott mezõn.
+	 * @param field a hangyalesõt ezen a mezõn hozza létre
+	 */
 	public Antlion(Field field) {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.currentField = field;
@@ -33,11 +42,14 @@ public class Antlion implements Element {
 //		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 	
+	/**
+	 * Megadja a hangyalesõ melyik mezõn van.
+	 * @return <code>Field</code> ezen a mezõn van a hangyalesõ
+	 */
 	public Field getField(){
 		return this.currentField;
 	}
 	
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -57,10 +69,9 @@ public class Antlion implements Element {
 		super.finalize();
 	}
 
-	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
-	 * 
-	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#accept(System.Visitor)
 	 */
 	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
@@ -69,8 +80,9 @@ public class Antlion implements Element {
 		return result;
 	}
 
-	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -78,9 +90,9 @@ public class Antlion implements Element {
 	}
 
 	/**
-	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
+	 * Beállítja a {@code Field} paramétert a saját mezõjére.
 	 * 
-	 * @param field a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
+	 * @param field a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
 //		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -89,6 +101,10 @@ public class Antlion implements Element {
 //		Tracer.Instance().Trace(TracerDirection.Leave, field);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -100,6 +116,10 @@ public class Antlion implements Element {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -107,11 +127,25 @@ public class Antlion implements Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
 	}
 
 }

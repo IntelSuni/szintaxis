@@ -55,11 +55,6 @@ public class GameField {
 	 */
 	public List<Field> fields;
 
-	/**
-	 * 
-	 */
-	// public Game game;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -72,39 +67,17 @@ public class GameField {
 	/*
 	 * Ez indítja el a teljes view updatet.
 	 */
+	/**
+	 * Kirajzolja a pályát és a rajta levõ elemeket, olyan módon, hogy
+	 * a mezõknek és a rajtuk levõ elemeknek szól, hogy rajzolják ki magukat.
+	 * @param g erre az objektumra rajzol
+	 */
 	public void draw(Graphics2D g) {
-		// for (Field field : fields) {
-		// // field.update();
-		// /*
-		// * for (Element e : field.getElements()) { (View) e.notify(); }
-		// */
-		// }
-
-		// int fieldSize = this.size.x * 40;
-		//
-		// for (int i = 0; i < fieldSize; i += 40) {
-		// for (int j = 0, rowCount = 0; j < fieldSize; j += 40, rowCount++) {
-		// if (rowCount % 2 == 0) {
-		// int[] x = new int[] { i, i + 20, i + 40, i + 40, i + 20, i };
-		// int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
-		// j + 40 };
-		// g.drawPolygon(x, y, x.length);
-		// } else {
-		// int[] x = new int[] { i + 20, i + 40, i + 60, i + 60,
-		// i + 40, i + 20 };
-		// int[] y = new int[] { j + 20, j, j + 20, j + 40, j + 60,
-		// j + 40 };
-		// g.drawPolygon(x, y, x.length);
-		// }
-		// }
-		// }
-
 		for (Field field : this.fields) {
 			field.NotifyView(g);
 			ArrayList<Element> elements = field.getElements();
 			for (Element element : elements) {
 				element.NotifyView(g);
-				// System.out.println(element.toString());
 			}
 		}
 

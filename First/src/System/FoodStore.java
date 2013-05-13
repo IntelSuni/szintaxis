@@ -8,21 +8,26 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * ï¿½telRaktï¿½rat megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * Ételraktárat megvalósító osztály.
  */
 public class FoodStore implements Element {
 	/**
-	 * Az ï¿½telRaktï¿½r ezen a mezï¿½n van.
+	 * Az ételraktár ezen a mezõn van.
 	 */
 	private Field field; // a mezo amin rajta van kell ahoz hogy amikor kiurul
 							// meg lehessen szuntetni.
 	/**
-	 * Az ï¿½telRaktï¿½rban levï¿½ ï¿½telmennyisï¿½g.
+	 * Az ételraktárban levõ ételmennyiség.
 	 */
 	private int food;
-
+	/**
+	 * Az ételraktárra felcsatolt megjelenítõ nézetek.
+	 */
 	private Vector<View> views;
 
+	/**
+	 * Létrehoz egy ételraktárat.
+	 */
 	public FoodStore() {
 		// Tracer.Instance().Trace(TracerDirection.Enter);
 		this.food = 30;
@@ -31,12 +36,12 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * Lï¿½trehoz egy ï¿½telraktï¿½rat a {@code field} mezï¿½n. A mezï¿½n ï¿½s
-	 * annak 4 sugarï¿½ kï¿½rnyezetï¿½ben csï¿½kkenï¿½ erï¿½ssï¿½gï¿½
-	 * ï¿½telszagot hoz lï¿½tre.
+	 * Létrehoz egy ételraktárat a {@code field} mezõn. A mezõn és
+	 * annak 4 sugarú környezetében csökkenïõ erõsségû
+	 * ételszagot hoz létre.
 	 * 
 	 * @param field
-	 *            a mezï¿½, amelyen az ï¿½telraktï¿½r lï¿½trejï¿½n
+	 *            a mezõ, amelyen az ételraktár létrejön
 	 */
 	public FoodStore(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -45,7 +50,7 @@ public class FoodStore implements Element {
 
 		this.views = new Vector<View>();
 
-		// Az ï¿½telraktï¿½r mezï¿½jï¿½re 5-erï¿½sï¿½ggï¿½ ï¿½telszagot tesz.
+		// Az ételraktár mezï¿½jï¿½re 5-erï¿½sï¿½ggï¿½ ï¿½telszagot tesz.
 		this.field.addSmell(new FoodSmell(5));
 
 		ArrayList<Field> neighbours = this.field.getNeighbours();
@@ -93,16 +98,16 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Megadja az ételraktár aktuális mezõjét.
+	 * @return az ételraktár ezen a mezõn van
 	 */
 	public Field getField() {
 		return this.field;
 	}
 
 	/**
-	 * 
-	 * @param field
+	 * Beállítja az ételraktár mezõjét.
+	 * @param field az ételraktár új mezõje.
 	 */
 	public void setField(Field field) {
 		this.field = field;
@@ -127,14 +132,9 @@ public class FoodStore implements Element {
 		super.finalize();
 	}
 
-	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben
-	 * megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t
-	 * ï¿½nmagï¿½val paramï¿½terezve.
-	 * 
-	 * @param visitor
-	 *            a {@code visitor}-on meghï¿½vja a class a sajï¿½t magï¿½hoz
-	 *            tartozï¿½ fï¿½ggvï¿½nyt
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#accept(System.Visitor)
 	 */
 	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
@@ -144,7 +144,7 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * A hangya, aki meglï¿½togatta ezt a ï¿½telraktï¿½rat megeszik belï¿½le
+	 * A hangya, aki meglátogatta ezt a ételraktárat megeszik belõle
 	 * valamennyit.
 	 */
 	public void eat() {
@@ -159,10 +159,10 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * {@code int} tï¿½pusban megadja az ï¿½telraktï¿½rban levï¿½ ï¿½tel
-	 * mennyisï¿½gï¿½t.
+	 * {@code int} típusban megadja az ételraktárban levõ étel
+	 * mennyiségét.
 	 * 
-	 * @return az ï¿½telraktï¿½rban elï¿½rhetï¿½ ï¿½telmennyisï¿½g
+	 * @return az ételraktárban elérhetõ ételmennyiség
 	 */
 	public int getFoodLeft() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -171,26 +171,32 @@ public class FoodStore implements Element {
 	}
 
 	/**
-	 * A foodstore eltï¿½volï¿½tja sajï¿½t magï¿½t a mezï¿½jï¿½rï¿½l. A
-	 * mezï¿½rï¿½rï¿½l ï¿½s a szomszï¿½djairï¿½l eltï¿½nteti az ï¿½telszag
+	 * A foodstore eltávolítja saját magát a mezõjérõl. A
+	 * mezõrõl és a szomszédjairól eltünteti az ételszag
 	 * objektumokat.
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 
 		field.removeElement(this);
-
+		this.DetachAllViews();
+		
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
-	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -201,6 +207,10 @@ public class FoodStore implements Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -208,11 +218,25 @@ public class FoodStore implements Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
+	}
+	
 }

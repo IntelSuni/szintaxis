@@ -10,6 +10,9 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
  */
 public class Neutralizer extends Spray {
 
+	/**
+	 * Létrehozza egy hangyaszag semlegesítõt.
+	 */
 	public Neutralizer() {
 		super();
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -35,8 +38,9 @@ public class Neutralizer extends Spray {
 		super.finalize();
 	}
 
-	/**
-	 * Grafikus változathoz kirajzolásához.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Spray#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);

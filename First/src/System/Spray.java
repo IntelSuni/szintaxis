@@ -12,6 +12,9 @@ public class Spray {
 	 */
 	protected int capacity;
 
+	/**
+	 * Létrehoz egy spray objektumot, alapértelmezetten 20-as kapacitással.
+	 */
 	public Spray() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.capacity = 20;
@@ -28,7 +31,9 @@ public class Spray {
 	}
 
 	/**
-	 * Grafikus változathoz kirajzolásához.
+	 * @deprecated
+	 * 
+	 * Grafikus változat kirajzolásához.
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -36,7 +41,7 @@ public class Spray {
 	}
 
 	/**
-	 * /**
+	 *
 	 * A {@code Field} paraméterre {@code Smell} szagot rak.
 	 * 
 	 * @param mezo spray használata ezen a mezõn

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package System;
 
 import hu.szintaxis.skeleton.Tracer;
@@ -11,24 +8,33 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * @author Martin
- *
+ * Kavicsot megvalósító osztály.
  */
 public class Stone extends Block {
 
+	/**
+	 * A hangyászra felcsatolt megjelenítõ nézetek.
+	 */
 	private Vector<View> views;
 	
+	/**
+	 * Létrehoz egy kavics objektumot.
+	 */
 	public Stone() {
 		this.views = new Vector<View>();
 	}
 	
+	/**
+	 * Létrehoz egy kavics objektumot a megadott mezõre.
+	 * @param field a mezõ, amelyen a kavics létrejön
+	 */
 	public Stone(Field field) {
 		this.currentField = field;
 		this.views = new Vector<View>();
 	}
 	
 	/**
-	 * A kavics ezen a mezï¿½n van.
+	 * A kavics ezen a mezõn van.
 	 */
 	private Field currentField;
 	
@@ -44,9 +50,9 @@ public class Stone extends Block {
 		return visitor.visit(this);
 	}
 	/**
-	 * Ko mozgatÃ¡sa a direction parameter altal mutatott iranyba, returns false ha nem tud oda kovet rakni
-	 * @param direction
-	 * @return
+	 * Kõ mozgatása a direction parameter altal mutatott iranyba, returns false ha nem tud oda kovet rakni
+	 * @param direction az irány ahová mozgatni szeretnénk
+	 * @return <code>true</code>, ha lehet az irányba mozgatni
 	 */
 	boolean moving (Direction direction){
 		Tracer.Instance().Trace(TracerDirection.Enter, direction);
@@ -153,6 +159,10 @@ public class Stone extends Block {
 		return true;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Block#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -164,6 +174,10 @@ public class Stone extends Block {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Block#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -171,11 +185,26 @@ public class Stone extends Block {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Block#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
+	}
+
 	
 }

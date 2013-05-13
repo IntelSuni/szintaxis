@@ -17,6 +17,9 @@ import System.GameField;
  */
 public abstract class Game implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
+	/*
+	 * (non-Javadoc)
+	 */
 	protected boolean over;
 	protected String title = "My Game";
 	protected int width=400, height=300;

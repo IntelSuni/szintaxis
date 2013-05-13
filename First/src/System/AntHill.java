@@ -1,8 +1,6 @@
 package System;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Vector;
 
 import hu.szintaxis.graphics.AntView;
@@ -10,17 +8,22 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * HangyaBolyt megvalï¿½sï¿½tï¿½ osztï¿½ly
+ * Hangyabolyt megvalósító osztály.
  */
 public class AntHill implements Updatable, Element {
 
 	/**
-	 * A HangyaBoly ezen a mezï¿½n van.
+	 * A Hangyaboly ezen a mezõn van.
 	 */
 	private Field field;
-		
+	/**
+	 * A hangybolyra felcsatolt megjelenítõ nézetek.
+	 */	
 	private Vector<View> views;
-
+	
+	/**
+	 * Létrehoz egy hangyabolyt.
+	 */
 	public AntHill() {
 		super();
 		this.views = new Vector<View>();
@@ -39,9 +42,9 @@ public class AntHill implements Updatable, Element {
 	}
 
 	/**
-	 * Lï¿½trehoz egy hangyabolyt a {@code field} mezï¿½n.
+	 * Létrehoz egy hangyabolyt a {@code field} mezõn.
 	 * 
-	 * @param field a mezï¿½, amelyen a hangyaboly lï¿½trejï¿½n
+	 * @param field a mezõ, amelyen a hangyaboly létrejön
 	 */
 	public AntHill(Field field) {
 //		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -60,18 +63,25 @@ public class AntHill implements Updatable, Element {
 		super.finalize();
 	}
 
+	/**
+	 * Visszaadja a hangyaboly aktuális mezõjét.
+	 * @return a hangyaboly mezõje
+	 */
 	public Field getField(){
 		return this.field;
 	}
 	
+	/**
+	 * Beállítja a hangyaboly mezõjét.
+	 * @param field a hangyaboly új mezõje
+	 */
 	public void setField(Field field){
 		this.field = field;
 	}
 	
-	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
-	 * 
-	 * @param visitor visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#accept(System.Visitor)
 	 */
 	public boolean accept(Visitor visitor) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visitor);
@@ -80,8 +90,9 @@ public class AntHill implements Updatable, Element {
 		return result;
 	}
 	
-	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -89,13 +100,11 @@ public class AntHill implements Updatable, Element {
 	}
 
 	/**
-	 * Lï¿½trehoz egy ï¿½j hangyï¿½t ï¿½s hangszagot, elhelyezi egy hangyabolyhoz 
-	 * kï¿½zeli mezï¿½n ï¿½s a jï¿½tï¿½kos pï¿½lyï¿½ra is beregisztrï¿½lja.
+	 * Létrehoz egy új hangyát és hangszagot, elhelyezi egy hangyabolyhoz 
+	 * közeli mezõn és a játékos pályára is beregisztrálja.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
-		
-		 
 		
 		// Ha nem sikerï¿½l szomszï¿½dra elhelyezni, akkor a sajï¿½t mezï¿½jï¿½re rakja
 		Ant ant = new Ant(field);
@@ -113,6 +122,10 @@ public class AntHill implements Updatable, Element {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -124,6 +137,10 @@ public class AntHill implements Updatable, Element {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -131,10 +148,24 @@ public class AntHill implements Updatable, Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
 	}
 }

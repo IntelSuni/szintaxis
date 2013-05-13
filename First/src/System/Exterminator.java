@@ -8,6 +8,9 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
  */
 public class Exterminator extends Spray {
 
+	/**
+	 * Létrehozza a hangyairtót.
+	 */
 	public Exterminator() {
 		super();
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -33,8 +36,9 @@ public class Exterminator extends Spray {
 		super.finalize();
 	}
 
-	/**
-	 * Grafikus változathoz kirajzolásához.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Spray#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Hangyï¿½t megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * Hangyát megvalósító osztály.
  */
 public class Ant implements Updatable, Visitor, Element {
 	/**
-	 * A hangya haladï¿½si irï¿½nya.
+	 * A hangya haladási iránya.
 	 */
 	private Direction direction;
 	/**
@@ -20,21 +20,21 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private String name;
 	/**
-	 * A hangya jelenleg melyik pï¿½lyï¿½n levï¿½ mezï¿½ben van
-	 * (tartï¿½zkodï¿½si helye).
+	 * A hangya jelenleg melyik pályán levõ mezõben van
+	 * (tartózkodási helye).
 	 */
 	private Field field;
 	/**
-	 * A hangya ï¿½lete.
+	 * A hangya élete.
 	 */
 	private int HealtPoint;
 	/**
-	 * A hangya mï¿½rgezettsï¿½gi szinje.
+	 * A hangya mérgezettségi szinje.
 	 */
 	private int poisonLevel;
 	/**
-	 * A hangya eddig mely mezï¿½kben jï¿½rt, mielï¿½tt a jelenlegi mezï¿½be
-	 * lï¿½pett volna.
+	 * A hangya eddig mely mezõkben járt, mielõtt a jelenlegi mezõbe
+	 * lépett volna.
 	 */
 	private ArrayList<Field> visitedFields;
 	
@@ -43,6 +43,10 @@ public class Ant implements Updatable, Visitor, Element {
 	 */
 	private Vector<View> views;
 
+	/**
+	 * Létrehoz egy hangyát.
+	 * System.Ant#setField(Field) használata javasolt.
+	 */
 	public Ant() {
 		this.HealtPoint = 20;
 		this.direction = Direction.east;
@@ -50,10 +54,10 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Lï¿½trehoz egy hangyï¿½t a {@code field} mezï¿½n.
+	 * Létrehoz egy hangyát a {@code field} mezõn.
 	 * 
 	 * @param field
-	 *            a mezï¿½, amelyen a hangya lï¿½trejï¿½n
+	 *            a mezõ, amelyen a hangya létrejön
 	 */
 	public Ant(Field field) {
 		this.field = field;
@@ -83,12 +87,12 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben
-	 * megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t
-	 * ï¿½nmagï¿½val paramï¿½terezve.
+	 * Visitor tervezési mintáûnak megfelelõ accept, a paraméterben
+	 * megkapott {@code Visitor}-on meghívja annak visit metódusát
+	 * önmagával paraméterezve.
 	 * 
 	 * @param visiting
-	 *            visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
+	 *            visit metódusának meghívására
 	 */
 	public boolean accept(Visitor visiting) {
 		boolean result = visiting.visit(this);
@@ -97,21 +101,21 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code level} ï¿½rtï¿½kkel nï¿½veli a hangya mï¿½rgezettsï¿½gi
-	 * szintjï¿½t.
+	 * {@code level} értékkel növeli a hangya mérgezettségi
+	 * szintjét.
 	 * 
 	 * @param level
-	 *            ennyivel nï¿½veli a mï¿½rgezettsï¿½gi szintet
+	 *            ennyivel növeli a mérgezettségi szintet
 	 */
 	public void addPoisonLevel(int level) {
 		Tracer.Instance().Trace(TracerDirection.Enter, level);
 		this.poisonLevel += level;
-//		System.out.println("\tAnt get poisoned.");
+		//System.out.println("\tAnt get poisoned.");
 		Tracer.Instance().Trace(TracerDirection.Leave, this.poisonLevel);
 	}
 
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
 	 * @param f
 	 */
 	public void blocked_direction(Field f) {
@@ -120,13 +124,13 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Eldï¿½nti ï¿½s {@code Field}-ben visszaadja, hogy a
-	 * {@code ArrayList<Field>} kï¿½zï¿½l a hangya hova lï¿½pjen.
+	 * Eldönti és {@code Field}-ben visszaadja, hogy a
+	 * {@code ArrayList<Field>} közül a hangya hova lépjen.
 	 * 
 	 * @param a
-	 *            a mezï¿½k listï¿½ja, amelyek kï¿½zï¿½l kivï¿½lasztja a
-	 *            kï¿½vetkezï¿½ mezï¿½t
-	 * @return Field a kï¿½vetkezï¿½ mezï¿½, amelyre a hangya lï¿½p
+	 *            a mezõk listája, amelyek közül kiválasztja a
+	 *            következõ mezõt
+	 * @return Field a következõ mezõ, amelyre a hangya lép
 	 */
 	public Field decideDirection(ArrayList<Field> a) {
 		Tracer.Instance().Trace(TracerDirection.Enter, a);
@@ -136,8 +140,8 @@ public class Ant implements Updatable, Visitor, Element {
 		int intensity = 0, smellIntensity = 0;
 		int x = this.field.getPoint().x, y = this.field.getPoint().y;
 
-		// A mezï¿½ szomszï¿½djain levï¿½ hangya- ï¿½s ï¿½telszagokat ï¿½sszegzi
-		// ï¿½s azt vï¿½lasztja, amelyik ezek kï¿½zï¿½l a legnagyobb
+		// A mezõ szomszï¿½djain levï¿½ hangya- és ï¿½telszagokat ésszegzi
+		// és azt vï¿½lasztja, amelyik ezek kï¿½zï¿½l a legnagyobb
 		// (A legutolsï¿½t vï¿½lasztja.)
 		for (Field field : a) {
 			if (field != null) {
@@ -166,7 +170,7 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * Csï¿½kkenti a hangya ï¿½letpontjï¿½t.
+	 * Csökkenti a hangya életpontját.
 	 */
 	public void decreaseHealtPoint() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -185,28 +189,29 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * A hangya meghal, eltï¿½volï¿½tja sajï¿½t magï¿½t a mezï¿½jï¿½bï¿½l.
+	 * A hangya meghal, eltávolítja saját magát a mezõjébõl.
 	 */
 	public void kill() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.field.removeElement(this);
 		GameField.instanceOf().unregisterUpdatable(this);
-		
+		this.DetachAllViews();
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
 	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	 * @deprecated
+	 * Grafikus változathoz kirajzolásához.
 	 */
 	public void onDraw() {
 		
 	}
 
 	/**
-	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
+	 * Beállítja a {@code Field} paramétert a saját mezõjére.
 	 * 
 	 * @param field
-	 *            a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
+	 *            a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
 		this.field = field;
@@ -214,17 +219,17 @@ public class Ant implements Updatable, Visitor, Element {
 	
 	/**
 	 * Visszaadja melyik mezõn van a hangya.
-	 * @return A mezõ amelyen a hangya van.
+	 * @return a mezõ amelyen a hangya van.
 	 */
 	public Field getField(){
 		return this.field;
 	}
 
 	/**
-	 * Megkï¿½ri az aktuï¿½lis mezï¿½t mondja meg ki a szomszï¿½dja. Az
-	 * eredmï¿½nyen meghï¿½vja a DecideDirection fï¿½ggvï¿½nyt, majd tï¿½rli a
-	 * hangya magï¿½t a aktuï¿½lis mezï¿½bï¿½l ï¿½s hozzï¿½adja magï¿½t a
-	 * mï¿½sik mezï¿½re.
+	 * Megkéri az aktuális mezõt mondja meg ki a szomszédja. Az
+	 * eredményen meghívja a DecideDirection függvényt, majd törli a
+	 * hangya magát a aktuális mezõrõl és hozzáadja magát a
+	 * másik mezõre.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -256,7 +261,7 @@ public class Ant implements Updatable, Visitor, Element {
 			s.accept(this);
 		}
 		
-		// mï¿½regszint alapjï¿½n az ï¿½letpontok frissï¿½tï¿½se
+		// mï¿½regszint alapjï¿½n az ï¿½letpontok frissï¿½tése
 		ArrayList<Smell> smells = this.field.getSmells();
 		for (int i = 0; i < smells.size(); i++) {
 			if (i >= smells.size()) {
@@ -271,10 +276,10 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Antlion} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
+	 * {@code Antlion} látogatása esetén a hangya meghal.
 	 * 
 	 * @param antlion
-	 *            visitï¿½lï¿½ objektum
+	 *            visitáló objektum
 	 */
 	public boolean visit(Antlion antlion) {
 		System.out.println("\tAnt killed by Antlion.");
@@ -284,10 +289,10 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Ant} lï¿½togatï¿½sa.
+	 * {@code Ant} látogatésa.
 	 * 
 	 * @param ant
-	 *            visitï¿½lï¿½ objektum
+	 *            visitáló objektum
 	 * @return
 	 */
 	public boolean visit(Ant ant) {
@@ -295,9 +300,9 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Block} lï¿½togatï¿½sa.
+	 * {@code Block} látogatása.
 	 * 	 * @param akadaly
-	 *            visitï¿½lï¿½ objektum
+	 *            visitáló objektum
 	 * @return
 	 */
 	public boolean visit(Block akadaly) {
@@ -305,11 +310,11 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code FoodStore} lï¿½togatï¿½sa.
+	 * {@code FoodStore} látogatása.
 	 * 
 	 * @param foodstore
-	 *            a hangya a meglï¿½togatott {@code FoodStore}-ban eszik majd,
-	 *            miutï¿½n evett meghal
+	 *            a hangya a meglátogatott {@code FoodStore}-ban eszik majd,
+	 *            miután evett meghal
 	 */
 	public boolean visit(FoodStore foodstore) {
 		foodstore.eat();
@@ -319,10 +324,10 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Anteater} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
+	 * {@code Anteater} látogatása esetén a hangya meghal.
 	 * 
 	 * @param anteater
-	 *            visitï¿½lï¿½ objektum
+	 *            visitáló objektum
 	 */
 	public boolean visit(Anteater anteater) {
 		anteater.eat(this);
@@ -330,22 +335,31 @@ public class Ant implements Updatable, Visitor, Element {
 	}
 
 	/**
-	 * {@code Stone} lï¿½togatï¿½sa.
+	 * {@code Stone} látogatása.
 	 * 
 	 * @param stone
-	 *            visitï¿½lï¿½ objektum
+	 *            visitáló objektum
 	 */
 	@Override
 	public boolean visit(Stone stone) {
 		return false;
 	}
 
+	/**
+	 * <code>AntHill</code> látogatása.
+	 * 
+	 * @param antHill visitáló objektum
+	 */
 	@Override
 	public boolean visit(AntHill antHill) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -357,6 +371,10 @@ public class Ant implements Updatable, Visitor, Element {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -364,11 +382,25 @@ public class Ant implements Updatable, Visitor, Element {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
 	}
 
 }

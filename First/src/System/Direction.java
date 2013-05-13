@@ -1,17 +1,14 @@
-/**
- * 
- */
 package System;
 
 /**
- * @author Martin
+ * <code>Enum</code> osztály az irány tárolására és megállapítására.
  * 
  */
 public enum Direction {
 	east, west, southWest, southEast, northEast, northWest;
 	/**
-	 * 
-	 * @return the negate of the previous direction
+	 * Visszaadja az irány ellenkezõ irányát.
+	 * @return az elõzõ irány ellentettje
 	 */
 	Direction negate() {
 		Direction result = null;
@@ -41,6 +38,11 @@ public enum Direction {
 		return result;
 	}
 
+	/**
+	 * A haladási irány számát haladási iránnyá konvertálja.
+	 * @param i haladási irány <code>int</code> változata
+	 * @return haladási irány <code>Direction</code> változata
+	 */
 	public static Direction getDirection(int i) {
 		Direction result = null;
 		switch (i) {

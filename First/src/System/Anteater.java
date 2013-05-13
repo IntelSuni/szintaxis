@@ -8,22 +8,31 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Hangyï¿½szt megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * Hangyászt megvalósító osztály.
  */
 public class Anteater implements Updatable, Element, Visitor {
 
 	/**
-	 * A hangyï¿½sz ezen a mezï¿½n van.
+	 * A hangyász ezen a mezõn van.
 	 */
 	private Field currentField;
 	/**
-	 * A hangyï¿½sz ï¿½ltal megevett hangyï¿½k szï¿½ma.
+	 * A hangyász által megevett hangyák száma.
 	 */
 	private int eatenAnts;
+	/**
+	 * A hangyász haladási iránya
+	 */
 	private Direction direction;
-	
+	/**
+	 * A hangyászra felcsatolt megjelenítõ nézetek.
+	 */
 	private Vector<View> views;
 
+	/**
+	 *  A hangyászt létrehozza alapértelmezett keleti irányú
+	 *  haladási iránnyal.
+	 */
 	public Anteater() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		eatenAnts=0;
@@ -33,8 +42,10 @@ public class Anteater implements Updatable, Element, Visitor {
 //		GameField.instanceOf().registerNewUpdatable(this);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
+
 	/**
-	 * Masik constructor hatha kell
+	 * A hangyászt létrehozza a mezõn.
+	 * @param field a hangyász erre a mezõre került létrehozásra
 	 */
 	public Anteater(Field field){
 		eatenAnts=0;
@@ -44,16 +55,18 @@ public class Anteater implements Updatable, Element, Visitor {
 //		GameField.instanceOf().registerNewUpdatable(this);
 	}
 	/**
-	 * Az alap irany megvalasztasa lÃ©trehozÃ¡skor
-	 * @param field
-	 * @param defDirection
+	 * Az alap irány megválasztása létrehozáskor.
+	 * 
+	 * @param field a hangyász erre a mezõre kerül létrehozásra
+	 * @param defDirection a hangyász haladási irányának beállítása
 	 */
-	public Anteater(Field field,Direction defDirection){
+	public Anteater(Field field, Direction defDirection){
 		eatenAnts=0;
 		currentField=field;
 		direction=defDirection;
 //		GameField.instanceOf().registerNewUpdatable(this);
 	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -73,14 +86,17 @@ public class Anteater implements Updatable, Element, Visitor {
 		super.finalize();
 	}
 	
+	/**
+	 * Megadja a hangyász melyik mezõn van.
+	 * @return <code>Field</code> ezen a mezõn van a hangyász
+	 */
 	public Field getField(){
 		return this.currentField;
 	}
 
-	/**
-	 * Visitor tervezï¿½si mintï¿½nak megfelelï¿½ accept, a paramï¿½terben megkapott {@code Visitor}-on meghï¿½vja annak visit metï¿½dusï¿½t ï¿½nmagï¿½val paramï¿½terezve.
-	 * 
-	 * @param visiting visit metï¿½dusï¿½nak meghï¿½vï¿½sï¿½ra
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#accept(System.Visitor)
 	 */
 	public boolean accept(Visitor visiting) {
 		Tracer.Instance().Trace(TracerDirection.Enter, visiting);
@@ -90,10 +106,10 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Eldï¿½nti ï¿½s {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} kï¿½zï¿½l a hangyï¿½sz hova lï¿½pjen.
+	 * Eldönti és {@code Field}-ben visszaadja, hogy a {@code ArrayList<Field>} küzül a hangyász hova lépjen.
 	 * 
-	 * @param fields a mezï¿½k listï¿½ja, amelyek kï¿½zï¿½l kivï¿½lasztja a kï¿½vetkezï¿½ mezï¿½t
-	 * @return Field a kï¿½vetkezï¿½ mezï¿½, amelyre a hangya lï¿½p
+	 * @param fields a mezõk listája, amelyek közïül kiválasztja a következõ mezõt
+	 * @return Field a következõ mezõ, amelyre a hangya lép
 	 */
 	public Field decideDirection(ArrayList<Field> fields) {
 		Tracer.Instance().Trace(TracerDirection.Enter, fields);
@@ -171,10 +187,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Nï¿½veli a megevett hangyï¿½k szï¿½mï¿½t, ha mï¿½g ehet ({@code eatenAnts} < 3) 
-	 * ï¿½s megï¿½li a mezï¿½n szereplï¿½ hangyï¿½t
-	 * @param ant 
-
+	 * Növeli a megevett hangyák számát, ha még ehet ({@code eatenAnts} < 3) 
+	 * és megöli a mezõn szereplõ hangyát
+	 * @param ant a hangya, amelyet megeszik
 	 */
 	public void eat(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -189,8 +204,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	
 	}
 
-	/**
-	 * Grafikus vï¿½ltozathoz kirajzolï¿½sï¿½hoz.
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#onDraw()
 	 */
 	public void onDraw() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -198,9 +214,9 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Beï¿½llï¿½tja a {@code Field} paramï¿½tert a sajï¿½t mezï¿½jï¿½re.
+	 * Beállítja a {@code Field} paramétert a saját mezõjére.
 	 * 
-	 * @param field a mezï¿½, amelyre beï¿½llï¿½tja a sajï¿½t mezï¿½jï¿½t
+	 * @param field a mezõ, amelyre beállítja a saját mezõjét
 	 */
 	public void setField(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter, field);
@@ -209,10 +225,10 @@ public class Anteater implements Updatable, Element, Visitor {
 	}
 
 	/**
-	 * Megkï¿½ri az aktuï¿½lis mezï¿½t mondja meg ki a 
-	 * szomszï¿½dja. Az eredmï¿½nyen meghï¿½vja a DecideDirection fï¿½ggvï¿½nyt, majd tï¿½rli a hangyï¿½sz
-	 * magï¿½t a aktuï¿½lis mezï¿½bï¿½l ï¿½s hozzï¿½adja magï¿½t a mï¿½sik mezï¿½re. 
-	 * Ha a mezï¿½n hangya van, akkor megeszi.
+	 * Megkéri az aktuális mezõt mondja meg ki a 
+	 * szomszédja. Az eredményen meghívja a DecideDirection függvényt, majd törli a hangyász
+	 * magát a aktuális mezõbõl és hozzáadja magát a másik mezõre. 
+	 * Ha a mezõn hangya van, akkor megeszi.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -257,10 +273,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
 
-	/**
-	 * {@code Antlion} lï¿½togatï¿½sa.
-	 * 
-	 * @param antlion visitï¿½lï¿½ objektum
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.Antlion)
 	 */
 	public boolean visit(Antlion antlion) {
 		Tracer.Instance().Trace(TracerDirection.Enter, antlion);
@@ -268,11 +283,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		return true;
 	}
 
-	/**
-	 * {@code Ant} lï¿½togatï¿½sa.
-	 * 
-	 * @param ant visitï¿½lï¿½ objektum
-	 * @return 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.Ant)
 	 */
 	public boolean visit(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter, ant);
@@ -281,11 +294,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		return true;
 	}
 
-	/**
-	 * {@code Block} lï¿½togatï¿½sa.
-	 * 
-	 * @param akadaly visitï¿½lï¿½ objektum
-	 * @return 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.Block)
 	 */
 	public boolean visit(Block akadaly) {
 		Tracer.Instance().Trace(TracerDirection.Enter, akadaly);
@@ -293,10 +304,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		return true;
 	}
 
-	/**
-	 * {@code FoodStore} lï¿½togatï¿½sa.
-	 * 
-	 * @param foodstore visitï¿½lï¿½ objektum
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.FoodStore)
 	 */
 	public boolean visit(FoodStore foodstore) {
 		Tracer.Instance().Trace(TracerDirection.Enter, foodstore);
@@ -304,10 +314,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		return true;
 	}
 
-	/**
-	 * {@code Anteater} lï¿½togatï¿½sa esetï¿½n a hangya meghal.
-	 * 
-	 * @param anteater visitï¿½lï¿½ objektum
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.Anteater)
 	 */
 	public boolean visit(Anteater anteater) {
 		Tracer.Instance().Trace(TracerDirection.Enter, anteater);
@@ -315,10 +324,9 @@ public class Anteater implements Updatable, Element, Visitor {
 		return true;
 	}
 
-	/**
-	 * {@code Stone} lï¿½togatï¿½sa.
-	 * 
-	 * @param stone visitï¿½lï¿½ objektum
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.Stone)
 	 */
 	@Override
 	public boolean visit(Stone stone) {
@@ -334,12 +342,21 @@ public class Anteater implements Updatable, Element, Visitor {
 		Tracer.Instance().Trace(TracerDirection.Leave);
 		return result;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Visitor#visit(System.AntHill)
+	 */
 	@Override
 	public boolean visit(AntHill antHill) {
 		return true;
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Attach(System.View)
+	 */
 	@Override
 	public void Attach(View view) {
 		if (this.views.isEmpty()) {
@@ -351,6 +368,10 @@ public class Anteater implements Updatable, Element, Visitor {
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#Detach(System.View)
+	 */
 	@Override
 	public void Detach(View view) {
 		if (this.views.contains(view)) {
@@ -358,11 +379,25 @@ public class Anteater implements Updatable, Element, Visitor {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#NotifyView(java.awt.Graphics2D)
+	 */
 	@Override
 	public void NotifyView(Graphics2D g) {
 		for (View view : this.views) {
 			view.draw(g);
 		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see System.Element#DetachAllViews()
+	 */
+	@Override
+	public void DetachAllViews() {
+		this.views.clear();
+		this.views = null;
 	}
 
 }

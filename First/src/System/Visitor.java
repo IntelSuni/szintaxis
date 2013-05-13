@@ -1,54 +1,66 @@
 package System;
 
 /**
- * Visitor interfï¿½sz.
- * A Visitor tervezï¿½si minta megvalï¿½sï¿½tï¿½sï¿½ra szolgï¿½lï¿½ olyan interfï¿½sz,
- * amely tartalmazza a Element interfï¿½szt megvalï¿½sï¿½tï¿½ osztï¿½lyok visit fï¿½ggvï¿½nyeit.
+ * Visitor interész.
+ * A Visitor tervezési minta megvalósítására szolgáló olyan interféz,
+ * amely tartalmazza a Element interfészt megvalósító osztályok visit függvényeit.
  */
 public interface Visitor {
 
 	/**
-	 * A paramï¿½terben megkapott {@code Anteater} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
+	 * A paraméterben megkapott {@code Anteater} objektumon hívja meg a szükséges metódusokat.
 	 * 
 	 * @param anteater
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(Anteater anteater);
 
 	/**
-	 * A paramï¿½terben megkapott {@code FoodStore} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
+	 * A paraméterben megkapott {@code FoodStore} objektumon hívja meg a szükséges metódusokat.
 	 * 
 	 * @param foodstore
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(FoodStore foodstore);
 
 	/**
-	 *A paramï¿½terben megkapott {@code Antlion} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
+	 * A paraméterben megkapott {@code Antlion antlion} objektumon hívja meg a szükséges metódusokat.
 	 * 
 	 * @param antlion
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(Antlion antlion);
 
 	/**
-	 * A paramï¿½terben megkapott {@code Ant} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
-	 *  
+	 * A paraméterben megkapott {@code Ant} objektumon hívja meg a szükséges metódusokat.
+	 * 
 	 * @param ant
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(Ant ant);
 
 	/**
-	 * A paramï¿½terben megkapott {@code Block} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
+	 * A paraméterben megkapott {@code Block} objektumon hívja meg a szükséges metódusokat.
 	 * 
 	 * @param block
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(Block block);
 	
 	/**
-	 * A paramï¿½terben megkapott {@code Stone} objektumon hï¿½vja meg szï¿½ksï¿½ges metï¿½dusokat.
+	 * A paraméterben megkapott {@code Stone} objektumon hívja meg a szükséges metódusokat.
 	 * 
 	 * @param stone
+	 * @return Lehetséges e erre a mezõre lépni.
 	 */
 	public boolean visit(Stone stone);
 
+	/**
+	 * A paraméterben megkapott {@code AntHill} objektumon hívja meg a szükséges metódusokat.
+	 * 
+	 * @param antHill
+	 * @return Lehetséges e erre a mezõre lépni.
+	 */
 	public boolean visit(AntHill antHill);
 
 }

@@ -4,12 +4,20 @@ import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
- * Irtï¿½Szagot megvalï¿½sï¿½tï¿½ osztï¿½ly.
+ * IrtóSzagot megvalósító osztály.
  */
 public class ExterminatorSmell extends Smell {
 
+	/**
+	 * Az irtószag ezen a mezõn van.
+	 */
 	Field field;
 
+	/**
+	 * Irtószagot hoz létre a magadott mezõn.
+	 * 
+	 * @param field az irtószagot erre a mezõre hozza létre
+	 */
 	public ExterminatorSmell(Field field) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = 5;
@@ -18,12 +26,12 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * amikor terjed a szag a szomszedoknal, ez a konstruktor van hasznalva
-	 * valamint olxyan esetekben, amikor el akarunk terni az alapertelmezett
-	 * szagerossegtol
+	 * Amikor terjed a szag a szomszedoknal, ez a konstruktor van hasznalva
+	 * valamint olyan esetekben, amikor el akarunk terni az alapertelmezett
+	 * szagerossegtol.
 	 * 
 	 * @param intensity
-	 *            A szag erossege
+	 *            A szag erõssége
 	 */
 	public ExterminatorSmell(int intensity) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -51,11 +59,11 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Beï¿½llï¿½tja a paramï¿½terkï¿½nt kapott hangya mï¿½rgezettsï¿½gi
-	 * szintjï¿½t.
+	 * Beállítja a paraméterként kapott hangya mérgezettségi
+	 * szintjét.
 	 * 
 	 * @param ant
-	 *            a hangya, amire hatunk
+	 *            a hangya, amire hat
 	 */
 	public void activate(Ant ant) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -66,7 +74,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Csï¿½kkenti az irtï¿½szag intenzitï¿½sï¿½t.
+	 * Csökkenti az irtószag intenzitását.
 	 */
 	public void decrementIntensity() {
 		// Tracer.Instance().Trace(TracerDirection.Enter);
@@ -82,9 +90,9 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Az irtï¿½szag lekï¿½rdezï¿½sï¿½re szolgï¿½l.
+	 * Az irtószag lekérdezésére szolgál.
 	 * 
-	 * @return az irtï¿½szag intenzitï¿½sa
+	 * @return az irtószag intenzitása
 	 */
 	public int getIntensity() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
@@ -93,7 +101,7 @@ public class ExterminatorSmell extends Smell {
 	}
 
 	/**
-	 * Az irtï¿½szag intenzitï¿½s frissï¿½tï¿½sï¿½t vï¿½gzi.
+	 * Az irtószag intenzitás frissítését végzi.
 	 */
 	public void update() {
 		Tracer.Instance().Trace(TracerDirection.Enter);

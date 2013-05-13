@@ -13,6 +13,9 @@ public abstract class Smell implements Updatable {
 	 */
 	protected int intensity;
 
+	/**
+	 * Létrehoz egy szag obejktumot alapértelmezetten 10-es intenzitással.
+	 */
 	public Smell() {	
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = 10;

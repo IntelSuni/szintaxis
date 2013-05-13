@@ -8,11 +8,18 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
  */
 public class FoodSmell extends Smell {
 
+	/**
+	 * Létrehoz egy ételszag objektumot.
+	 */
 	public FoodSmell() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);
 	}
-	
+	/**
+	 * Létrehoz egy ételszag objektumot a megadott intenzitással.
+	 * 
+	 * @param intensity az ételszag intenzitása
+	 */
 	public FoodSmell(int intensity) {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		this.intensity = intensity;

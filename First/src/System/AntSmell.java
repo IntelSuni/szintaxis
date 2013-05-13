@@ -5,10 +5,12 @@ import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
 /**
  * HangyaSzagot megvalósító osztály.
-
  */
 public class AntSmell extends Smell {
 
+	/**
+	 * Létrehoz egy hangyaszagot.
+	 */
 	public AntSmell() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		Tracer.Instance().Trace(TracerDirection.Leave);

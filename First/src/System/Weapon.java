@@ -1,7 +1,5 @@
 package System;
 
-import java.awt.Point;
-
 import hu.szintaxis.skeleton.Tracer;
 import hu.szintaxis.skeleton.Tracer.TracerDirection;
 
@@ -35,6 +33,9 @@ public class Weapon {
 		super.finalize();
 	}
 
+	/**
+	 * Létrehozza a fegyver objektumot.
+	 */
 	private  Weapon() {
 		Tracer.Instance().Trace(TracerDirection.Enter);
 		extSpray = new Exterminator();
